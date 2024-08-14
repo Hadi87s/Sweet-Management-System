@@ -1,0 +1,2 @@
+Supplier1 RMS1 supplier1@example.com
+Supplier2 RMS2 supplier2@example.com
