@@ -36,7 +36,7 @@ public class App {
 
             return app.registerUser( username, password, email, city);
     }
-    public static void storeOwenerMenu(){
+    public static void storeOwnerMenu(){
         String multiLineString = "1. show account information\n"
                 + "2. get products\n"
                 + "3. total profit\n"
@@ -215,7 +215,7 @@ public class App {
            else if (user.getRole() == 'S' || user.getRole() == 's') {
                System.out.println("------ Welcome to the Store Management Unit ------");
                 while(true) {
-                    storeOwenerMenu();
+                    storeOwnerMenu();
                 }
            }
            else if (user.getRole() == 'R' || user.getRole() == 'r') {
