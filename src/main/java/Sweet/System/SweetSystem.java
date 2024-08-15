@@ -72,7 +72,7 @@ public class SweetSystem {
         Ahmad.addMessage("problem message Supplier1\n");
         Suppliers.add(Ahmad);
 
-        Product product1 = new Product("Chocolate Cake", 10, 5);
+        Product product1 = new Product("ChocolateCake", 10, 5);
         product1.setDiscount(15.0);
         product1.setSellingTimes(5);
         product1.setDescription("Chocolate is very tasty!");
@@ -458,6 +458,7 @@ public class SweetSystem {
         }
         return deleted;
     }
+
 
     public boolean editRecipe(String Title, String Description, Recipe unwantedRecipe) {
         Recipe newRecipe = new Recipe(Title, Description);

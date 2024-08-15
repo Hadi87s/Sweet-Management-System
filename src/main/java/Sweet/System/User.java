@@ -134,7 +134,7 @@ public class User {
         return orderList.get(index);
     }
 
-    public Order getOrderById(String id){
+    public static Order getOrderById(String id){
         for(Order order : orderList){
             if (order.getOrderID().equals(id)){
                 return order;
@@ -221,4 +221,6 @@ public class User {
 
         return true;
     }
+
+
 }

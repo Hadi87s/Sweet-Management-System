@@ -144,7 +144,7 @@ public class StoreOwner extends User{
         OwnerLoggedIn = loggedIn;
     }
 
-    public boolean printAllProducts(){
+    public  boolean printAllProducts(){
         boolean printed = false;
         System.out.println("------ Products List ------");
         for(Product p : products)
@@ -156,7 +156,7 @@ public class StoreOwner extends User{
         return printed;
     }
 
-    public boolean isProductAvailable(String name) {
+    public static boolean isProductAvailable(String name) {
         for(Product p : products)
         {
             if(p.getName().equals(name))
@@ -381,6 +381,37 @@ public class StoreOwner extends User{
         }
 
         return found;
+    }
+
+    public static boolean printAllProducts1(){
+        boolean printed = false;
+        int counter=1;
+        System.out.println("------ Products List ------");
+        for(Product p : products)
+        {
+
+            System.out.println(counter+"  "+p.getName()+"  price: "+p.getPrice());
+            counter++;
+            printed = true;
+        }
+        return printed;
+    }
+
+    public static double getProductPrice(String toFind){
+        double Price =0;
+
+
+        for(Product p : products)
+        {
+            if(p.getName().equals(toFind)){
+
+                Price = p.getPrice();
+                return Price;
+          }
+        }
+        System.out.println("Product not found ");
+
+        return Price;
     }
 
 

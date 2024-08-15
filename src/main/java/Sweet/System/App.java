@@ -3,6 +3,8 @@ package Sweet.System;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
+
 
 public class App {
     static SweetSystem app;
@@ -110,14 +112,16 @@ public class App {
                 + "3. Get order by id\n"
                 + "4. Add order\n"
                 + "5. Cancel order\n"
-                + "6. Desert creation\n"
-                + "7. Get last desert creation\n"
+                + "6. Add dessert creation post\n"
+                + "7. Get all posts\n"
+                + "8. delete post\n"
                 ;
         System.out.println(multiLineString);
         Scanner scanner = new Scanner(System.in);
         int options = scanner.nextInt();
 
         User obj = app.getUserByUsername(user.getUsername());
+
 
         if(options == 1){
             System.out.println(obj.viewAccountDetails());
@@ -129,53 +133,110 @@ public class App {
             }
             else {
                 for(Order o : obj.getOrderList()){
-                    System.out.println(o);
+                    System.out.print(o);
+                    System.out.println("      Status:          "+o.getOrderStatus()+"\n");
                 }
             }
         }
         else if(options == 3){
             System.out.println("The order id :");
-            int id = scanner.nextInt();
-            System.out.println(obj.getOrder(id));
+            String id = scanner.next();
+
+            for(Order o : obj.getOrderList()){
+                if(id.equals(o.getOrderID())){
+                System.out.print(o);
+                System.out.println("      Status:          "+o.getOrderStatus()+"\n");
+            }
+            }
+
+
         }
         else if(options == 4){
 
-            System.out.print("Enter Product Name: ");
+            StoreOwner.printAllProducts1();
+
+            System.out.print("Enter Product name: ");
             String ProductName = scanner.next();
 
-            // Input for orderID
-            System.out.print("Enter Order ID: ");
-            String orderID = scanner.next();
+            if(StoreOwner.isProductAvailable(ProductName)) {
 
-            // Input for Quantity
-            System.out.print("Enter Quantity: ");
-            int Quantity = scanner.nextInt();
-            Order o = new Order(ProductName,Quantity,orderID);
-            obj.addOrder(o);
+                double price=StoreOwner.getProductPrice(ProductName);
 
+                int randomNumber = generateRandomNumber();
+                String orderID = Integer.toString(randomNumber);
+
+                // Input for Quantity
+                System.out.print("Enter Quantity: ");
+                int Quantity = scanner.nextInt();
+
+                Order o = new Order(ProductName, Quantity, orderID);
+                obj.addOrder(o);
+
+                System.out.println("\n\nYour Order has been added.");
+                System.out.println("the details of your order is: " +
+                  "\norder number: "+orderID+
+                 "\n"+ProductName+"  Quantity: "+Quantity+
+                "\nprice: "+price*Quantity+"\n\n");
+            }
+            else {
+                System.out.println("Something wrong try again");
+            }
         }
         else if(options == 5){
             System.out.print("Enter Order ID: ");
             String orderID = scanner.next();
 
             obj.cancelOrder(orderID);
+            System.out.println("Order cancelled successfully.");
         }
         else if(options == 6){
+
+            // Input for Title
             System.out.print("Enter Title: ");
+
             String title = scanner.next();
 
             // Input for description
             System.out.print("Enter Description: ");
-            String description = scanner.next();
+            scanner.nextLine();//to let me enter description
+            String description = scanner.nextLine();
 
-            DessertCreation desert = new DessertCreation(title,description);
-            obj.postDessertCreation(desert);
+            Post desert = new Post(title,description);
+            app.addPost(desert);
 
-            System.out.println("done desert creation");
+            if(app.isPostAdded()){
+            System.out.println("Post add successfully.");
+            }
+            else{
+                System.out.println("error occurred while adding post.");
+            }
+
         }
-
         else if(options == 7){
-            System.out.println(obj.getLatestDessertCreation());
+
+            for(Post po : app.getPosts()){
+                System.out.println(po.toString());
+
+            }
+        }
+        else if(options == 8){
+            // Input for Title
+            System.out.print("Enter Title: ");
+            String title = scanner.next();
+            Post p = null;
+            for(Post po : app.getPosts()){
+                if(title.equals(po.getTitle())){
+                    p = po;
+
+                }
+            }
+
+            if(p!=null){
+                app.deletePost( p);
+                System.out.println("Post deleted successfully.\n");
+            }
+            else System.out.println("Post not found.\n");
+
         }
 
     }
@@ -243,8 +304,15 @@ public class App {
     }
 
 
+    public static int generateRandomNumber() {
+        Random random = new Random();
+        int number = 1000 + random.nextInt(9000); // Ensures the number is between 1000 and 9999
+        return number;
+    }
 
 
-    
+
+
+
 
 }

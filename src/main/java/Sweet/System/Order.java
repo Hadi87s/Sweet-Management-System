@@ -30,7 +30,7 @@ public class Order {
         Quantity = quantity;
     }
 
-    public String getOrderStatus() {
+    public  String getOrderStatus() {
         return orderStatus;
     }
 
