@@ -1,5 +1,8 @@
 package Sweet.System;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class User {
@@ -13,8 +16,8 @@ public class User {
     private String email;
     private String Address;
     private Feedback userFeedback;
-    private ArrayList<String> messagesList = new ArrayList<String>();
-    private ArrayList<Order> orderList = new ArrayList<Order>();
+    private static ArrayList<String> messagesList = new ArrayList<String>();
+    private static ArrayList<Order> orderList = new ArrayList<Order>();
     private ArrayList<DessertCreation> dessertCreations = new ArrayList<>();
     private ArrayList<DessertCreation> sharedDessertCreations = new ArrayList<>();
 
@@ -195,5 +198,27 @@ public class User {
 
     public void setRole(Character role) {
         Role = role;
+    }
+    public static boolean loadOrdersFromFile(String fileName) {
+
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] orderData = line.split(" ");
+                if (orderData.length == 3) {
+                    String productName = orderData[0];
+                    String orderID = orderData[1];
+                    int quantity = Integer.parseInt(orderData[2]);
+
+                    Order order = new Order(productName, quantity, orderID);
+                    orderList.add(order);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 }

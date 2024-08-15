@@ -53,4 +53,11 @@ public class Order {
     public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
+
+    @Override
+    public String toString() {
+        return "      ProductName:     " + ProductName + '\n' +
+                "      Order ID:        " + orderID + '\n' +
+                "      Quantity:        " + Quantity + '\n';
+    }
 }

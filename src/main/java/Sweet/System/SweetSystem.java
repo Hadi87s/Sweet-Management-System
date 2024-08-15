@@ -33,12 +33,19 @@ public class SweetSystem {
         postAdded = false;
         productAdded = false;
         messageSent = false;
+        final String UsersFile = "Users.txt";
+        final String AdminsFile = "Admins.txt";
+        final String StoreOwnersFile = "StoreOwners.txt";
+        final String SuppliersFile = "Suppliers.txt";
+        final String ProductsFile = "Products.txt";
+        final String OrdersFile = "Orders.txt";
 
-        this.Users = loadUsersFromFile("Users.txt");
-        this.Admins = loadAdminsFromFile("Admins.txt");
-        this.storeOwners = loadStoreOwnersFromFile("StoreOwners.txt");
-        this.Suppliers = loadSuppliersFromFile("Suppliers.txt");
-        StoreOwner.loadProductsFromFile("Products.txt");
+        this.Users = loadUsersFromFile(UsersFile);
+        this.Admins = loadAdminsFromFile(AdminsFile);
+        this.storeOwners = loadStoreOwnersFromFile(StoreOwnersFile);
+        this.Suppliers = loadSuppliersFromFile(SuppliersFile);
+        StoreOwner.loadProductsFromFile(ProductsFile);
+//        User.loadOrdersFromFile(OrdersFile);
 
         User Zahi = new User("User1", "123", "user1@example.com", "Nablus");
 
@@ -49,7 +56,7 @@ public class SweetSystem {
         Feedback feedback = new Feedback("The sweets are awesome, the place was quite and cosy, and the service was perfect, 10/10 Sweet shop!");
         Zahi.setUserFeedback(feedback);
 
-        Order order = new Order("Chocolate Cake", 2, "12345");
+        Order order = new Order("ChocolateCake", 2, "12345");
         Zahi.addOrder(order);
         Users.add(Zahi);
         Admin Hadi = new Admin("Admin", "Admin");

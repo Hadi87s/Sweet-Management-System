@@ -123,8 +123,14 @@ public class App {
             System.out.println(obj.viewAccountDetails());
         }
         else if(options == 2){
-            for(Order o : obj.getOrderList()){
-                System.out.println(o);
+            System.out.println("------ User Orders ------");
+            if (obj.getOrderList().isEmpty()) {
+                System.out.println("Your Shopping cart is empty.\n");
+            }
+            else {
+                for(Order o : obj.getOrderList()){
+                    System.out.println(o);
+                }
             }
         }
         else if(options == 3){
@@ -135,11 +141,11 @@ public class App {
         else if(options == 4){
 
             System.out.print("Enter Product Name: ");
-            String ProductName = scanner.nextLine();
+            String ProductName = scanner.next();
 
             // Input for orderID
             System.out.print("Enter Order ID: ");
-            String orderID = scanner.nextLine();
+            String orderID = scanner.next();
 
             // Input for Quantity
             System.out.print("Enter Quantity: ");
@@ -150,17 +156,17 @@ public class App {
         }
         else if(options == 5){
             System.out.print("Enter Order ID: ");
-            String orderID = scanner.nextLine();
+            String orderID = scanner.next();
 
             obj.cancelOrder(orderID);
         }
         else if(options == 6){
             System.out.print("Enter Title: ");
-            String title = scanner.nextLine();
+            String title = scanner.next();
 
             // Input for description
             System.out.print("Enter Description: ");
-            String description = scanner.nextLine();
+            String description = scanner.next();
 
             DessertCreation desert = new DessertCreation(title,description);
             obj.postDessertCreation(desert);
@@ -187,7 +193,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         boolean signedUp = false;
        while(true) {
-           System.out.println("1.Login\n2.Signup ");
+           System.out.println("1.Login\n2.Signup");
            int options = scanner.nextInt();
             if (options == 1) {
                 if (LoginSetup()) {
