@@ -146,10 +146,8 @@ public class App {
                 if(id.equals(o.getOrderID())){
                 System.out.print(o);
                 System.out.println("      Status:          "+o.getOrderStatus()+"\n");
+                }
             }
-            }
-
-
         }
         else if(options == 4){
 
@@ -216,7 +214,6 @@ public class App {
 
             for(Post po : app.getPosts()){
                 System.out.println(po.toString());
-
             }
         }
         else if(options == 8){
@@ -227,7 +224,6 @@ public class App {
             for(Post po : app.getPosts()){
                 if(title.equals(po.getTitle())){
                     p = po;
-
                 }
             }
 
@@ -251,8 +247,8 @@ public class App {
 
 
 
-        Scanner scanner = new Scanner(System.in);
-        boolean signedUp = false;
+       Scanner scanner = new Scanner(System.in);
+       boolean signedUp = false;
        while(true) {
            System.out.println("1.Login\n2.Signup");
            int options = scanner.nextInt();
@@ -260,8 +256,8 @@ public class App {
                 if (LoginSetup()) {
                     break;
                 }
-                else {System.out.println("Invalid username or password, please try again.");
-                    continue;
+                else {
+                    System.out.println("Invalid username or password, please try again.");
                 }
             }
             else if (options == 2) {

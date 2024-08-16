@@ -7,7 +7,7 @@ import javax.mail.internet.*;
 public class EmailService {
 
     private final String username = "SweetSystemInstitution@gmail.com"; // replace with your email
-    private final String password = "vvke nsau pfdt rhqk"; // replace with your email password
+    private final String password = "dgyi ghtp rcnb oamn"; // replace with your email password
 
     private Properties getProperties() {
         Properties props = new Properties();
