@@ -9,6 +9,9 @@ import java.util.Random;
 public class App {
     static SweetSystem app;
     static User user;
+    static boolean loggedIn = true;
+
+    public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BRIGHT_YELLOW = "\u001B[93m";
     public static final String ANSI_BRIGHT_BLUE = "\u001B[94m";
     public static final String ANSI_WHITE = "\u001B[97m";
@@ -16,10 +19,11 @@ public class App {
 
     public static final String ANSI_BOLD = "\u001B[1m";
 
+
     public static void UserPersonalInformation(User obj) {
         while (true)
         {
-            System.out.println("Choose what you want to change:");
+            System.out.println(ANSI_WHITE + ANSI_BOLD + "\nChoose what you want to change:\n" + ANSI_RESET);
             Scanner scanner = new Scanner(System.in);
             System.out.println("1. Username");
             System.out.println("2. Password");
@@ -29,37 +33,37 @@ public class App {
             int insideOption = scanner.nextInt();
 
             if (insideOption == 1){
-                System.out.printf("New Username: ");
+                System.out.printf(ANSI_WHITE + "New Username: " + ANSI_RESET);
                 String username = scanner.next();
                 obj.setUsername(username); //changing the username to the new one.
-                System.out.println("Username Has Been Changed.");
+                System.out.println(ANSI_BRIGHT_YELLOW + "Username Has Been Changed." + ANSI_RESET);
             }
             else if(insideOption == 2){
-                System.out.printf("New Password: ");
+                System.out.printf(ANSI_WHITE + "New Password: "+ ANSI_RESET);
                 String password = scanner.next();
                 System.out.println("");
-                System.out.printf("New Password Again: ");
+                System.out.printf(ANSI_WHITE + "New Password Again: "+ ANSI_RESET);
                 String duplicatePassword = scanner.next();
                 System.out.println("");
                 if (duplicatePassword.equals(password)){
                     obj.setPassword(password);
-                    System.out.println("Password Has Been Changed.");
+                    System.out.println(ANSI_BRIGHT_YELLOW + "Password Has Been Changed." + ANSI_RESET);
                 }
-                else System.out.println("Password Does Not Match.");
+                else System.out.println(ANSI_RED + "Password Does Not Match." + ANSI_RESET);
             }
             else if(insideOption == 3){
-                System.out.printf("New Email: ");
+                System.out.printf(ANSI_WHITE + "New Email: " + ANSI_RESET);
                 String email = scanner.next();
                 obj.setEmail(email);
                 System.out.println("");
-                System.out.println("Email Has Been Changed.");
+                System.out.println(ANSI_BRIGHT_YELLOW + "Email Has Been Changed." + ANSI_RESET);
             }
             else if(insideOption == 4){
-                System.out.printf("New City: ");
+                System.out.printf(ANSI_WHITE + "New City: " + ANSI_RESET);
                 String City = scanner.next();
                 obj.setCity(City);
                 System.out.println("");
-                System.out.println("City Has Been Changed.");
+                System.out.println(ANSI_BRIGHT_YELLOW + "City Has Been Changed." + ANSI_RESET);
             }
             else if (insideOption == 5){
                 break;
@@ -133,36 +137,37 @@ public class App {
                 System.out.println(obj.getBestSellingProduct());
             }
             else if(options == 6){
-                System.out.println("Product Name:");
+                System.out.println(ANSI_WHITE + "Product Name:" + ANSI_RESET);
                 String productName = scanner.next();
-                System.out.println("Description:");
+                System.out.println(ANSI_WHITE + "Description:" + ANSI_RESET);
                 String description = scanner.next();
-                System.out.println("Price:");
+                System.out.println(ANSI_WHITE + "Price:" + ANSI_RESET);
                 double price = scanner.nextDouble();
-                System.out.println("Raw Material Price:");
+                System.out.println(ANSI_WHITE + "Raw Material Price:" + ANSI_RESET);
                 double rawMaterialPrice = scanner.nextDouble();
                 obj.addProduct(productName,description,price,rawMaterialPrice);
-                System.out.println("Product Has Been Added.");
+                System.out.println(ANSI_WHITE + "Product Has Been Added." + ANSI_RESET);
             }
             else if(options == 7){
-                System.out.println("Product Name :");
+                System.out.println(ANSI_WHITE + "Product Name :" + ANSI_RESET);
                 String productName = scanner.next();
                 obj.deleteProductFromFile("Products.txt",productName);
 
             }
             else if(options == 8){
-                System.out.println("Product Name(You want to update) :");
+                System.out.println(ANSI_WHITE + "Product Name(You want to update) :" + ANSI_RESET);
                 String productName = scanner.next();
-                System.out.println("Description :");
+                System.out.println(ANSI_WHITE + "Description :" + ANSI_RESET);
                 String description = scanner.next();
-                System.out.println("Price:");
+                System.out.println(ANSI_WHITE + "Price:" + ANSI_RESET);
                 double price = scanner.nextDouble();
-                System.out.println("Raw Material Price:");
+                System.out.println(ANSI_WHITE + "Raw Material Price:" + ANSI_RESET);
                 double rawMaterialPrice = scanner.nextDouble();
                 Product newProduct = new Product(productName,description,price,rawMaterialPrice);
                 obj.updateProductInFile("Products.txt",productName,newProduct);
             }
             else if (options == 0){
+                loggedIn = false;
                 break;
             }
         }
@@ -197,23 +202,23 @@ public class App {
             else if(options == 2){
                 System.out.println("------ User Orders ------");
                 if (obj.getOrderList().isEmpty()) {
-                    System.out.println("Your Shopping cart is empty.\n");
+                    System.out.println(ANSI_RED + "Your Shopping cart is empty.\n" + ANSI_RESET);
                 }
                 else {
                     for(Order o : obj.getOrderList()){
                         System.out.print(o);
-                        System.out.println("      Status:          "+o.getOrderStatus()+"\n");
+                        System.out.println(ANSI_WHITE + "      Status:          "+o.getOrderStatus()+"\n" + ANSI_RESET);
                     }
                 }
             }
             else if(options == 3){
-                System.out.println("The order id :");
+                System.out.println(ANSI_WHITE +"The order id :"+ ANSI_RESET);
                 String id = scanner.next();
 
                 for(Order o : obj.getOrderList()){
                     if(id.equals(o.getOrderID())){
                         System.out.print(o);
-                        System.out.println("      Status:          "+o.getOrderStatus()+"\n");
+                        System.out.println(ANSI_WHITE +"      Status:          "+o.getOrderStatus()+"\n"+ ANSI_RESET);
                     }
                 }
             }
@@ -221,7 +226,7 @@ public class App {
 
                 StoreOwner.printAllProducts1();
 
-                System.out.print("Enter Product name: ");
+                System.out.print(ANSI_WHITE + "Enter Product name: "+ ANSI_RESET);
                 String ProductName = scanner.next();
 
                 if(StoreOwner.isProductAvailable(ProductName)) {
@@ -232,38 +237,38 @@ public class App {
                     String orderID = Integer.toString(randomNumber);
 
                     // Input for Quantity
-                    System.out.print("Enter Quantity: ");
+                    System.out.print(ANSI_WHITE + "Enter Quantity: "+ ANSI_RESET);
                     int Quantity = scanner.nextInt();
 
                     Order o = new Order(ProductName, Quantity, orderID);
                     obj.addOrder(o);
 
-                    System.out.println("\n\nYour Order has been added.");
-                    System.out.println("the details of your order is: " +
+                    System.out.println(ANSI_BRIGHT_YELLOW + "\n\nYour Order has been added."+ ANSI_RESET);
+                    System.out.println(ANSI_WHITE + "the details of your order is: " +
                             "\norder number: "+orderID+
                             "\n"+ProductName+"  Quantity: "+Quantity+
-                            "\nprice: "+price*Quantity+"\n\n");
+                            "\nprice: "+price*Quantity+"\n\n" + ANSI_RESET);
                 }
                 else {
-                    System.out.println("Something wrong try again");
+                    System.out.println(ANSI_RED +"Something wrong try again"+ ANSI_RESET);
                 }
             }
             else if(options == 5){
-                System.out.print("Enter Order ID: ");
+                System.out.print(ANSI_WHITE + "Enter Order ID: "+ ANSI_RESET);
                 String orderID = scanner.next();
 
                 obj.cancelOrder(orderID);
-                System.out.println("Order cancelled successfully.");
+                System.out.println(ANSI_BRIGHT_YELLOW + "Order cancelled successfully."+ ANSI_RESET);
             }
             else if(options == 6){
 
                 // Input for Title
-                System.out.print("Enter Title: ");
+                System.out.print(ANSI_WHITE +"Enter Title: "+ ANSI_RESET);
 
                 String title = scanner.next();
 
                 // Input for description
-                System.out.print("Enter Description: ");
+                System.out.print(ANSI_WHITE +"Enter Description: "+ ANSI_RESET);
                 scanner.nextLine();//to let me enter description
                 String description = scanner.nextLine();
 
@@ -271,10 +276,10 @@ public class App {
                 app.addPost(desert);
 
                 if(app.isPostAdded()){
-                    System.out.println("Post add successfully.");
+                    System.out.println(ANSI_BRIGHT_YELLOW +"Post add successfully."+ ANSI_RESET);
                 }
                 else{
-                    System.out.println("error occurred while adding post.");
+                    System.out.println(ANSI_RED + "Error occurred while adding post."+ ANSI_RESET);
                 }
 
             }
@@ -286,7 +291,7 @@ public class App {
             }
             else if(options == 8){
                 // Input for Title
-                System.out.print("Enter Title: ");
+                System.out.print(ANSI_WHITE + "Enter Title: "+ ANSI_RESET);
                 String title = scanner.next();
                 Post p = null;
                 for(Post po : app.getPosts()){
@@ -297,19 +302,19 @@ public class App {
 
                 if(p!=null){
                     app.deletePost( p);
-                    System.out.println("Post deleted successfully.\n");
+                    System.out.println(ANSI_BRIGHT_YELLOW +"Post deleted successfully.\n"+ ANSI_RESET);
                 }
-                else System.out.println("Post not found.\n");
+                else System.out.println(ANSI_RED + "Post not found.\n"+ ANSI_RESET);
 
             }
             else if (options == 9){
-                System.out.println("Write your request below:");
+                System.out.println(ANSI_WHITE +"Write your request below:"+ ANSI_RESET);
                 String request = scanner.nextLine();
                 request = scanner.nextLine();
 
                 app.prindStoreOwners();
 
-                System.out.println("Write the StoreOwner's Name to make a establish connection:");
+                System.out.println(ANSI_WHITE +"Write the StoreOwner's Name to make a establish connection:"+ ANSI_RESET);
                 String ownerName = scanner.next();
 
                 StoreOwner owner = app.getStoreOwnerByBusinessName(ownerName);
@@ -324,6 +329,7 @@ public class App {
 
             }
             else if(options == 0) {
+                loggedIn = false;
                 break;
             }
         }
@@ -375,6 +381,7 @@ public class App {
 
             }
             else if (options == 0){
+                loggedIn = false;
                 break;
             }
         }
@@ -382,51 +389,51 @@ public class App {
     public static void main(String[] args) {
         try {
             app = new SweetSystem();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
 
 
+        Scanner scanner = new Scanner(System.in);
+        boolean signedUp = false;
+        while (true) {
+            System.out.println(ANSI_BRIGHT_BLUE + "1.Login\n2.Signup" + ANSI_RESET);
+            int options = scanner.nextInt();
+            if (options == 1) {
+                if (LoginSetup()) {
+                    break;
+                } else {
+                    System.out.println(ANSI_RED + "Invalid username or password, please try again." + ANSI_RESET);
+                }
+            } else if (options == 2) {
+                if (SignUpSetup()) {
+                    System.out.println(ANSI_BRIGHT_YELLOW +"User has been SignedUp successfully."+ ANSI_RESET);
 
-       Scanner scanner = new Scanner(System.in);
-       boolean signedUp = false;
-       while(true) {
-           System.out.println(ANSI_BRIGHT_BLUE + "1.Login\n2.Signup" + ANSI_RESET);
-           int options = scanner.nextInt();
-           if (options == 1) {
-               if (LoginSetup()) {
-                   break;
-               } else {
-                   System.out.println("Invalid username or password, please try again.");
-               }
-           } else if (options == 2) {
-               if (SignUpSetup()) {
-                   System.out.println("User has been SignedUp successfully.");
+                } else System.out.println(ANSI_RED +"Username is already in use, or the password is too weak." + ANSI_RESET);
+            }
+        }
+            while (loggedIn) {
 
-               } else System.out.println("Username is already in use, or the password is too weak.");
-           }
+                if (user.getRole() == 'A' || user.getRole() == 'a') {
+                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Administration Unit ------" + ANSI_RESET + "\n");
+                    AdminMenu();
+                } else if (user.getRole() == 'S' || user.getRole() == 's') {
+                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Store Management Unit ------" + ANSI_RESET + "\n");
+                    storeOwnerMenu();
+                } else if (user.getRole() == 'R' || user.getRole() == 'r') {
+                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Raw Material Management Unit ------" + ANSI_RESET + "\n");
 
+                    scanner.next();
+                    //raw material supplier menu
+                } else if (user.getRole() == 'U' || user.getRole() == 'u') {
+                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Sweet System ------" + ANSI_RESET + "\n");
+                    UserMainMenu();
+                } else {
+                    System.out.println(ANSI_BOLD + ANSI_WHITE + "SOMETHING WEN WRONG WHEN ATTEMPTING TO LOGIN..." + ANSI_RESET + "\n");
+                }
+            }
+        }
 
-           if (user.getRole() == 'A' || user.getRole() == 'a') {
-               System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Administration Unit ------" + ANSI_RESET + "\n");
-               AdminMenu();
-           } else if (user.getRole() == 'S' || user.getRole() == 's') {
-               System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Store Management Unit ------" + ANSI_RESET + "\n");
-               storeOwnerMenu();
-           } else if (user.getRole() == 'R' || user.getRole() == 'r') {
-               System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Raw Material Management Unit ------" + ANSI_RESET + "\n");
-
-               scanner.next();
-               //raw material supplier menu
-           } else if (user.getRole() == 'U' || user.getRole() == 'u') {
-               System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Sweet System ------" + ANSI_RESET + "\n");
-               UserMainMenu();
-           } else {
-               System.out.println(ANSI_BOLD + ANSI_WHITE + "SOMETHING WEN WRONG WHEN ATTEMPTING TO LOGIN..." + ANSI_RESET + "\n");
-           }
-       }
-    }
 
 
     public static int generateRandomNumber() {

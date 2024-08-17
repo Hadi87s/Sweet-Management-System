@@ -37,7 +37,7 @@ public class Admin extends User{
     }
 
     public String viewAccountDetails(){
-        return ANSI_BRIGHT_YELLOW + "Business name: "+ "\nUsername: " + getUsername() + "\nPassword: "+getPassword()+"\nEmail: "+getEmail()+"\nCity: "+getAddress() + ANSI_RESET;
+        return ANSI_BRIGHT_YELLOW + "\nUsername: " + getUsername() + "\nPassword: "+getPassword()+ ANSI_RESET;
 
     }
     @Override
