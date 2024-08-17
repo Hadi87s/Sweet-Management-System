@@ -1,6 +1,7 @@
 package Sweet.System;
 
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,9 +25,12 @@ public class SweetSystem {
     public ArrayList<RawSupplier> Suppliers = new ArrayList<RawSupplier>();
     public ArrayList<Post> Posts = new ArrayList<Post>();
     public ArrayList<Recipe> Recipes = new ArrayList<Recipe>();
-    public ArrayList<Feedback> Feedbacks = new ArrayList<Feedback>();
+    public static ArrayList<Feedback> Feedbacks = new ArrayList<Feedback>();
     public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_WHITE = "\u001B[97m";
     public static final String ANSI_RESET = "\u001B[0m";
+
+    public static final String ANSI_BOLD = "\u001B[1m";
 
     public SweetSystem() throws IOException {
         registeredIn = false;
@@ -149,6 +153,26 @@ public class SweetSystem {
 
         return adminList;
     }
+    public boolean addAdminToFile(String filename, Admin admin) {
+        boolean isAdded = false;
+
+        // Add the admin to the in-memory list
+        Admins.add(admin);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) { // 'true' to append to the file
+            // Format the admin data as "username password"
+            String adminData = admin.getUsername() + " " +
+                    admin.getPassword();
+            writer.write(adminData);
+            writer.newLine(); // Add a newline after writing the admin data
+            isAdded = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            isAdded = false;
+        }
+
+        return isAdded;
+    }
     public ArrayList<StoreOwner> loadStoreOwnersFromFile(String fileName) {
         ArrayList<StoreOwner> storeOwners = new ArrayList<>();
 
@@ -197,6 +221,59 @@ public class SweetSystem {
         }
         return isAdded;
     }
+    public boolean removeStoreOwnerFromList( String username) {
+        Iterator<StoreOwner> iterator = storeOwners.iterator();
+        boolean isRemoved = false;
+
+        while (iterator.hasNext()) {
+            StoreOwner storeOwner = iterator.next();
+            if (storeOwner.getUsername().equals(username)) {
+                iterator.remove();  // Remove the store owner from the list
+                isRemoved = true;
+                break;  // Exit the loop after removing the store owner
+            }
+        }
+
+        return isRemoved;
+    }
+    public boolean deleteStoreOwnerFromFile(String fileName, String username) {
+        boolean isDeleted = false;
+
+
+
+        StoreOwner storeOwnerToRemove = null;
+        for (StoreOwner storeOwner : storeOwners) {
+            if (storeOwner.getUsername().equals(username)) {
+                storeOwnerToRemove = storeOwner;
+                break;
+            }
+        }
+
+        if (storeOwnerToRemove != null) {
+            storeOwners.remove(storeOwnerToRemove);
+            isDeleted = true;
+        } else {
+            return false; // Store owner not found
+        }
+        removeStoreOwnerFromList(username); //remove the storeOwner from the list too.
+        // Step 3: Rewrite the file with the remaining store owners
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
+            for (StoreOwner storeOwner : storeOwners) {
+                String storeOwnerData = storeOwner.getUsername() + " " +
+                        storeOwner.getPassword() + " " +
+                        storeOwner.getEmail() + " " +
+                        storeOwner.getBusinessName() + " " +
+                        storeOwner.getAddress();
+                bw.write(storeOwnerData);
+                bw.newLine(); // Add a newline after writing each store owner
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return isDeleted;
+    }
 
     public ArrayList<RawSupplier> loadSuppliersFromFile(String filename) {
         ArrayList<RawSupplier> supplierList = new ArrayList<>();
@@ -219,6 +296,26 @@ public class SweetSystem {
         }
 
         return supplierList;
+    }
+    public boolean addSupplierToFile(String filename, RawSupplier supplier) {
+        boolean isAdded = false;
+
+        Suppliers.add(supplier);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) { // 'true' to append to the file
+            // Format the supplier data as "username password email"
+            String supplierData = supplier.getUsername() + " " +
+                    supplier.getPassword() + " " +
+                    supplier.getEmail();
+            writer.write(supplierData);
+            writer.newLine(); // Add a newline after writing the supplier data
+            isAdded = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            isAdded = false;
+        }
+
+        return isAdded;
     }
 
     public void addUserToFile(String filename, User user) {
@@ -750,7 +847,7 @@ public class SweetSystem {
             return false; //some condition was incorrect while signing up so false will be returned.
     }
 
-    public void prindStoreOwners(){
+    public void printStoreOwners(){
         int index = 1;
         for (StoreOwner o : storeOwners){
             System.out.println(index + ". " + o.getBusinessName());
@@ -758,6 +855,16 @@ public class SweetSystem {
         }
     }
 
+    public void addUserFeedback(Feedback feedback){
+        Feedbacks.add(feedback);
+    }
+
+    public void printUserFeedbacks(){
+        for (Feedback fb : Feedbacks) {
+            System.out.println(ANSI_WHITE + ANSI_BOLD + "Product Related: " + fb.getRelatedProduct() + "\n");
+            System.out.println("Feedback Content: "+ fb.getFeedback() + ANSI_RESET);
+        }
+    }
 
 
 }

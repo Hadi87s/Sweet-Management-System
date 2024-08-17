@@ -23,6 +23,8 @@ public class StoreOwner extends User{
     private boolean businessNameChanged;
     private boolean AddressChanged;
     private ArrayList<String> messagesList= new ArrayList<>();
+    public static final String ANSI_WHITE = "\u001B[97m";
+    public static final String ANSI_BOLD = "\u001B[1m";
 
     public StoreOwner(String businessName, String address) {
         super(null,null,'S');
@@ -386,11 +388,11 @@ public class StoreOwner extends User{
     public static boolean printAllProducts1(){
         boolean printed = false;
         int counter=1;
-        System.out.println("------ Products List ------");
+        System.out.println(ANSI_WHITE + ANSI_BOLD+ "------ Products List ------" + ANSI_RESET);
         for(Product p : products)
         {
 
-            System.out.println(counter+"  "+p.getName()+"  price: "+p.getPrice());
+            System.out.println(ANSI_WHITE+counter+"  "+p.getName()+"  price: "+p.getPrice() + ANSI_RESET);
             counter++;
             printed = true;
         }

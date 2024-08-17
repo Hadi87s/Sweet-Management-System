@@ -1,5 +1,6 @@
 package Sweet.System;
 
+
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ public class App {
     public static final String ANSI_BOLD = "\u001B[1m";
 
 
-    public static void UserPersonalInformation(User obj) {
+    public static void PersonalInformation(User obj) {
         while (true)
         {
             System.out.println(ANSI_WHITE + ANSI_BOLD + "\nChoose what you want to change:\n" + ANSI_RESET);
@@ -101,8 +102,8 @@ public class App {
     public static void storeOwnerMenu(){
         while(true){
             String multiLineString =
-                    ANSI_BRIGHT_BLUE+
-                            "1. show account information\n"
+                    ANSI_BRIGHT_BLUE
+                            + "1. show account information\n"
                             + "2. get products\n"
                             + "3. total profit\n"
                             + "4. get most selling item\n"
@@ -187,6 +188,7 @@ public class App {
                             + "8. Delete post\n"
                             + "9. Make a special request\n"
                             + "10. Manage account information\n"
+                            + "11. Add Feedback on a Product\n"
                             + "0. Logout\n"
                             + ANSI_RESET;
             System.out.println(multiLineString);
@@ -312,7 +314,7 @@ public class App {
                 String request = scanner.nextLine();
                 request = scanner.nextLine();
 
-                app.prindStoreOwners();
+                app.printStoreOwners();
 
                 System.out.println(ANSI_WHITE +"Write the StoreOwner's Name to make a establish connection:"+ ANSI_RESET);
                 String ownerName = scanner.next();
@@ -325,8 +327,21 @@ public class App {
             }
             else if(options == 10){
                 System.out.println(obj.viewAccountDetails());
-                UserPersonalInformation(obj);
+                PersonalInformation(obj);
 
+            }
+            else if (options == 11){
+                StoreOwner.printAllProducts1();
+                System.out.println("");
+                System.out.printf(ANSI_WHITE + "Specify which product to give Feedback on: " + ANSI_RESET);
+                String productName = scanner.next();
+                System.out.printf(ANSI_WHITE + "Feedback message: " + ANSI_RESET);
+                String feedback = scanner.nextLine();
+                feedback = scanner.nextLine();
+                System.out.println("");
+                Feedback fb = new Feedback(productName, feedback);
+                app.addUserFeedback(fb);
+                System.out.println(ANSI_BRIGHT_YELLOW + "Feedback added successfully."+ ANSI_RESET + "\n");
             }
             else if(options == 0) {
                 loggedIn = false;
@@ -338,14 +353,11 @@ public class App {
     public static void AdminMenu(){
         while(true) {
             String multiLineString =
-                    ANSI_BRIGHT_BLUE+
-                            "1. show account information\n"
+                    ANSI_BRIGHT_BLUE
+                            + "1. show account information\n"
                             + "2. Add a Store Owner\n"
                             + "3. Add a Raw Material Supplier\n"
                             + "4. Add a new Admin\n"
-                            + "5. \n"
-                            + "6. \n"
-                            + "7. \n"
                             + "0. Logout\n"
                             + ANSI_RESET;
 
@@ -378,14 +390,81 @@ public class App {
                     System.out.println(ANSI_BRIGHT_YELLOW + "Store Owner added successfully." + ANSI_RESET);
             }
             else if (options == 3){
-
+                System.out.println(ANSI_BRIGHT_BLUE +"Enter Owner's desired Username: " + ANSI_RESET);
+                String Username = scanner.next();
+                System.out.println(ANSI_BRIGHT_BLUE +"Enter Owner's desired Password: " + ANSI_RESET);
+                String Password = scanner.next();
+                System.out.println(ANSI_BRIGHT_BLUE +"Enter Owner's Email Address: " + ANSI_RESET);
+                String Email = scanner.next();
+                System.out.println(ANSI_BRIGHT_BLUE +"Enter Owner's Business Name: " + ANSI_RESET);
+                String BusinessName = scanner.next();
+                System.out.println(ANSI_BRIGHT_BLUE +"Enter Owner's Address: " + ANSI_RESET);
+                String Address = scanner.next();
+                RawSupplier supplier = new RawSupplier(Username, Password, Email);
+                supplier.setAddress(Address);
+                supplier.setBusinessName(BusinessName);
+                if(app.addSupplierToFile("Suppliers.txt",supplier)){
+                    System.out.println(ANSI_BRIGHT_YELLOW +"A Supplier has been added successfully." + ANSI_RESET);
+                }
+                else
+                    System.out.println(ANSI_RED + "Error occurred while trying to add a Supplier" + ANSI_RESET);
             }
+            else if (options == 4){
+                System.out.println(ANSI_BRIGHT_BLUE +"Enter Owner's desired Username: " + ANSI_RESET);
+                String Username = scanner.next();
+                System.out.println(ANSI_BRIGHT_BLUE +"Enter Owner's desired Password: " + ANSI_RESET);
+                String Password = scanner.next();
+                Admin admin = new Admin(Username, Password);
+                if(app.addAdminToFile("Admin.txt",admin)){
+                    System.out.println(ANSI_BRIGHT_YELLOW +"An Admin has been added successfully." + ANSI_RESET);
+                }
+                else
+                    System.out.println(ANSI_RED + "Error occurred while trying to add an Admin." + ANSI_RESET);
+            }
+//            else if (options == 5){
+//                System.out.printf(ANSI_WHITE + "Enter the owner's username you want to remove: "+ ANSI_RESET);
+//                String Username = scanner.next();
+//                System.out.println("");
+//                if (app.deleteStoreOwnerFromFile("StoreOwner.txt",Username)){
+//                    System.out.println(ANSI_BRIGHT_YELLOW +"Store Owner has been removed successfully." + ANSI_RESET);
+//                }
+//                else
+//                    System.out.println(ANSI_RED + "Error occurred while trying to delete a Store Owner." + ANSI_RESET);
+//
+//            }
             else if (options == 0){
                 loggedIn = false;
                 break;
             }
         }
     }
+    public static void SupplierMenu(){
+        while(true) {
+            String multiLineString =
+                    ANSI_BRIGHT_BLUE
+                            + "1. show account information\n"
+                            + "2. Manage account information\n"
+                            + "0. Logout\n"
+                            + ANSI_RESET;
+
+            System.out.println("");
+            System.out.println(multiLineString);
+            Scanner scanner = new Scanner(System.in);
+            int options = scanner.nextInt();
+
+            RawSupplier obj = app.getSupplierByUsername(user.getUsername());
+            if(options == 1){
+                System.out.println(obj.viewAccountDetails());
+            }
+            else if (options == 2){
+                System.out.println(obj.viewAccountDetails());
+                PersonalInformation(obj);
+            }
+        }
+    }
+
+
+
     public static void main(String[] args) {
         try {
             app = new SweetSystem();
@@ -422,9 +501,8 @@ public class App {
                     storeOwnerMenu();
                 } else if (user.getRole() == 'R' || user.getRole() == 'r') {
                     System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Raw Material Management Unit ------" + ANSI_RESET + "\n");
+                    SupplierMenu();
 
-                    scanner.next();
-                    //raw material supplier menu
                 } else if (user.getRole() == 'U' || user.getRole() == 'u') {
                     System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Sweet System ------" + ANSI_RESET + "\n");
                     UserMainMenu();
