@@ -220,7 +220,7 @@ public class StoreOwner extends User{
     }
 
     public String viewAccountDetails(){
-        return "Business name: "+ getBusinessName() + "\nUsername: " + getUsername() + "\nPassword: "+getPassword()+"\nEmail: "+getEmail()+"\nCity: "+getAddress()+"\n";
+        return ANSI_BRIGHT_YELLOW + "Business name: "+ getBusinessName() + "\nUsername: " + getUsername() + "\nPassword: "+getPassword()+"\nEmail: "+getEmail()+"\nCity: "+getAddress() + ANSI_RESET;
 
     }
 

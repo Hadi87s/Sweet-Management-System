@@ -20,6 +20,9 @@ public class User {
     private static ArrayList<Order> orderList = new ArrayList<Order>();
     private ArrayList<DessertCreation> dessertCreations = new ArrayList<>();
     private ArrayList<DessertCreation> sharedDessertCreations = new ArrayList<>();
+    public static final String ANSI_BRIGHT_YELLOW = "\u001B[93m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
 
     public User(String username, String password) {
         this.username = username;
@@ -112,7 +115,7 @@ public class User {
         return "\n"+getUsername() + " requested a special delivery with a message of: "+request +"\n\nThe provided email if further communication is required: "+ getEmail();
     }
     public String viewAccountDetails(){
-        return "\nUsername: " + getUsername() + "\nPassword: "+getPassword()+"\nEmail: "+getEmail()+"\nCity: "+getCity()+"\n";
+        return ANSI_BRIGHT_YELLOW +"\nUsername: " + getUsername() + "\nPassword: "+getPassword()+"\nEmail: "+getEmail()+"\nCity: "+getCity()+"\n" + ANSI_RESET;
 
     }
 

@@ -25,6 +25,8 @@ public class SweetSystem {
     public ArrayList<Post> Posts = new ArrayList<Post>();
     public ArrayList<Recipe> Recipes = new ArrayList<Recipe>();
     public ArrayList<Feedback> Feedbacks = new ArrayList<Feedback>();
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     public SweetSystem() throws IOException {
         registeredIn = false;
@@ -75,7 +77,7 @@ public class SweetSystem {
         Product product1 = new Product("ChocolateCake", 10, 5);
         product1.setDiscount(15.0);
         product1.setSellingTimes(5);
-        product1.setDescription("Chocolate is very tasty!");
+        product1.setDescription("ChocolateIsVeryTasty!");
         Khaled.products.add(product1);
 
 
@@ -173,6 +175,27 @@ public class SweetSystem {
         }
 
         return storeOwners;
+    }
+    public boolean addStoreOwnerToFile(String fileName, StoreOwner storeOwner) {
+        boolean isAdded = false;
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) { // 'true' to append to the file
+            // Format the store owner data as "username password email businessName address"
+            String storeOwnerData = storeOwner.getUsername() + " " +
+                    storeOwner.getPassword() + " " +
+                    storeOwner.getEmail() + " " +
+                    storeOwner.getBusinessName() + " " +
+                    storeOwner.getAddress();
+            storeOwners.add(storeOwner); //adding the new owner to the list as well.
+            if (storeOwners.contains(storeOwner)) {
+                isAdded = true;
+            }
+            bw.write(storeOwnerData);
+            bw.newLine(); // Add a newline after writing the store owner data
+        } catch (IOException e) {
+            e.printStackTrace();
+            isAdded = false;
+        }
+        return isAdded;
     }
 
     public ArrayList<RawSupplier> loadSuppliersFromFile(String filename) {
@@ -558,6 +581,22 @@ public class SweetSystem {
         }
         return null; // Return null if no matching owner is found
     }
+    public Admin getAdminByUsername(String username) {
+        for (Admin admin : Admins) {
+            if (admin.getUsername().equals(username)) {
+                return admin;
+            }
+        }
+        return null; // Return null if no matching owner is found
+    }
+    public StoreOwner getStoreOwnerByBusinessName(String username) {
+        for (StoreOwner owner : storeOwners) {
+            if (owner.getBusinessName().equals(username)) {
+                return owner;
+            }
+        }
+        return null; // Return null if no matching owner is found
+    }
 
     public void enableEmailNotifications() {
         emailNotificationsEnabled = true;
@@ -568,17 +607,27 @@ public class SweetSystem {
     }
 
     public void makeSpecialRequest(User user, StoreOwner owner, String requestContent) {
-        specialRequestMade = true;
-        String content = "Special request made by " + user.getUsername();//+"\n"+requestContent;
-        // just add special request parameter to the user to give more info in the email.
-        sendEmailNotification(content, owner.getEmail());
+        if (user == null || owner == null)
+        {
+            System.out.println(ANSI_RED + "Connection couldn't be made, The User/Owner's info is missing!" + ANSI_RESET);
+        }
+        else {
+            specialRequestMade = true;
+            String content = "Special request made by: "
+                    + user.getUsername() +"\n"+requestContent
+                    + "\nThe provided User email if further communication is required: "
+                    + user.getEmail() + "\n";
+
+
+            sendEmailNotification(content, owner.getEmail().trim());
+        }
     }
 
     public boolean isSpecialRequestMade() {
         return specialRequestMade;
     }
 
-    private void sendEmailNotification(String content, String toEmail) {
+    public void sendEmailNotification(String content, String toEmail) {
         lastEmailNotificationContent = content;
         if (emailNotificationsEnabled) {
             emailService.sendEmail(toEmail, "Special Request Notification", content);
@@ -701,7 +750,13 @@ public class SweetSystem {
             return false; //some condition was incorrect while signing up so false will be returned.
     }
 
-
+    public void prindStoreOwners(){
+        int index = 1;
+        for (StoreOwner o : storeOwners){
+            System.out.println(index + ". " + o.getBusinessName());
+            index++;
+        }
+    }
 
 
 
