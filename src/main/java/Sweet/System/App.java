@@ -1,8 +1,7 @@
 package Sweet.System;
 
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 import java.util.Random;
 
@@ -42,10 +41,10 @@ public class App {
             else if(insideOption == 2){
                 System.out.printf(ANSI_WHITE + "New Password: "+ ANSI_RESET);
                 String password = scanner.next();
-                System.out.println("");
+                System.out.println();
                 System.out.printf(ANSI_WHITE + "New Password Again: "+ ANSI_RESET);
                 String duplicatePassword = scanner.next();
-                System.out.println("");
+                System.out.println();
                 if (duplicatePassword.equals(password)){
                     obj.setPassword(password);
                     System.out.println(ANSI_BRIGHT_YELLOW + "Password Has Been Changed." + ANSI_RESET);
@@ -56,14 +55,14 @@ public class App {
                 System.out.printf(ANSI_WHITE + "New Email: " + ANSI_RESET);
                 String email = scanner.next();
                 obj.setEmail(email);
-                System.out.println("");
+                System.out.println();
                 System.out.println(ANSI_BRIGHT_YELLOW + "Email Has Been Changed." + ANSI_RESET);
             }
             else if(insideOption == 4){
                 System.out.printf(ANSI_WHITE + "New City: " + ANSI_RESET);
                 String City = scanner.next();
                 obj.setCity(City);
-                System.out.println("");
+                System.out.println();
                 System.out.println(ANSI_BRIGHT_YELLOW + "City Has Been Changed." + ANSI_RESET);
             }
             else if (insideOption == 5){
@@ -78,7 +77,7 @@ public class App {
         String username = scanner.next();
         System.out.println(ANSI_BRIGHT_BLUE + "Please enter your Password: " + ANSI_RESET);
         String password = scanner.next();
-        System.out.println("");
+        System.out.println();
 
         user = app.isUserRegister(username, password);
         if(user == null)
@@ -96,7 +95,7 @@ public class App {
             String email = scanner.next();
             System.out.println(ANSI_BRIGHT_BLUE + "Please enter your City: " + ANSI_RESET);
             String city = scanner.next();
-            System.out.println("");
+            System.out.println();
             return app.registerUser( username, password, email, city);
     }
     public static void storeOwnerMenu(){
@@ -114,7 +113,7 @@ public class App {
                             + "0. Logout\n"
                             + ANSI_RESET;
 
-            System.out.println("");
+            System.out.println();
             System.out.println(multiLineString);
             Scanner scanner = new Scanner(System.in);
             int options = scanner.nextInt();
@@ -332,13 +331,13 @@ public class App {
             }
             else if (options == 11){
                 StoreOwner.printAllProducts1();
-                System.out.println("");
+                System.out.println();
                 System.out.printf(ANSI_WHITE + "Specify which product to give Feedback on: " + ANSI_RESET);
                 String productName = scanner.next();
                 System.out.printf(ANSI_WHITE + "Feedback message: " + ANSI_RESET);
                 String feedback = scanner.nextLine();
                 feedback = scanner.nextLine();
-                System.out.println("");
+                System.out.println();
                 Feedback fb = new Feedback(productName, feedback);
                 app.addUserFeedback(fb);
                 System.out.println(ANSI_BRIGHT_YELLOW + "Feedback added successfully."+ ANSI_RESET + "\n");
@@ -361,7 +360,7 @@ public class App {
                             + "0. Logout\n"
                             + ANSI_RESET;
 
-            System.out.println("");
+            System.out.println();
             System.out.println(multiLineString);
             Scanner scanner = new Scanner(System.in);
             int options = scanner.nextInt();
@@ -421,17 +420,6 @@ public class App {
                 else
                     System.out.println(ANSI_RED + "Error occurred while trying to add an Admin." + ANSI_RESET);
             }
-//            else if (options == 5){
-//                System.out.printf(ANSI_WHITE + "Enter the owner's username you want to remove: "+ ANSI_RESET);
-//                String Username = scanner.next();
-//                System.out.println("");
-//                if (app.deleteStoreOwnerFromFile("StoreOwner.txt",Username)){
-//                    System.out.println(ANSI_BRIGHT_YELLOW +"Store Owner has been removed successfully." + ANSI_RESET);
-//                }
-//                else
-//                    System.out.println(ANSI_RED + "Error occurred while trying to delete a Store Owner." + ANSI_RESET);
-//
-//            }
             else if (options == 0){
                 loggedIn = false;
                 break;
@@ -447,7 +435,7 @@ public class App {
                             + "0. Logout\n"
                             + ANSI_RESET;
 
-            System.out.println("");
+            System.out.println();
             System.out.println(multiLineString);
             Scanner scanner = new Scanner(System.in);
             int options = scanner.nextInt();
@@ -474,7 +462,6 @@ public class App {
 
 
         Scanner scanner = new Scanner(System.in);
-        boolean signedUp = false;
         while (true) {
             System.out.println(ANSI_BRIGHT_BLUE + "1.Login\n2.Signup" + ANSI_RESET);
             int options = scanner.nextInt();
@@ -516,8 +503,7 @@ public class App {
 
     public static int generateRandomNumber() {
         Random random = new Random();
-        int number = 1000 + random.nextInt(9000); // Ensures the number is between 1000 and 9999
-        return number;
+        return 1000 + random.nextInt(9000); // Ensures the number is between 1000 and 9999
     }
 
 
