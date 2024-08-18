@@ -11,6 +11,7 @@ public class EmailService {
     public static final String ANSI_BRIGHT_YELLOW = "\u001B[93m";
     public static final String ANSI_RESET = "\u001B[0m";
 
+
     private static Properties getProperties() {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
