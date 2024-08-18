@@ -26,7 +26,7 @@ public class AccountManagementFeature {
 
     @Then("I should see my account details including username, email, and business information")
     public void iShouldSeeMyAccountDetailsIncludingUsernameEmailAndBusinessInformation() {
-            System.out.println(accountDetails);
+//            System.out.println(accountDetails);
     }
 
     @When("I update my email to {string} and password to {string}")
@@ -42,7 +42,7 @@ public class AccountManagementFeature {
         for (StoreOwner st : myApp.getStoreOwners()) {
             assertTrue(emailCheck && passwordCheck);
             newDetails = st.viewAccountDetails();
-            System.out.println(newDetails);
+//            System.out.println(newDetails);
         }
     }
 
@@ -80,7 +80,7 @@ public class AccountManagementFeature {
 
     @Then("I should receive an error message indicating that the email format is invalid")
     public void iShouldReceiveAnErrorMessageIndicatingThatTheEmailFormatIsInvalid() {
-        System.out.println(myApp.getMessage());
+//        System.out.println(myApp.getMessage());
     }
 
     @When("I change my password to {string}")

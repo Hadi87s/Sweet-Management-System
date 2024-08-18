@@ -1,10 +1,6 @@
 package Sweet.System;
-
-
-
 import java.util.Scanner;
 import java.util.Random;
-
 
 public class App {
     static SweetSystem app;
@@ -16,8 +12,8 @@ public class App {
     public static final String ANSI_BRIGHT_BLUE = "\u001B[94m";
     public static final String ANSI_WHITE = "\u001B[97m";
     public static final String ANSI_RESET = "\u001B[0m";
-
     public static final String ANSI_BOLD = "\u001B[1m";
+
 
 
     public static void PersonalInformation(User obj) {
@@ -452,7 +448,6 @@ public class App {
     }
 
 
-
     public static void main(String[] args) {
         try {
             app = new SweetSystem();
@@ -489,16 +484,14 @@ public class App {
                 } else if (user.getRole() == 'R' || user.getRole() == 'r') {
                     System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Raw Material Management Unit ------" + ANSI_RESET + "\n");
                     SupplierMenu();
-
                 } else if (user.getRole() == 'U' || user.getRole() == 'u') {
                     System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Sweet System ------" + ANSI_RESET + "\n");
                     UserMainMenu();
                 } else {
-                    System.out.println(ANSI_BOLD + ANSI_WHITE + "SOMETHING WEN WRONG WHEN ATTEMPTING TO LOGIN..." + ANSI_RESET + "\n");
+                    System.out.println(ANSI_BOLD + ANSI_RED + "SOMETHING WEN WRONG WHEN ATTEMPTING TO LOGIN..." + ANSI_RESET + "\n");
                 }
             }
         }
-
 
 
     public static int generateRandomNumber() {

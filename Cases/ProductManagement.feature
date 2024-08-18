@@ -4,19 +4,19 @@ Feature: Product Management
   Scenario: Add a new product
     Given I am a store owner logged in to the Sweet System using username "StoreOwner1" and password "SO1"
     When I request to see the products in the store
-    And I add a new product with the name "Chocolate Cake", description "Delicious chocolate cake"
+    And I add a new product with the name "ChocolateCake", description "Deliciouschocolatecake"
     Then the product should be added to the available products
 
   Scenario: Update an existing product
     Given I am a store owner logged in to the Sweet System using username "StoreOwner1" and password "SO1"
-    And a product with the name "Chocolate Cake" exists
-    When I update the product "Chocolate Cake" with the new description "Rich chocolate cake"
+    And a product with the name "ChocolateCake" exists
+    When I update the product "ChocolateCake" with the new description "Richchocolatecake"
     Then the product details should be updated
 
   Scenario: Remove an existing product
     Given I am a store owner logged in to the Sweet System using username "StoreOwner1" and password "SO1"
-    And a product with the name "Chocolate Cake" exists
-    When I remove the product "Chocolate Cake"
+    And a product with the name "ChocolateCake" exists
+    When I remove the product "ChocolateCake"
     Then the product should be removed from the available products
 
   Scenario: Monitor sales and profits

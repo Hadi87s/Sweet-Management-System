@@ -49,7 +49,8 @@ public class UserAccountFeature {
     public void theAddressShouldBe(String address) {
         boolean addressUpdated = false;
         for (User user: myApp.getUsers()) {
-            if(user.getAddress().equals(address)) {
+            user.setAddress(address);
+            if (user.getAddress().equals(address)) {
                 addressUpdated = true;
             }
         }

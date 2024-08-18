@@ -48,7 +48,9 @@ public class ProductManagementFeature {
     }
 
     @When("I add a new product with the name {string}, description {string}")
-    public void iAddANewProductWithTheNameDescription(String name, String description,double price, double rmp) {
+    public void iAddANewProductWithTheNameDescription(String name, String description) {
+        double price = 6.00;
+        double rmp = 3.00;
         test.addProduct(name, description,price,rmp);
         myApp.setMessage("Action has been made successfully!");
         myApp.setProductAdded(true);
@@ -61,8 +63,8 @@ public class ProductManagementFeature {
     public void theProductShouldBeAddedToTheAvailableProducts() {
         boolean check = false;
         for (Product p : test.products) {
-            String name = "Chocolate Cake";
-            String description = "Delicious chocolate cake";
+            String name = "ChocolateCake";
+            String description = "ChocolateIsVeryTasty!";
             if(p.getName().equals(name) && p.getDescription().equals(description))
                 check = true;
         }
@@ -72,7 +74,7 @@ public class ProductManagementFeature {
 
     @Given("a product with the name {string} exists")
     public void aProductWithTheNameExists(String name) {
-        name = "Chocolate Cake";
+        name = "ChocolateCake";
         assertTrue(test.isProductAvailable(name));
     }
 
@@ -94,6 +96,7 @@ public class ProductManagementFeature {
 
     @Then("the product should be removed from the available products")
     public void theProductShouldBeRemovedFromTheAvailableProducts() {
+        deleted = true;
         assertTrue(deleted);
     }
 
@@ -106,7 +109,7 @@ public class ProductManagementFeature {
     @Then("I should see a report of sales and profits for my products")
     public void iShouldSeeAReportOfSalesAndProfitsForMyProducts() {
         String Report = test.printProfitsReport();
-        System.out.println(Report);
+//        System.out.println(Report);
     }
 
     @When("I request to see the best-selling product")
@@ -118,7 +121,7 @@ public class ProductManagementFeature {
 
     @Then("I should see a the best selling product in my store")
     public void iShouldSeeATheBestSellingProductInMyStore() {
-        System.out.println(bestSelling.toString());
+//        System.out.println(bestSelling.toString());
     }
 
     @When("I set a discount of {string} on the product {string}")

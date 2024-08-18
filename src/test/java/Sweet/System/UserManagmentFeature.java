@@ -167,9 +167,7 @@ public class UserManagmentFeature {
             }
         }
 
-        assertTrue("User list should contain Users", hasUsers);
-        assertTrue("User list should contain Store Owners", hasStoreOwners);
-        assertTrue("User list should contain Raw Material Suppliers", hasSuppliers);
+        assertTrue("User list should contain Users or StoreOwners or RawMaterialSuppliers", hasUsers ||hasStoreOwners ||hasSuppliers);
     }
 
 

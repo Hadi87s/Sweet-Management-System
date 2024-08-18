@@ -1,7 +1,6 @@
 package Sweet.System;
 
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,8 +55,8 @@ public class SweetSystem {
         User Zahi = new User("User1", "123", "user1@example.com", "Nablus");
 
 
-        Feedback zahiQudo3 = new Feedback("Chocolate Cake was crazy\n");
-        Feedbacks.add(zahiQudo3);
+        Feedback zahiQudo = new Feedback("Chocolate Cake Was Crazy\n");
+        Feedbacks.add(zahiQudo);
 
         Feedback feedback = new Feedback("The sweets are awesome, the place was quite and cosy, and the service was perfect, 10/10 Sweet shop!");
         Zahi.setUserFeedback(feedback);
@@ -94,7 +93,7 @@ public class SweetSystem {
         recipe1.setFoodAllergies("Butter");
         Recipes.add(recipe1);
 
-        Recipe recipe2 = new Recipe("Chocolate Cake", "a cake flavored with melted chocolate, cocoa powder");
+        Recipe recipe2 = new Recipe("Chocolate Cake", "aCakeFlavoredWithMeltedChocolate, cocoa powder");
         recipe2.setOption( "Cake");
         recipe2.setProtein("5g");
         recipe2.setFat("22g");
@@ -105,7 +104,6 @@ public class SweetSystem {
 
         Post post1 = new Post("Kunafa", "dough");
         Posts.add(post1);
-        emailService = new EmailService();
 
     }
 
@@ -710,9 +708,9 @@ public class SweetSystem {
         }
         else {
             specialRequestMade = true;
-            String content = "Special request made by: "
-                    + user.getUsername() +"\n"+requestContent
-                    + "\nThe provided User email if further communication is required: "
+            String content ="A Special request made by: "
+                    + user.getUsername() + "\n\n" + requestContent
+                    + "\n\nThe provided User email if further communication is required: "
                     + user.getEmail() + "\n";
 
 
@@ -727,7 +725,7 @@ public class SweetSystem {
     public void sendEmailNotification(String content, String toEmail) {
         lastEmailNotificationContent = content;
         if (emailNotificationsEnabled) {
-            emailService.sendEmail(toEmail, "Special Request Notification", content);
+            EmailService.sendEmail(toEmail, "Special Request Notification", content);
         }
     }
 
