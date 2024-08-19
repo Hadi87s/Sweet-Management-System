@@ -7,7 +7,7 @@ import javax.mail.internet.*;
 public class EmailService {
 
     private static final String Email = "SweetSystemInstitution@gmail.com"; // replace with your email
-    private static final String Password = "dgyi ghtp rcnb oamn"; // replace with your email password
+    private static final String Password = System.getenv("password"); // replace with your email password
     public static final String ANSI_BRIGHT_YELLOW = "\u001B[93m";
     public static final String ANSI_RESET = "\u001B[0m";
 
