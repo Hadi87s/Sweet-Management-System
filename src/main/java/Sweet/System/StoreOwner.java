@@ -22,7 +22,7 @@ public class StoreOwner extends User{
     private boolean passwordChanged;
     private boolean businessNameChanged;
     private boolean AddressChanged;
-    private ArrayList<String> messagesList= new ArrayList<>();
+    private static ArrayList<String> messagesList= new ArrayList<>();
     public static final String ANSI_WHITE = "\u001B[97m";
     public static final String ANSI_BOLD = "\u001B[1m";
 
@@ -281,8 +281,8 @@ public class StoreOwner extends User{
         return messagesList;
     }
 
-    public void setMessagesList(ArrayList<String> messagesList) {
-        this.messagesList = messagesList;
+    public static void setMessagesList(ArrayList<String> messagesListCopy) {
+        messagesList = messagesListCopy;
     }
 
     public void addMessage(String message) {

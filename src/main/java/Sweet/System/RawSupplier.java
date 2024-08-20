@@ -10,7 +10,7 @@ public class RawSupplier extends User {
     private String BusinessName;
     private String Address;
     private boolean supplierExist;
-    private ArrayList<String> messagesList= new ArrayList<>();
+    private static ArrayList<String> messagesList= new ArrayList<>();
 
 
 
@@ -58,8 +58,8 @@ public class RawSupplier extends User {
         return messagesList;
     }
 
-    public void setMessagesList(ArrayList<String> messagesList) {
-        this.messagesList = messagesList;
+    public static void setMessagesList(ArrayList<String> messagesListCopy) {
+        messagesList = messagesListCopy;
     }
 
     public void addMessage(String message) {

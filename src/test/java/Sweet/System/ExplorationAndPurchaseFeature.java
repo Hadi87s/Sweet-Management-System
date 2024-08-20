@@ -57,10 +57,10 @@ public class ExplorationAndPurchaseFeature {
     public void iShouldBeAbleToFilterRecipesBasedOnThoseRequirements() {
         String searchForNutrient1="Sugar";
         String dietaryNeedSearchingFor="74g";
-        String foodAlergiesToDeleteWhenFoundIt ="dairy";
+        String foodAllergiesToDeleteWhenFoundIt ="dairy";
 
-        assertEquals("the dietary search went not as expected",expectedDietary,myApp.SearchingForNutrient( searchForNutrient1, dietaryNeedSearchingFor));
-        assertEquals("the food allergies search went not as expected",expectedFoodAlergies,myApp.SearchingForFoodAlergies( foodAlergiesToDeleteWhenFoundIt));
+        assertEquals("the dietary search went not as expected",expectedDietary,myApp.searchingForNutrient( searchForNutrient1, dietaryNeedSearchingFor));
+        assertEquals("the food allergies search went not as expected",expectedFoodAlergies,myApp.SearchingForFoodAlergies( foodAllergiesToDeleteWhenFoundIt));
 
     }
 

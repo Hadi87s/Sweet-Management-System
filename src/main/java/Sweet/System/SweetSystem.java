@@ -739,7 +739,7 @@ public class SweetSystem {
         }
         return actualRecipe;
     }
-    public String searchForNutrient(String nutrientType, String dietaryNeeds) {
+    public String searchingForNutrient(String nutrientType, String dietaryNeeds) {
         String actualDietaryNeeds = "";
 
         for (Recipe recipe : Recipes) {
