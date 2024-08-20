@@ -6,8 +6,9 @@ import javax.mail.internet.*;
 
 public class EmailService {
 
-    private static final String Email = "SweetSystemInstitution@gmail.com"; // replace with your email
-    private static final String Password = System.getenv("password"); // replace with your email password
+    private static final String EMAIL = "SweetSystemInstitution@gmail.com";
+    private static final String PASSWORD = System.getenv("password");
+
     public static final String ANSI_BRIGHT_YELLOW = "\u001B[93m";
     public static final String ANSI_RESET = "\u001B[0m";
 
@@ -24,7 +25,7 @@ public class EmailService {
     private static Session getSession() {
         return Session.getInstance(getProperties(), new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(Email, Password);
+                return new PasswordAuthentication(EMAIL, PASSWORD);
             }
         });
     }
@@ -32,7 +33,7 @@ public class EmailService {
     public static void sendEmail(String toEmail, String subject, String body) {
         try {
             Message message = new MimeMessage(getSession());
-            message.setFrom(new InternetAddress(Email));
+            message.setFrom(new InternetAddress(EMAIL));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             message.setSubject(subject);
             message.setText(body);

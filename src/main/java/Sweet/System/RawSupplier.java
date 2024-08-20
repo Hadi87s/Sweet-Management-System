@@ -12,11 +12,7 @@ public class RawSupplier extends User {
     private boolean supplierExist;
     private ArrayList<String> messagesList= new ArrayList<>();
 
-    public RawSupplier(String username, String password) {
-        super(username, password,'R');
-        this.username = username;
-        this.password = password;
-    }
+
 
     public RawSupplier(String username, String password, String email) {
         super(username, password,'R');

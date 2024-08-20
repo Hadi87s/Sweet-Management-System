@@ -26,7 +26,7 @@ public class CommunicationAndFeedbackFeature {
 
 //        System.out.println("Supplier email: "+testR.getEmail()+"\n");
 //        System.out.println("Owner email: "+test.getEmail()+"\n");
-
+    Feedback FB = new Feedback("Its so good","Chocholate Cake");
     }
 
     @Then("I should be able to send a message describing my problem with store owners and suppliers")

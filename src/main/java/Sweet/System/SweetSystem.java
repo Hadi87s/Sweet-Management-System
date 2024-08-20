@@ -406,34 +406,29 @@ public class SweetSystem {
     }
 
     public User isUserRegister(String username, String password) {
+        User user = checkCredentials(Users, username, password, 'U');
+        if (user != null) return user;
 
-        for (User u : Users){
-            if(u.getUsername().equals(username) && u.getPassword().equals(password)){
-                u.setRole('U');
-                return u;
-            }
-        }
+        user = checkCredentials(Admins, username, password, 'A');
+        if (user != null) return user;
 
-        for (Admin admin : Admins){
-            if(admin.getUsername().equals(username) && admin.getPassword().equals(password)){
-                admin.setRole('A');
-                return admin;
-            }
-        }
-        for (StoreOwner s : storeOwners) {
-            if(s.getUsername().equals(username) && s.getPassword().equals(password)){
-                s.setRole('S');
-                return s;
-            }
-        }
-        for (RawSupplier r : Suppliers){
-            if(r.getUsername().equals(username) && r.getPassword().equals(password)){
-                r.setRole('R');
-                return r;
+        user = checkCredentials(storeOwners, username, password, 'S');
+        if (user != null) return user;
+
+        user = checkCredentials(Suppliers, username, password, 'R');
+        return user;
+    }
+
+    private <T extends User> User checkCredentials(List<T> list, String username, String password, char role) {
+        for (T user : list) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                user.setRole(role);
+                return user;
             }
         }
         return null;
     }
+
 
     public boolean isAddedInSystem(userType type, String username) {
         switch (type) {
