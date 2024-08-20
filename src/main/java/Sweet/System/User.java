@@ -99,8 +99,9 @@ public class User {
         return messagesList;
     }
 
-    public void setMessagesList(ArrayList<String> messageList) {
-        this.messagesList = messageList;
+
+    public static void setMessagesList(ArrayList<String> messageList) {
+        messagesList = messageList;
     }
 
     public void addMessage(String message) {
@@ -123,8 +124,8 @@ public class User {
         return orderList;
     }
 
-    public void setOrderList(ArrayList<Order> orderList) {
-        this.orderList = orderList;
+    public static void setOrderList(ArrayList<Order> orderListCopy) {
+        orderList = orderListCopy;
     }
 
     public void addOrder(Order order){

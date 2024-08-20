@@ -431,40 +431,28 @@ public class SweetSystem {
 
 
     public boolean isAddedInSystem(userType type, String username) {
-        switch (type) {
-            case USER:
-                for (User user : Users) {
-                    if (user.getUsername().equals(username)) {
-                        return true;
-                    }
+        List<? extends User> userList = getUserListByType(type);
+
+        if (userList != null) {
+            for (User user : userList) {
+                if (user.getUsername().equals(username)) {
+                    return true;
                 }
-                break;
-            case ADMIN:
-                for (Admin admin : Admins) {
-                    if (admin.getUsername().equals(username)) {
-                        return true;
-                    }
-                }
-                break;
-            case STORE_OWNER:
-                for (StoreOwner storeOwner : storeOwners) {
-                    if (storeOwner.getUsername().equals(username)) {
-                        return true;
-                    }
-                }
-                break;
-            case SUPPLIER:
-                for (RawSupplier sp : Suppliers) {
-                    if (sp.getUsername().equals(username)) {
-                        return true;
-                    }
-                }
-                break;
-            default:
-                return false;
+            }
         }
         return false;
     }
+
+    private List<? extends User> getUserListByType(userType type) {
+        return switch (type) {
+            case USER -> Users;
+            case ADMIN -> Admins;
+            case STORE_OWNER -> storeOwners;
+            case SUPPLIER -> Suppliers;
+            default -> null;
+        };
+    }
+
 
     public String getMessage() {
         return message;
@@ -751,45 +739,31 @@ public class SweetSystem {
         }
         return actualRecipe;
     }
-    public String SearchingForNutrient(String searchForNutrient1,String dietaryNeeds){
+    public String searchForNutrient(String nutrientType, String dietaryNeeds) {
+        String actualDietaryNeeds = "";
 
-        String actualDietaryNeeds="" ;
-
-        if (searchForNutrient1.equals("Protein")) {
-            for (Recipe recipe : Recipes) {
-                if (recipe.getProtein().equals(dietaryNeeds)) {
-                    actualDietaryNeeds = recipe.getTitle()+"\n"+recipe.getNutrient()+"\n";
-
-                }
+        for (Recipe recipe : Recipes) {
+            String nutrientValue = getNutrientValue(recipe, nutrientType);
+            if (nutrientValue != null && nutrientValue.equals(dietaryNeeds)) {
+                actualDietaryNeeds = recipe.getTitle() + "\n" + recipe.getNutrient() + "\n";
+                break; // Exit the loop once a match is found
             }
         }
-        if (searchForNutrient1.equals("Fat")){
-                for (Recipe recipe : Recipes) {
-                    if(recipe.getFat().equals(dietaryNeeds)) {
-                        actualDietaryNeeds = recipe.getTitle()+"\n"+recipe.getNutrient()+"\n";
-                    }
-                }
-            }
-        if (searchForNutrient1.equals("Sugar")){
-            for (Recipe recipe : Recipes) {
-                if(recipe.getSugar().equals(dietaryNeeds)) {
-                    actualDietaryNeeds = recipe.getTitle()+"\n"+recipe.getNutrient()+"\n";
-                }
-            }
-        }
-        if (searchForNutrient1.equals("Calories")){
-            for (Recipe recipe : Recipes) {
-                if(recipe.getCalories().equals(dietaryNeeds)) {
-                    actualDietaryNeeds = recipe.getTitle()+"\n"+recipe.getNutrient()+"\n";
-                }
-            }
-        }
-
 
         System.out.println(actualDietaryNeeds);
-
         return actualDietaryNeeds;
     }
+
+    private String getNutrientValue(Recipe recipe, String nutrientType) {
+        return switch (nutrientType) {
+            case "Protein" -> recipe.getProtein();
+            case "Fat" -> recipe.getFat();
+            case "Sugar" -> recipe.getSugar();
+            case "Calories" -> recipe.getCalories();
+            default -> null;
+        };
+    }
+
 
     public String SearchingForFoodAlergies(String searchForFoodAlergies){
 
