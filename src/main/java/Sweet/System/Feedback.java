@@ -10,6 +10,10 @@ public class Feedback {
         this.relatedProduct = relatedProduct;
     }
 
+    public Feedback() {
+
+    }
+
     public Feedback(String feedback) {
         this.feedback = feedback;
     }
@@ -22,13 +26,6 @@ public class Feedback {
         this.feedback = feedback;
     }
 
-    public String getAdminReply() {
-        return adminReply;
-    }
-
-    public void setAdminReply(String adminReply) {
-        this.adminReply = adminReply;
-    }
 
     public String getRelatedProduct() {
         return relatedProduct;

@@ -92,7 +92,9 @@ public class App {
             System.out.println(ANSI_BRIGHT_BLUE + "Please enter your City: " + ANSI_RESET);
             String city = scanner.next();
             System.out.println();
-            return app.registerUser( username, password, email, city);
+            if (app.isUserRegistered(username, password))
+             return app.registerUser( username, password, email, city);
+            else return false;
     }
     public static void storeOwnerMenu(){
         while(true){

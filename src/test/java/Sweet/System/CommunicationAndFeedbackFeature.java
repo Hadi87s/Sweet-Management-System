@@ -14,6 +14,9 @@ public class CommunicationAndFeedbackFeature {
     StoreOwner test;
     RawSupplier testR;
     Feedback testF;
+    Feedback Fb;
+    String feedbackMessage;
+    String targetedProduct;
     public CommunicationAndFeedbackFeature(SweetSystem myApp) {
         this.myApp = myApp;
         test=myApp.storeOwners.get(0);
@@ -23,38 +26,30 @@ public class CommunicationAndFeedbackFeature {
 
     @When("I have an inquiry or need assistance")
     public void iHaveAnInquiryOrNeedAssistance() {
-
-//        System.out.println("Supplier email: "+testR.getEmail()+"\n");
-//        System.out.println("Owner email: "+test.getEmail()+"\n");
-    Feedback FB = new Feedback("Its so good","Chocholate Cake");
+        Fb = new Feedback();
     }
 
     @Then("I should be able to send a message describing my problem with store owners and suppliers")
     public void iShouldBeAbleToSendAMessageDescribingMyProblemWithStoreOwnersAndSuppliers() {
-        ArrayList<String> expectedOwner= new ArrayList<>();;
-        expectedOwner.add("problem message  store Owner 1\n");
-//        System.out.println("Owner the message you sent: "+test.getMessagesList());
-
-        ArrayList<String> expectedSupllier= new ArrayList<>();;
-        expectedSupllier.add("problem message Supplier1\n");
-//        System.out.println("the message you sent: " + testR.getMessagesList());
-        assertNotNull("Supplier1 send message went not as expected",testR.getMessagesList());
+            feedbackMessage = "Some feedback from the user";
+            targetedProduct = "Name Of Some Product";
+            Fb.setFeedback(feedbackMessage);
+            Fb.setRelatedProduct(targetedProduct);
 
     }
 
     @When("I want to share my experience")
     public void iWantToShareMyExperience() {
        String expected="Chocolate Cake Was Crazy\n";
-
-
+        Feedback newFeedback=new Feedback(feedbackMessage,targetedProduct);
+        myApp.Feedbacks.add(newFeedback); //sharing my experience.
         assertEquals("feedback send went not as expected",expected,testF.getFeedback());
 
     }
 
     @Then("I should be able to provide my feedback")
     public void iShouldBeAbleToProvideMyFeedback() {
-//        System.out.println(testF.toString());
-
+        myApp.printUserFeedbacks();
     }
 
 }

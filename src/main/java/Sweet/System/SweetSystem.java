@@ -493,17 +493,13 @@ public class SweetSystem {
         return Recipes;
     }
 
-    public void setRecipes(ArrayList<Recipe> recipes) {
-        Recipes = recipes;
-    }
+
 
     public ArrayList<Post> getPosts() {
         return Posts;
     }
 
-    public void setPosts(ArrayList<Post> posts) {
-        Posts = posts;
-    }
+
 
     public void addRecipe(Recipe recipe) {
         Recipes.add(recipe);
@@ -595,9 +591,7 @@ public class SweetSystem {
         return Users;
     }
 
-    public ArrayList<Admin> getAdmins() {
-        return Admins;
-    }
+
 
     public boolean isMessageSent() {
         return messageSent;
@@ -611,9 +605,7 @@ public class SweetSystem {
         return storeOwners;
     }
 
-    public ArrayList<RawSupplier> getSuppliers() {
-        return Suppliers;
-    }
+
 
     public void sendMessageToUser(String message, String user) {
         for (User u : Users) {
@@ -724,10 +716,7 @@ public class SweetSystem {
         return matcher.matches();
     }
 
-    public void printSearchingList(String searchFor){
-        System.out.println(SearchingList(searchFor));
 
-    }
     public String SearchingList(String searchFor){
 
         String actualRecipe="" ;
