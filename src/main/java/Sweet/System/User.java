@@ -87,9 +87,7 @@ public class User {
         this.city = city;
     }
 
-    public Feedback getUserFeedback() {
-        return userFeedback;
-    }
+
 
     public void setUserFeedback(Feedback userFeedback) {
         this.userFeedback = userFeedback;
@@ -100,9 +98,7 @@ public class User {
     }
 
 
-    public static void setMessagesList(ArrayList<String> messageList) {
-        messagesList = messageList;
-    }
+
 
     public void addMessage(String message) {
         messagesList.add(message);
@@ -124,9 +120,7 @@ public class User {
         return orderList;
     }
 
-    public static void setOrderList(ArrayList<Order> orderListCopy) {
-        orderList = orderListCopy;
-    }
+
 
     public void addOrder(Order order){
         order.setOrderStatus("Processed");
@@ -134,9 +128,7 @@ public class User {
         orderList.add(order);
     }
 
-    public Order getOrder(int index){
-        return orderList.get(index);
-    }
+
 
     public static Order getOrderById(String id){
         for(Order order : orderList){

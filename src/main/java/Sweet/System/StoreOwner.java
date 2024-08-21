@@ -146,17 +146,6 @@ public class StoreOwner extends User{
         OwnerLoggedIn = loggedIn;
     }
 
-    public  boolean printAllProducts(){
-        boolean printed = false;
-        System.out.println("------ Products List ------");
-        for(Product p : products)
-        {
-
-            System.out.println(p);
-            printed = true;
-        }
-        return printed;
-    }
 
     public static boolean isProductAvailable(String name) {
         for(Product p : products)
@@ -264,26 +253,11 @@ public class StoreOwner extends User{
         return AddressChanged;
     }
 
-        public String completePayment(double payment,String ItemName){
-
-        for(Product p : products)
-        {
-            if(p.getName().equals(ItemName)){
-                System.out.println(p.toString()+"Change: "+(payment-p.getPrice())+"\n");
-            return p.toString()+"Change: "+(payment-p.getPrice())+"\n";
-
-        }
-    }
-        return"Error: item not found";
-    }
 
     public ArrayList<String> getMessagesList() {
         return messagesList;
     }
 
-    public static void setMessagesList(ArrayList<String> messagesListCopy) {
-        messagesList = messagesListCopy;
-    }
 
     public void addMessage(String message) {
         messagesList.add(message);
@@ -385,7 +359,7 @@ public class StoreOwner extends User{
         return found;
     }
 
-    public static boolean printAllProducts1(){
+    public static boolean printAllProducts(){
         boolean printed = false;
         int counter=1;
         System.out.println(ANSI_WHITE + ANSI_BOLD+ "------ Products List ------" + ANSI_RESET);

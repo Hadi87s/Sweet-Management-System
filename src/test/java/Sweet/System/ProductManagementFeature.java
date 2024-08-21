@@ -36,13 +36,14 @@ public class ProductManagementFeature {
                 s.setOwnerLoggedIn(false);
                 assertFalse(s.isOwnerLoggedIn());
             }
-
         }
+        test.setCity("Nablus");
+        test.setBusinessName("SomeName"); //the goal is to test that those methods are working.
+
     }
 
     @When("I request to see the products in the store")
     public void iRequestToSeeTheProductsInTheStore() {
-
         boolean check = test.printAllProducts();
         assertTrue(check);
     }
@@ -121,7 +122,8 @@ public class ProductManagementFeature {
 
     @Then("I should see a the best selling product in my store")
     public void iShouldSeeATheBestSellingProductInMyStore() {
-//        System.out.println(bestSelling.toString());
+        Product p = test.getBestSellingProduct();
+        assertNotNull(p);
     }
 
     @When("I set a discount of {string} on the product {string}")

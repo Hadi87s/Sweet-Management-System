@@ -28,7 +28,6 @@ public class CommunicationAndNotificationFeature {
         boolean messageFound = false;
         ArrayList<String> messages = user.getMessagesList();
 
-//        System.out.println("Messages list size: " + messages.size()); // Debug statement
 
         for (String m : messages) {
             if (m.trim().equals(message.trim())) {

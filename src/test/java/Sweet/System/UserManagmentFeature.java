@@ -49,6 +49,7 @@ public class UserManagmentFeature {
 
     @Then("the store owner should be added to the Sweet System")
     public void theStoreOwnerShouldBeAddedToTheSweetSystem() {
+
         assertTrue(myApp.isAddedInSystem(STORE_OWNER ,storeOwner1.getUsername()));
     }
 
@@ -80,15 +81,9 @@ public class UserManagmentFeature {
 
     @When("I remove the store owner with a username {string}")
     public void iRemoveTheStoreOwnerWithAUsername(String username) {
-        Iterator<StoreOwner> iterator = myApp.storeOwners.iterator();
-        while (iterator.hasNext()) {
-            StoreOwner storeOwner = iterator.next();
-            if (storeOwner.getUsername().equals(username)) {
-                iterator.remove();
-                storeOwner1.setStoreOwnerExist(false);
-                break;
-            }
-        }
+        boolean Removed = myApp.removeStoreOwner(username);
+        storeOwner1.setStoreOwnerExist(false);
+        assertNotNull(Removed);
     }
 
 

@@ -822,5 +822,18 @@ public class SweetSystem {
         }
     }
 
+    public boolean removeStoreOwner(String username){
+        boolean removed = false;
+        Iterator<StoreOwner> iterator = storeOwners.iterator();
+        while (iterator.hasNext()) {
+            StoreOwner storeOwner = iterator.next();
+            if (storeOwner.getUsername().equals(username)) {
+                iterator.remove();
+                removed = true;
+                break;
+            }
+        }
+        return removed;
+    }
 
 }

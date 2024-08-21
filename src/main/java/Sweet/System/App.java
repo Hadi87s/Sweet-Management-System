@@ -223,7 +223,7 @@ public class App {
             }
             else if(options == 4){
 
-                StoreOwner.printAllProducts1();
+                StoreOwner.printAllProducts();
 
                 System.out.print(ANSI_WHITE + "Enter Product name: "+ ANSI_RESET);
                 String ProductName = scanner.next();
@@ -328,7 +328,7 @@ public class App {
 
             }
             else if (options == 11){
-                StoreOwner.printAllProducts1();
+                StoreOwner.printAllProducts();
                 System.out.println();
                 System.out.printf(ANSI_WHITE + "Specify which product to give Feedback on: " + ANSI_RESET);
                 String productName = scanner.next();

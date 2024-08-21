@@ -58,17 +58,12 @@ public class RawSupplier extends User {
         return messagesList;
     }
 
-    public static void setMessagesList(ArrayList<String> messagesListCopy) {
-        messagesList = messagesListCopy;
-    }
 
     public void addMessage(String message) {
         messagesList.add(message);
     }
 
-    public String getMessage(int index) {
-        return messagesList.get(index);
-    }
+
 
     public String getBusinessName() {
         return BusinessName;
