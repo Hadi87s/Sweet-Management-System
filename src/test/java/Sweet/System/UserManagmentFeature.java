@@ -83,7 +83,7 @@ public class UserManagmentFeature {
     public void iRemoveTheStoreOwnerWithAUsername(String username) {
         boolean Removed = myApp.removeStoreOwner(username);
         storeOwner1.setStoreOwnerExist(false);
-        assertNotNull(Removed);
+
     }
 
 
