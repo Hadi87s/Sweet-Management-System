@@ -1,23 +1,16 @@
 package Sweet.System;
 
-import java.util.ArrayList;
-import java.util.function.Supplier;
-
 public class RawSupplier extends User {
     private String username;
-    private String password;
     private String email;
-    private String BusinessName;
-    private String Address;
+    private String businessName;
     private boolean supplierExist;
-    private static ArrayList<String> messagesList= new ArrayList<>();
-
 
 
     public RawSupplier(String username, String password, String email) {
         super(username, password,'R');
         this.username = username;
-        this.password = password;
+        super.setPassword(password);
         this.email = email;
         supplierExist = false;
     }
@@ -41,11 +34,11 @@ public class RawSupplier extends User {
 
 
     public String getBusinessName() {
-        return BusinessName;
+        return businessName;
     }
 
     public void setBusinessName(String businessName) {
-        BusinessName = businessName;
+        this.businessName = businessName;
     }
 
     @Override

@@ -9,7 +9,6 @@ public class ExplorationAndPurchaseFeature {
 
     StoreOwner test;
     SweetSystem myApp;
-    String expectedSearch="Chocolate Cake" + ": " + "a cake flavored with melted chocolate, cocoa powder" + "\n";
     String expectedOptions="Options: 1.Popular sweets 2.Cake \n";
     String expectedDietary="Chocolate Cake\n"+"Nutrient: Calories: 305 Fat: 22g Sugar: 74g Protein: 5g"+ "\n";
     String expectedListToPrint="Kunafa\n" +

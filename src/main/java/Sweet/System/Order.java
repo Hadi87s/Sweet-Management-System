@@ -1,15 +1,15 @@
 package Sweet.System;
 
 public class Order {
-    private String ProductName;
+    private String productName;
     private String orderID;
-    private int Quantity;
+    private int quantity;
     private String  orderStatus;
     private boolean isProcessed;
 
     public Order(String productName, int quantity, String orderID) {
-        ProductName = productName;
-        Quantity = quantity;
+        this.productName = productName;
+        this.quantity = quantity;
         this.orderID = orderID;
     }
 
@@ -35,8 +35,8 @@ public class Order {
 
     @Override
     public String toString() {
-        return "      ProductName:     " + ProductName + '\n' +
+        return "      ProductName:     " + productName + '\n' +
                 "      Order ID:        " + orderID + '\n' +
-                "      Quantity:        " + Quantity + '\n';
+                "      Quantity:        " + quantity + '\n';
     }
 }

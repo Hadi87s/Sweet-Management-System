@@ -5,7 +5,7 @@ public class Recipe {
     private String option;
     private String title;
     private String description;
-    private String Calories,Fat,Sugar,Protein,FoodAllergies;
+    private String calories, fat, sugar, protein, foodAllergies;
 
     public Recipe(String title, String description) {
         this.title = title;
@@ -30,48 +30,48 @@ public class Recipe {
     }
 
     public String getCalories() {
-        return Calories;
+        return calories;
     }
 
     public void setCalories(String calories) {
-        Calories = calories;
+        this.calories = calories;
     }
 
     public String getFat() {
-        return Fat;
+        return fat;
     }
 
     public void setFat(String fat) {
-        Fat = fat;
+        this.fat = fat;
     }
 
     public String getSugar() {
-        return Sugar;
+        return sugar;
     }
 
     public void setSugar(String sugar) {
-        Sugar = sugar;
+        this.sugar = sugar;
     }
 
     public String getProtein() {
-        return Protein;
+        return protein;
     }
 
     public void setProtein(String protein) {
-        Protein = protein;
+        this.protein = protein;
     }
 
     public String getFoodAllergies() {
-        return FoodAllergies;
+        return foodAllergies;
     }
 
     public void setFoodAllergies(String foodAllergies) {
-        FoodAllergies = foodAllergies;
+        this.foodAllergies = foodAllergies;
     }
 
     public String getNutrient() {
 
-        return "Nutrient: "+"Calories: "+Calories+" Fat: "+Fat+" Sugar: "+Sugar+" Protein: "+Protein;
+        return "Nutrient: "+"Calories: "+ calories +" Fat: "+ fat +" Sugar: "+ sugar +" Protein: "+ protein;
     }
 
 
