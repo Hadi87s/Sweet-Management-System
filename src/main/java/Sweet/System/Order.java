@@ -13,23 +13,6 @@ public class Order {
         this.orderID = orderID;
     }
 
-
-    public String getProductName() {
-        return ProductName;
-    }
-
-    public void setProductName(String productName) {
-        ProductName = productName;
-    }
-
-    public int getQuantity() {
-        return Quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        Quantity = quantity;
-    }
-
     public  String getOrderStatus() {
         return orderStatus;
     }
@@ -48,10 +31,6 @@ public class Order {
 
     public String getOrderID() {
         return orderID;
-    }
-
-    public void setOrderID(String orderID) {
-        this.orderID = orderID;
     }
 
     @Override

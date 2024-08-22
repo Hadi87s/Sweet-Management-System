@@ -131,6 +131,7 @@ public class ProductManagementFeature {
         double discount = Double.parseDouble(Stringdiscount);
         name = "Chocolate";
         discountApplied = test.setDiscountOnProduct(name, discount);
+        bestSelling.updatePrice(discount);
     }
 
     @Then("the product {string} should have a discount applied")

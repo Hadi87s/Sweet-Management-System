@@ -42,6 +42,20 @@ public class CommunicationAndNotificationFeature {
 
     @When("I send a message to supplier {string} with the content {string}")
     public void iSendAMessageToSupplierWithTheContent(String name, String message) {
+        RawSupplier supplier = new RawSupplier(name,"123","SuppFERr1@example.com");
+        supplier.setUsername(name);
+        supplier.setPassword("RMS0");
+        supplier.setEmail("Supplier1@example.com");
+        supplier.setBusinessName("SondoForSupplying");
+        supplier.setAddress("Nablus");
+
+        assertNotNull(supplier.getEmail());
+        assertNotNull(supplier.getPassword());
+        assertNotNull(supplier.getBusinessName());
+        assertNotNull(supplier.getAddress());
+        assertNotNull(supplier.viewAccountDetails());
+        assertNotNull(supplier.toString());
+
         myApp.sendMessageToSupplier(message,name);
         assertTrue(myApp.isMessageSent());
     }

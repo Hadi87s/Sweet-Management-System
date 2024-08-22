@@ -8,11 +8,7 @@ public class Product {
     private int sellingTimes;
     private double discount;
     private boolean discountApplied;
-    public Product() {
-        discount=0.0;
-        discountApplied=false;
-        sellingTimes=0;
-    }
+
 
     public Product(String name, String description, double price, double rawMaterialCost) {
         this.name = name;
@@ -30,13 +26,6 @@ public class Product {
         sellingTimes=0;
     }
 
-    public Product(String name, String description, double price) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        discount=0.0;
-        sellingTimes=0;
-    }
 
     public String getName() {
         return name;
@@ -62,10 +51,6 @@ public class Product {
         this.sellingTimes = sellingTimes;
     }
 
-    public void incrementSellingTimes() {
-        sellingTimes++;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -74,21 +59,11 @@ public class Product {
         this.description = description;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setRawMaterialCost(double rawMaterialCost) {
-        this.rawMaterialCost = rawMaterialCost;
-    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public double getDiscount() {
-        return discount;
-    }
 
     public void setDiscount(double discount) {
         this.discount = discount;
@@ -108,9 +83,6 @@ public class Product {
         discountApplied=true;
     }
 
-    public boolean isDiscountApplied() {
-        return discountApplied;
-    }
 
     @Override
     public String toString() {

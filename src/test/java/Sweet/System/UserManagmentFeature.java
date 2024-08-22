@@ -24,6 +24,8 @@ public class UserManagmentFeature {
 
     @Given("I am an admin logged in to the Sweet System using username {string} and password {string}")
     public void iAmAnAdminLoggedInToTheSweetSystemUsingUsernameAndPassword(String un, String passcode) {
+        admin.setUsername(un);
+        admin.setPassword(passcode);
         for (Admin a : myApp.Admins)
         {
             if(a.getUsername().equals(un) && a.getPassword().equals(passcode))
@@ -38,6 +40,8 @@ public class UserManagmentFeature {
             }
 
         }
+        assertNotNull(admin.viewAccountDetails()); //this is to view admin's information or credintials
+        assertNotNull(admin.toString());
     }
 
     @When("I add a store owner with a username {string} and a password {string} and an email {string}")

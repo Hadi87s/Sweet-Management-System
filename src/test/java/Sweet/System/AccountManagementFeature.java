@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class AccountManagementFeature {
@@ -26,7 +27,9 @@ public class AccountManagementFeature {
 
     @Then("I should see my account details including username, email, and business information")
     public void iShouldSeeMyAccountDetailsIncludingUsernameEmailAndBusinessInformation() {
-//            System.out.println(accountDetails);
+        myApp.getStoreOwners().get(0).setBusinessName("SydleShop");
+        StoreOwner s = myApp.getStoreOwnerByBusinessName("SydleShop");
+        assertNotNull(s.viewAccountDetails());
     }
 
     @When("I update my email to {string} and password to {string}")
