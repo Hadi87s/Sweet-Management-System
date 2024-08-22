@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
 
   <name>Sweet.Management.System</name>
-  <url>http://maven.apache.org</url>
+  <url>https://maven.apache.org</url>
 
   <properties>
     <maven.compiler.source>22</maven.compiler.source>
