@@ -41,6 +41,7 @@ public class Admin extends User{
         this.adminLoggedIn = adminLoggedIn;
     }
 
+    @Override
     public String viewAccountDetails(){
         return ANSI_BRIGHT_YELLOW + "\nUsername: " + getUsername() + "\nPassword: "+getPassword()+ ANSI_RESET;
 

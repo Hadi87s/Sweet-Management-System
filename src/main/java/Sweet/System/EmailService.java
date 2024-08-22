@@ -1,16 +1,23 @@
 package Sweet.System;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.internet.*;
 
 public class EmailService {
-
+    private static final Logger LOGGER = Logger.getLogger(EmailService.class.getName());
     private static final String EMAIL = "SweetSystemInstitution@gmail.com";
     private static final String PASSWORD = System.getenv("password");
 
     public static final String ANSI_BRIGHT_YELLOW = "\u001B[93m";
     public static final String ANSI_RESET = "\u001B[0m";
+
+
+    private EmailService() {
+        super();
+    }
 
 
     private static Properties getProperties() {
@@ -22,13 +29,16 @@ public class EmailService {
         return props;
     }
 
+
     private static Session getSession() {
         return Session.getInstance(getProperties(), new javax.mail.Authenticator() {
+            @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(EMAIL, PASSWORD);
             }
         });
     }
+
 
     public static void sendEmail(String toEmail, String subject, String body) {
         try {
@@ -40,8 +50,7 @@ public class EmailService {
 
             Transport.send(message);
 
-            System.out.println(ANSI_BRIGHT_YELLOW + "Email sent successfully" + ANSI_RESET);
-            System.out.println();
+            LOGGER.log(Level.INFO, "{0}Email sent successfully{1}", new Object[]{ANSI_BRIGHT_YELLOW, ANSI_RESET});
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
