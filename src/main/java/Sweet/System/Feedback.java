@@ -1,12 +1,11 @@
 package Sweet.System;
 
 public class Feedback {
-    private String feedback;
-    private String adminReply;
+    private String message;
     private String relatedProduct;
 
     public Feedback(String feedback, String relatedProduct) {
-        this.feedback = feedback;
+        this.message = feedback;
         this.relatedProduct = relatedProduct;
     }
 
@@ -15,15 +14,15 @@ public class Feedback {
     }
 
     public Feedback(String feedback) {
-        this.feedback = feedback;
+        this.message = feedback;
     }
 
-    public String getFeedback() {
-        return feedback;
+    public String getMessage() {
+        return message;
     }
 
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 
@@ -37,6 +36,6 @@ public class Feedback {
 
     @Override
     public String toString() {
-        return "User's Feedback: " + feedback;
+        return "User's Feedback: " + message;
     }
 }

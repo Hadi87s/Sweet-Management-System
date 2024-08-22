@@ -5,6 +5,8 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.SplittableRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StoreOwner extends User{
     private String username;
@@ -25,6 +27,10 @@ public class StoreOwner extends User{
     private static ArrayList<String> messagesList= new ArrayList<>();
     public static final String ANSI_WHITE = "\u001B[97m";
     public static final String ANSI_BOLD = "\u001B[1m";
+    private static final Logger LOGGER = Logger.getLogger(StoreOwner.class.getName());
+
+
+
 
     public StoreOwner(String businessName, String address) {
         super(null,null,'S');
@@ -210,11 +216,13 @@ public class StoreOwner extends User{
         return applied;
     }
 
+    @Override
     public String viewAccountDetails(){
         return ANSI_BRIGHT_YELLOW + "Business name: "+ getBusinessName() + "\nUsername: " + getUsername() + "\nPassword: "+getPassword()+"\nEmail: "+getEmail()+"\nCity: "+getAddress() + ANSI_RESET;
 
     }
 
+@Override
     public boolean updateEmail(String newEmail){
         setEmail(newEmail);
         emailChanged= true;
@@ -227,10 +235,12 @@ public class StoreOwner extends User{
         return passwordChanged;
     }
 
+    @Override
     public String getAddress() {
         return Address;
     }
 
+    @Override
     public void setAddress(String address) {
         Address = address;
     }
@@ -242,23 +252,26 @@ public class StoreOwner extends User{
     public void setBusinessName(String businessName) {
         BusinessName = businessName;
     }
+
     public boolean updateBusinessName(String newBusinessName){
         setBusinessName(newBusinessName);
         businessNameChanged = true;
         return businessNameChanged;
     }
+
+    @Override
     public boolean updateAddress(String newAddress){
         setAddress(newAddress);
         AddressChanged = true;
         return AddressChanged;
     }
 
-
+    @Override
     public ArrayList<String> getMessagesList() {
         return messagesList;
     }
 
-
+    @Override
     public void addMessage(String message) {
         messagesList.add(message);
     }
@@ -282,7 +295,8 @@ public class StoreOwner extends User{
                     Product product = new Product(name, description, price, rawMaterialPrice);
                     products.add(product);
                 } else {
-                    System.out.println("Invalid data format in file: " + line);
+                    LOGGER.log(Level.WARNING, "Invalid data format in file: {0}", line);
+
                 }
             }
         } catch (IOException e) {
@@ -329,9 +343,10 @@ public class StoreOwner extends User{
 
         if (found) {
             writeProductsToFile(fileName, products);
-            System.out.println("Product updated successfully.");
+            LOGGER.log(Level.INFO, "Product updated successfully.");
+
         } else {
-            System.out.println("Product not found.");
+            LOGGER.log(Level.SEVERE, "Error updating product");
         }
     }
 
@@ -350,10 +365,10 @@ public class StoreOwner extends User{
 
         if (found) {
             writeProductsToFile(fileName, products); // Update the file with the modified list
-            System.out.println("Product removed.");
+            LOGGER.log(Level.INFO, "Product deleted successfully.");
         }
         else {
-            System.out.println("Product not found.");
+            LOGGER.log(Level.SEVERE, "Product not found.");
         }
 
         return found;

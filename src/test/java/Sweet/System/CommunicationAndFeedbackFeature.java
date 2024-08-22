@@ -3,8 +3,6 @@ package Sweet.System;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -33,7 +31,7 @@ public class CommunicationAndFeedbackFeature {
     public void iShouldBeAbleToSendAMessageDescribingMyProblemWithStoreOwnersAndSuppliers() {
             feedbackMessage = "Some feedback from the user";
             targetedProduct = "Name Of Some Product";
-            Fb.setFeedback(feedbackMessage);
+            Fb.setMessage(feedbackMessage);
             Fb.setRelatedProduct(targetedProduct);
 
     }
@@ -43,7 +41,7 @@ public class CommunicationAndFeedbackFeature {
        String expected="Chocolate Cake Was Crazy\n";
         Feedback newFeedback=new Feedback(feedbackMessage,targetedProduct);
         myApp.Feedbacks.add(newFeedback); //sharing my experience.
-        assertEquals("feedback send went not as expected",expected,testF.getFeedback());
+        assertEquals("feedback send went not as expected",expected,testF.getMessage());
 
     }
 

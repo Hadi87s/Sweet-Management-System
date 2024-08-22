@@ -818,7 +818,7 @@ public class SweetSystem {
     public void printUserFeedbacks(){
         for (Feedback fb : Feedbacks) {
             System.out.println(ANSI_WHITE + ANSI_BOLD + "Product Related: " + fb.getRelatedProduct() + "\n");
-            System.out.println("Feedback Content: "+ fb.getFeedback() + ANSI_RESET);
+            System.out.println("Feedback Content: "+ fb.getMessage() + ANSI_RESET);
         }
     }
 

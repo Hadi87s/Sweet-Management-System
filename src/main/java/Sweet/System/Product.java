@@ -7,7 +7,6 @@ public class Product {
     private double rawMaterialCost;
     private int sellingTimes;
     private double discount;
-    private boolean discountApplied;
 
 
     public Product(String name, String description, double price, double rawMaterialCost) {
@@ -80,7 +79,7 @@ public class Product {
 
         // Subtract the discount amount from the original price
        price -= discountAmount;
-        discountApplied=true;
+
     }
 
 
