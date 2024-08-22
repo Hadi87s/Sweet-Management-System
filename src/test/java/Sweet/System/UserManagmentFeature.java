@@ -38,7 +38,6 @@ public class UserManagmentFeature {
             admin.setAdminLoggedIn(false);
             assertFalse(admin.isAdminLoggedIn());
             }
-
         }
         assertNotNull(admin.viewAccountDetails()); //this is to view admin's information or credintials
         assertNotNull(admin.toString());
@@ -87,7 +86,6 @@ public class UserManagmentFeature {
     public void iRemoveTheStoreOwnerWithAUsername(String username) {
         boolean Removed = myApp.removeStoreOwner(username);
         storeOwner1.setStoreOwnerExist(false);
-
     }
 
 

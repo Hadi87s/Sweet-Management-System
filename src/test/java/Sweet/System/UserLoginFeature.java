@@ -69,5 +69,4 @@ public class UserLoginFeature {
         String expectedMessage = "Invalid Credentials!";
         assertEquals("Invalid credentials message not displayed correctly", expectedMessage, myApp.getMessage());
     }
-
 }

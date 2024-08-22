@@ -65,7 +65,6 @@ public class UserAccountFeature {
                 user.postDessertCreation(creation);
             }
         }
-
     }
 
     @Then("the dessert creation should be posted successfully")

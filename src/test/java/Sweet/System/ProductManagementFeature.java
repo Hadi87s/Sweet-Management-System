@@ -138,9 +138,9 @@ public class ProductManagementFeature {
     public void theProductShouldHaveADiscountApplied(String name) {
         for(Product p : test.products)
         {
-            if(p.getName().equals(name))
-//                assertTrue(p.isDiscountApplied());
+            if(p.getName().equals(name)){
             break;
+            }
         }
     }
 

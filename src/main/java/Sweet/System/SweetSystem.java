@@ -2,8 +2,11 @@ package Sweet.System;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 public class SweetSystem {
     private boolean registeredIn;
@@ -13,11 +16,12 @@ public class SweetSystem {
     private boolean postAdded;
     private boolean productAdded;
     private boolean messageSent;
-    private boolean listAsExpected;
     private boolean emailNotificationsEnabled;
     private boolean specialRequestMade;
     private String lastEmailNotificationContent;
-    private EmailService emailService;
+
+    private static final Logger LOGGER = Logger.getLogger(SweetSystem.class.getName());
+
     public ArrayList<User> Users = new ArrayList<User>();
     public ArrayList<Admin> Admins = new ArrayList<Admin>();
     public ArrayList<StoreOwner> storeOwners = new ArrayList<StoreOwner>();
@@ -55,39 +59,14 @@ public class SweetSystem {
         this.storeOwners = loadStoreOwnersFromFile(StoreOwnersFile);
         this.Suppliers = loadSuppliersFromFile(SuppliersFile);
         StoreOwner.loadProductsFromFile(ProductsFile);
-//        User.loadOrdersFromFile(OrdersFile);
 
         User Zahi = new User("User1", "123", "user1@example.com", "Nablus");
-
-
         Feedback zahiQudo = new Feedback("Chocolate Cake Was Crazy\n");
         Feedbacks.add(zahiQudo);
-
-        Feedback feedback = new Feedback("The sweets are awesome, the place was quite and cosy, and the service was perfect, 10/10 Sweet shop!");
-        Zahi.setUserFeedback(feedback);
 
         Order order = new Order("ChocolateCake", 2, "12345");
         Zahi.addOrder(order);
         Users.add(Zahi);
-        Admin Hadi = new Admin("Admin", "Admin");
-        Admins.add(Hadi);
-
-        StoreOwner Khaled = new StoreOwner("StoreOwner1", "SO1", "MedbLucifer@gmail.com");
-        Khaled.setAddress("Nablus city, West Bank, Palestine");
-        Khaled.setBusinessName("BearBulk Co.");
-        Khaled.addMessage("problem message  store Owner 1\n");
-        storeOwners.add(Khaled);
-
-        RawSupplier Ahmad = new RawSupplier("Supplier1", "RMS1", "supplier1@example.com");
-        Ahmad.addMessage("problem message Supplier1\n");
-        Suppliers.add(Ahmad);
-
-        Product product1 = new Product("ChocolateCake", 10, 5);
-        product1.setDiscount(15.0);
-        product1.setSellingTimes(5);
-        product1.setDescription("ChocolateIsVeryTasty!");
-        Khaled.products.add(product1);
-
 
         Recipe recipe1 = new Recipe("Kunafa", "dough");
         recipe1.setOption( "Popular sweets");
@@ -106,9 +85,6 @@ public class SweetSystem {
         recipe2.setCalories("305");
         recipe2.setFoodAllergies("dairy");
         Recipes.add(recipe2);
-
-        Post post1 = new Post("Kunafa", "dough");
-        Posts.add(post1);
 
     }
 
@@ -177,7 +153,6 @@ public class SweetSystem {
         return isAdded;
     }
     public ArrayList<StoreOwner> loadStoreOwnersFromFile(String fileName) {
-        ArrayList<StoreOwner> storeOwners = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -194,7 +169,8 @@ public class SweetSystem {
                     storeOwner.setBusinessName(businessName);
                     storeOwners.add(storeOwner);
                 } else {
-                    System.out.println("Invalid data format in file: " + line);
+//                    System.out.println("Invalid data format in file: " + line);
+                    LOGGER.log(Level.WARNING, "Invalid data format in file: {0}", line);
                 }
             }
         } catch (IOException e) {
@@ -684,7 +660,8 @@ public class SweetSystem {
     public void makeSpecialRequest(User user, StoreOwner owner, String requestContent) {
         if (user == null || owner == null)
         {
-            System.out.println(ANSI_RED + "Connection couldn't be made, The User/Owner's info is missing!" + ANSI_RESET);
+//            System.out.println(ANSI_RED + "Connection couldn't be made, The User/Owner's info is missing!" + ANSI_RESET);
+            LOGGER.log(Level.SEVERE, "Connection couldn't be made, The User/Owner's info is missing!");
         }
         else {
             specialRequestMade = true;
@@ -744,7 +721,8 @@ public class SweetSystem {
             }
         }
 
-        System.out.println(actualDietaryNeeds);
+//        System.out.println(actualDietaryNeeds);
+        LOGGER.info(actualDietaryNeeds);
         return actualDietaryNeeds;
     }
 

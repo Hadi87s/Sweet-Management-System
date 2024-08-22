@@ -37,7 +37,6 @@ public class MonitoringAndReportingFeature {
         String actualMessage="";
             for (StoreOwner st : myApp.storeOwners) {
                 actualMessage = "The total profit is " + st.getTotalProfit();
-//                System.out.println(expectedMessage);
             }
             assertNotNull("A problem occured",actualMessage);
         }

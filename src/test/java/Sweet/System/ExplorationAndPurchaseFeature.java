@@ -42,7 +42,6 @@ public class ExplorationAndPurchaseFeature {
 
     @Then("List of dessert recipes I'm looking for should appear.")
     public void listOfDessertRecipesIMLookingForShouldAppear() {
-//        myApp.printSearchingList(searchForDessert);
         assertNotNull("the Recipes search went not as expected",myApp.SearchingList(searchForDessert));
 
     }

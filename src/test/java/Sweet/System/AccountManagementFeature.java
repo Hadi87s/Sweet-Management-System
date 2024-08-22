@@ -4,8 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class AccountManagementFeature {
     SweetSystem myApp;
@@ -45,14 +44,13 @@ public class AccountManagementFeature {
         for (StoreOwner st : myApp.getStoreOwners()) {
             assertTrue(emailCheck && passwordCheck);
             newDetails = st.viewAccountDetails();
-//            System.out.println(newDetails);
         }
     }
 
     @Then("a confirmation message should appear")
     public void aConfirmationMessageShouldAppear() {
         myApp.setMessage("Account details has been updated successfully!");
-        assertTrue(myApp.getMessage().equals("Account details has been updated successfully!"));
+        assertEquals(myApp.getMessage(),"Account details has been updated successfully!");
     }
 
 
@@ -83,7 +81,6 @@ public class AccountManagementFeature {
 
     @Then("I should receive an error message indicating that the email format is invalid")
     public void iShouldReceiveAnErrorMessageIndicatingThatTheEmailFormatIsInvalid() {
-//        System.out.println(myApp.getMessage());
     }
 
     @When("I change my password to {string}")

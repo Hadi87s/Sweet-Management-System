@@ -15,7 +15,6 @@ public class User {
     private String city;
     private String email;
     private String Address;
-    private Feedback userFeedback;
     private static ArrayList<String> messagesList = new ArrayList<String>();
     private static ArrayList<Order> orderList = new ArrayList<Order>();
     private ArrayList<DessertCreation> dessertCreations = new ArrayList<>();
@@ -88,10 +87,6 @@ public class User {
     }
 
 
-
-    public void setUserFeedback(Feedback userFeedback) {
-        this.userFeedback = userFeedback;
-    }
 
     public ArrayList<String> getMessagesList() {
         return messagesList;
