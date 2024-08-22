@@ -22,6 +22,14 @@ public class RawSupplier extends User {
         supplierExist = false;
     }
 
+    @Override
+    public String getEmail(){
+        return email;
+    }
+    @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public boolean isSupplierExist() {
         return supplierExist;

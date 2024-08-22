@@ -60,7 +60,10 @@ public class StoreOwner extends User{
         AddressChanged = false;
     }
 
-
+    @Override
+    public String getEmail(){
+        return email;
+    }
     @Override
     public void setEmail(String email) {
         this.email = email;

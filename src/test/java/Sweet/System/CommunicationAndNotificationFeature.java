@@ -88,6 +88,7 @@ public class CommunicationAndNotificationFeature {
     public void aSpecialRequestIsMadeByUserToStoreOwner(String username, String ownername) {
         String requestContent = "I would like to have a chocolate cake with chocolate ships on top, and a vanilla cream as a covering, thank you!";
         StoreOwner owner = myApp.getStoreOwnerByUsername(ownername);
+        owner.setEmail("MedbLucifer@gmail.com");
         User user = myApp.getUserByUsername(username);
 
         myApp.makeSpecialRequest(user, owner,user.getRequestContent(requestContent));
