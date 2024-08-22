@@ -13,6 +13,7 @@ public class AccountManagementFeature {
     String newDetails;
     boolean bnameCheck;
     boolean addressCheck;
+    boolean check;
     public AccountManagementFeature(SweetSystem myApp) {
         this.myApp = myApp;
     }
@@ -72,14 +73,20 @@ public class AccountManagementFeature {
         if (myApp.isEmailValid(wrongEmail))
         {
             myApp.setMessage("valid email format");
+            check = true;
         }
         else {
             myApp.setMessage("Invalid email format");
+            check = false;
         }
     }
 
     @Then("I should receive an error message indicating that the email format is invalid")
     public void iShouldReceiveAnErrorMessageIndicatingThatTheEmailFormatIsInvalid() {
+        if (check){
+            myApp.setMessage("Email format is invalid");
+        }
+        else myApp.setMessage("Invalid email format");
     }
 
     @When("I change my password to {string}")
