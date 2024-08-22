@@ -56,3 +56,6 @@ public class UserSignupFeature {
         assertEquals("Invalid credentials message not displayed correctly", expectedMessage, myApp.getMessage());
     }
 }
+
+
+
