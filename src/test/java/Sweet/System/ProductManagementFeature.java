@@ -53,6 +53,9 @@ public class ProductManagementFeature {
         double price = 6.00;
         double rmp = 3.00;
         test.addProduct(name, description,price,rmp);
+        boolean updateName=test.updateProductName("Chocolate","japaneseChocolateCake");
+        assertTrue(updateName);
+        updateName=test.updateProductName("japaneseChocolateCake","Chocolate");
         myApp.setMessage("Action has been made successfully!");
         myApp.setProductAdded(true);
         assertTrue(myApp.isProductAdded());
@@ -86,6 +89,10 @@ public class ProductManagementFeature {
 
     @Then("the product details should be updated")
     public void theProductDetailsShouldBeUpdated() {
+        for(Product p : test.products)
+        {
+            p.toString();
+        }
         assertTrue(updated);
     }
 
@@ -131,7 +138,9 @@ public class ProductManagementFeature {
         double discount = Double.parseDouble(Stringdiscount);
         name = "Chocolate";
         discountApplied = test.setDiscountOnProduct(name, discount);
+        assertTrue("something in set discount went wrong", test.setDiscountOnProduct(name, discount));
         bestSelling.updatePrice(discount);
+
     }
 
     @Then("the product {string} should have a discount applied")

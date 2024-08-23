@@ -29,6 +29,9 @@ public class AccountManagementFeature {
         myApp.getStoreOwners().get(0).setBusinessName("SydleShop");
         StoreOwner s = myApp.getStoreOwnerByBusinessName("SydleShop");
         assertNotNull(s.viewAccountDetails());
+        s = myApp.getStoreOwnerByBusinessName("chickenInvaders");
+        assertNull("something went wrong on get not valid store owner", s);
+        myApp.printStoreOwners();
     }
 
     @When("I update my email to {string} and password to {string}")

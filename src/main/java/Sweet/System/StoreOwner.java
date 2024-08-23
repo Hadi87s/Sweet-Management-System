@@ -198,6 +198,15 @@ public class StoreOwner extends User{
         }
         return applied;
     }
+    public boolean updateProductName(String productName, String newName) {
+        boolean updated = false;
+        for (Product p : products) {
+            if (p.getName().equals(productName)) {
+                p.setName(newName);
+                updated = true;
+            }
+        }
+     return updated;}
 
     @Override
     public String viewAccountDetails(){

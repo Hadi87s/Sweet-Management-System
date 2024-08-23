@@ -62,6 +62,7 @@ public class Recipe {
     }
 
     public String getFoodAllergies() {
+
         return foodAllergies;
     }
 

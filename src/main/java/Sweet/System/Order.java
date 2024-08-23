@@ -33,10 +33,5 @@ public class Order {
         return orderID;
     }
 
-    @Override
-    public String toString() {
-        return "      ProductName:     " + productName + '\n' +
-                "      Order ID:        " + orderID + '\n' +
-                "      Quantity:        " + quantity + '\n';
-    }
+
 }

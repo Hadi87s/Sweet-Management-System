@@ -34,8 +34,5 @@ public class Feedback {
         this.relatedProduct = relatedProduct;
     }
 
-    @Override
-    public String toString() {
-        return "User's Feedback: " + message;
-    }
+
 }

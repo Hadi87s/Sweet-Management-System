@@ -73,10 +73,8 @@ public class Product {
         if (discountPercentage < 0 || discountPercentage > 100) {
             throw new IllegalArgumentException("Discount percentage must be between 0 and 100");
         }
-
         // Calculate the discount amount
         double discountAmount = (discountPercentage / 100) * price;
-
         // Subtract the discount amount from the original price
        price -= discountAmount;
 
@@ -85,6 +83,7 @@ public class Product {
 
     @Override
     public String toString() {
+
         return "        "+name + ", " + description + ", " + price;
     }
 }

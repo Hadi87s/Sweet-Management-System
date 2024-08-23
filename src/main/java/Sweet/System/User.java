@@ -99,9 +99,6 @@ public class User {
         messagesList.add(message);
     }
 
-    public String getMessage(int index){
-        return messagesList.get(index);
-    }
 
     public String getRequestContent(String request) {
         return "\n"+getUsername() + " requested a special delivery with a message of: "+request +"\n\nThe provided email if further communication is required: "+ getEmail();
@@ -178,17 +175,19 @@ public class User {
         return sharedDessertCreations;
     }
 
-    @Override
-    public String toString() {
-        return username;
-    }
-
     public Character getRole() {
+
         return Role;
     }
 
     public void setRole(Character role) {
+
         Role = role;
+    }
+    public boolean testGetSetRole(){
+        setRole(getRole());
+        return  true;
+
     }
     public static boolean loadOrdersFromFile(String fileName) {
 

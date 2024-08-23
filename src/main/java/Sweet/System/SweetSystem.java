@@ -215,44 +215,7 @@ public class SweetSystem {
 
         return isRemoved;
     }
-    public boolean deleteStoreOwnerFromFile(String fileName, String username) {
-        boolean isDeleted = false;
 
-
-
-        StoreOwner storeOwnerToRemove = null;
-        for (StoreOwner storeOwner : storeOwners) {
-            if (storeOwner.getUsername().equals(username)) {
-                storeOwnerToRemove = storeOwner;
-                break;
-            }
-        }
-
-        if (storeOwnerToRemove != null) {
-            storeOwners.remove(storeOwnerToRemove);
-            isDeleted = true;
-        } else {
-            return false; // Store owner not found
-        }
-        removeStoreOwnerFromList(username); //remove the storeOwner from the list too.
-        // Step 3: Rewrite the file with the remaining store owners
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
-            for (StoreOwner storeOwner : storeOwners) {
-                String storeOwnerData = storeOwner.getUsername() + " " +
-                        storeOwner.getPassword() + " " +
-                        storeOwner.getEmail() + " " +
-                        storeOwner.getBusinessName() + " " +
-                        storeOwner.getAddress();
-                bw.write(storeOwnerData);
-                bw.newLine(); // Add a newline after writing each store owner
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        return isDeleted;
-    }
 
     public ArrayList<RawSupplier> loadSuppliersFromFile(String filename) {
         ArrayList<RawSupplier> supplierList = new ArrayList<>();
@@ -311,9 +274,6 @@ public class SweetSystem {
         return registeredIn;
     }
 
-    public void setRegisteredIn(boolean registeredIn) {
-        this.registeredIn = registeredIn;
-    }
 
     public boolean isUserValid() {
         return UserValid;

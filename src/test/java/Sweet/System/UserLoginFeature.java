@@ -43,7 +43,8 @@ public class UserLoginFeature {
 
     @Then("user is now in the system")
     public void userIsNowInTheSystem() {
-         assertTrue(user.isUserLoggedIn());
+        user.testGetSetRole();//just to test
+        assertTrue(user.isUserLoggedIn());
     }
 
     @Then("a welcome message will appear")

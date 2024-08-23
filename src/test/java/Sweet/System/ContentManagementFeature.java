@@ -12,6 +12,7 @@ public class ContentManagementFeature {
     SweetSystem myApp;
     Recipe recipe2;
     Post post2;
+    Admin admin3;
     public ContentManagementFeature(SweetSystem myApp) { this.myApp = myApp; }
 
     @When("I request to see the content")
@@ -33,6 +34,10 @@ public class ContentManagementFeature {
             }
         }
         assertTrue(found);
+        admin3 = myApp.getAdminByUsername("Admin3");//just to check
+        assertNotNull("some thing wrong on get admin ",admin3);
+        admin3=myApp.getAdminByUsername("Admin31");;
+        assertNull("some thing wrong on get admin not valid ",admin3);
     }
 
     @Then("I should see a list of all recipes and posts")

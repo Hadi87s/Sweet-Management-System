@@ -91,6 +91,8 @@ public class CommunicationAndNotificationFeature {
 
         myApp.makeSpecialRequest(user, owner,user.getRequestContent(requestContent));
         assertTrue(myApp.isSpecialRequestMade());
+        owner = myApp.getStoreOwnerByUsername("zahiABUshalbak");
+        assertNull("something went wrong on get not valid store owner",owner);
     }
 
 

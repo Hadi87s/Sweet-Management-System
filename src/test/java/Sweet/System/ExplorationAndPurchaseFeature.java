@@ -53,11 +53,24 @@ public class ExplorationAndPurchaseFeature {
 
     @Then("I should be able to filter recipes based on those requirements")
     public void iShouldBeAbleToFilterRecipesBasedOnThoseRequirements() {
-        String searchForNutrient1="Sugar";
-        String dietaryNeedSearchingFor="74g";
         String foodAllergiesToDeleteWhenFoundIt ="dairy";
 
+        String searchForNutrient1="Sugar";
+        String dietaryNeedSearchingFor="74g";
         assertEquals("the dietary search went not as expected",expectedDietary,myApp.searchingForNutrient( searchForNutrient1, dietaryNeedSearchingFor));
+
+        searchForNutrient1="Calories";
+        dietaryNeedSearchingFor="305";
+        assertEquals("the dietary search went not as expected",expectedDietary,myApp.searchingForNutrient( searchForNutrient1, dietaryNeedSearchingFor));
+
+        searchForNutrient1="Fat";
+        dietaryNeedSearchingFor="22g";
+        assertEquals("the dietary search went not as expected",expectedDietary,myApp.searchingForNutrient( searchForNutrient1, dietaryNeedSearchingFor));
+
+        searchForNutrient1="Protein";
+        dietaryNeedSearchingFor="5g";
+        assertEquals("the dietary search went not as expected",expectedDietary,myApp.searchingForNutrient( searchForNutrient1, dietaryNeedSearchingFor));
+
         assertEquals("the food allergies search went not as expected",expectedFoodAlergies,myApp.SearchingForFoodAlergies( foodAllergiesToDeleteWhenFoundIt));
 
     }

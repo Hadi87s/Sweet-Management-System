@@ -23,6 +23,8 @@ public class UserSignupFeature {
         user = new User(username, password);
         user.setEmail(email);
         user.setCity(city); //used those methods to include them into out testing.
+
+
         if (myApp.isValidUsername(username) && myApp.isValidPassword(password) && !myApp.isUserRegistered(username, password)) {
             myApp.setUserValid(true);
             assertTrue(myApp.isUserValid());
@@ -31,6 +33,8 @@ public class UserSignupFeature {
             myApp.setMessage("Invalid Credentials!");
             assertFalse(myApp.isUserValid());
         }
+        assertTrue(myApp.isValidPassword("password"));
+        assertFalse(myApp.isValidUsername(""));
     }
 
     @Then("user is registered into the Sweet System")
@@ -56,6 +60,8 @@ public class UserSignupFeature {
         assertEquals("Invalid credentials message not displayed correctly", expectedMessage, myApp.getMessage());
     }
 }
+
+
 
 
 

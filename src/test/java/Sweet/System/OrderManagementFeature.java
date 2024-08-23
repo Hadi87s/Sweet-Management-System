@@ -60,6 +60,11 @@ public class OrderManagementFeature {
                 }
             }
         }
+        //just to test the function
+        for (User u : myApp.getUsers()) {
+        assertNull("Order should not exist", u.getOrderById("7997600"));
+        break;
+    }
     }
 
     @Given("an order with order ID {string} exists")
