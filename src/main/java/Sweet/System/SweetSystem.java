@@ -29,7 +29,11 @@ public class SweetSystem {
     public ArrayList<Post> Posts = new ArrayList<Post>();
     public ArrayList<Recipe> Recipes = new ArrayList<Recipe>();
     public static ArrayList<Feedback> Feedbacks = new ArrayList<Feedback>();
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
+            "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
+    // Compile the pattern once and reuse it
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_WHITE = "\u001B[97m";
     public static final String ANSI_RESET = "\u001B[0m";
@@ -644,7 +648,13 @@ public class SweetSystem {
         return lastEmailNotificationContent;
     }
 
-
+    public boolean isEmailValid(String email) {
+        if (email == null) {
+            return false;
+        }
+        Matcher matcher = EMAIL_PATTERN.matcher(email);
+        return matcher.matches();
+    }
 
 
     public String SearchingList(String searchFor){
@@ -724,7 +734,7 @@ public class SweetSystem {
 
     }
     public boolean registerUser(String name,String password,String email,String city){
-        if(isValidUsername(name) && isValidPassword(password) ) {
+        if(isValidUsername(name) && isValidPassword(password) && isEmailValid(email)) {
             User user = new User(name, password, email, city);
             addUserToFile("Users.txt",user);
             Users.add(user); //adding the user to the list to keep it updated.
