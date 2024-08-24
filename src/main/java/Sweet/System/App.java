@@ -376,7 +376,6 @@ public class App {
                 String BusinessName = scanner.next();
                 System.out.println(ANSI_BRIGHT_BLUE +"Enter Owner's Address: " + ANSI_RESET);
                 String Address = scanner.next();
-
                 StoreOwner owner = new StoreOwner(Username, Password, Email, Address);
                 owner.setBusinessName(BusinessName);
 
