@@ -17,9 +17,9 @@
     <sonar.organization>sweetinstitution</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
-    <sonar.coverage.exclusions>src/main/java/Sweet/System/App.java</sonar.coverage.exclusions>
-    <sonar.exclusions>src/main/java/Sweet/System/App.java</sonar.exclusions>
-    <sonar.test.exclusions>src/main/java/Sweet/System/App.java</sonar.test.exclusions>
+      <sonar.coverage.exclusions>src/main/java/Sweet/System/App.java</sonar.coverage.exclusions>
+      <sonar.exclusions>src/main/java/Sweet/System/App.java</sonar.exclusions>
+      <sonar.test.exclusions>src/main/java/Sweet/System/App.java</sonar.test.exclusions>
   </properties>
 
   <build>
@@ -34,27 +34,35 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.10</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>report</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.11</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
     </plugins>
   </build>
 
+  <repositories>
+    <repository>
+      <id>unknown-jars-temp-repo</id>
+      <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
+      <url>file:${project.basedir}/lib</url>
+    </repository>
+  </repositories>
 
   <dependencies>
     <!-- Only one JUnit dependency should be necessary -->
@@ -96,6 +104,13 @@
       <groupId>com.sun.mail</groupId>
       <artifactId>javax.mail</artifactId>
       <version>1.6.2</version>
+    </dependency>
+
+    <!-- Placeholder dependency -->
+    <dependency>
+      <groupId>unknown.binary</groupId>
+      <artifactId>AbsoluteLayout</artifactId>
+      <version>SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>
