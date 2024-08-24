@@ -176,7 +176,6 @@ public class SweetSystem {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return storeOwners;
     }
     public boolean addStoreOwnerToFile(String fileName, StoreOwner storeOwner) {

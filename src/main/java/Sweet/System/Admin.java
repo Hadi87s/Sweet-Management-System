@@ -1,14 +1,10 @@
 package Sweet.System;
 
 public class Admin extends User{
-    private String username;
-    private String password;
     private boolean adminLoggedIn;
 
     public Admin(String username, String password) {
         super(username, password,'A');
-        this.username = username;
-        this.password = password;
         adminLoggedIn = false;
     }
 
@@ -27,7 +23,7 @@ public class Admin extends User{
     }
     @Override
     public String toString() {
-        return  username;
+        return  super.getUsername();
     }
 }
 
