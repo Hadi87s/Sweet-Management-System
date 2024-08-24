@@ -29,8 +29,7 @@ public class SweetSystem {
     public ArrayList<Post> Posts = new ArrayList<Post>();
     public ArrayList<Recipe> Recipes = new ArrayList<Recipe>();
     public static ArrayList<Feedback> Feedbacks = new ArrayList<Feedback>();
-    private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
-            "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    private static final String EMAIL_REGEX = "a";
 
     // Compile the pattern once and reuse it
     private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
