@@ -76,9 +76,7 @@ public class App {
         System.out.println();
 
         user = app.isUserRegister(username, password);
-        if(user == null)
-            return false;
-        else return true;
+        return user != null;
     }
     public static boolean SignUpSetup(){
             Scanner scanner = new Scanner(System.in);

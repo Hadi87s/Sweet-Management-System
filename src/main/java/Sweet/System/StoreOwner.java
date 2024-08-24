@@ -7,8 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StoreOwner extends User{
-    private String username;
-    private String password;
     private String email;
     private String Address;
     private String BusinessName;
@@ -38,16 +36,12 @@ public class StoreOwner extends User{
 
     public StoreOwner(String username, String password, String email, String address) {
         super(username,password,'S');
-        this.username = username;
-        this.password = password;
         this.email = email;
         Address = address;
     }
 
     public StoreOwner(String username, String password, String email) {
         super(username,password,'S');
-        this.username = username;
-        this.password = password;
         this.email = email;
         storeOwnerExist = false;
         AdminRequest = false;
@@ -270,7 +264,7 @@ public class StoreOwner extends User{
 
     @Override
     public String toString() {
-        return username;
+        return super.getUsername();
     }
 
     public static void loadProductsFromFile(String fileName) {

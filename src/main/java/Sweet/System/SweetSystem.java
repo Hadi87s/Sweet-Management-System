@@ -169,7 +169,6 @@ public class SweetSystem {
                     storeOwner.setBusinessName(businessName);
                     storeOwners.add(storeOwner);
                 } else {
-//                    System.out.println("Invalid data format in file: " + line);
                     LOGGER.log(Level.WARNING, "Invalid data format in file: {0}", line);
                 }
             }

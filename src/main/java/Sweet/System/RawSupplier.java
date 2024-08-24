@@ -1,7 +1,6 @@
 package Sweet.System;
 
 public class RawSupplier extends User {
-    private String username;
     private String email;
     private String businessName;
     private boolean supplierExist;
@@ -9,8 +8,6 @@ public class RawSupplier extends User {
 
     public RawSupplier(String username, String password, String email) {
         super(username, password,'R');
-        this.username = username;
-        super.setPassword(password);
         this.email = email;
         supplierExist = false;
     }
@@ -49,6 +46,6 @@ public class RawSupplier extends User {
 
     @Override
     public String toString() {
-        return username;
+        return super.getUsername();
     }
 }
