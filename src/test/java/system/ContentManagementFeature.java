@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -18,8 +19,8 @@ public class ContentManagementFeature {
 
     @When("I request to see the content")
     public void iRequestToSeeTheContent() {
-        ArrayList<Recipe> recipes = myApp.getRecipes();
-        ArrayList<Post> posts = myApp.getPosts();
+        List<Recipe> recipes = myApp.getRecipes();
+        List<Post> posts = myApp.getPosts();
         boolean found = false;
         for (Recipe recipe : recipes) {
             if (recipe.toString() != null) {
@@ -43,8 +44,8 @@ public class ContentManagementFeature {
 
     @Then("I should see a list of all recipes and posts")
     public void iShouldSeeAListOfAllRecipesAndPosts() {
-        ArrayList<Recipe> recipes = myApp.getRecipes();
-        ArrayList<Post> posts = myApp.getPosts();
+        List<Recipe> recipes = myApp.getRecipes();
+        List<Post> posts = myApp.getPosts();
         String actualFromRecipes1= "";
         String actualFromRecipes2= "";
         String expectedFromPosts = "Kunafa" + ": "+"dough\n";
