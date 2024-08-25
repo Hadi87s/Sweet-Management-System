@@ -1,4 +1,4 @@
-package Sweet.System;
+package sweet.system;
 
 public class DessertCreation {
     private String title;

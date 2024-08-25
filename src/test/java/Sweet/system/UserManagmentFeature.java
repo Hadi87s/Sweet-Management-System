@@ -1,4 +1,4 @@
-package Sweet.System;
+package sweet.system;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -7,8 +7,8 @@ import io.cucumber.java.en.When;
 import java.util.Iterator;
 import java.util.List;
 
-import static Sweet.System.userType.STORE_OWNER;
-import static Sweet.System.userType.SUPPLIER;
+import static sweet.system.userType.STORE_OWNER;
+import static sweet.system.userType.SUPPLIER;
 import static org.junit.Assert.*;
 
 public class UserManagmentFeature {

@@ -1,4 +1,4 @@
-package Sweet.System;
+package sweet.system;
 import java.util.Scanner;
 import java.util.Random;
 

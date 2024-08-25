@@ -1,4 +1,4 @@
-package Sweet.System;
+package sweet.system;
 
 public class RawSupplier extends User {
     private String email;
