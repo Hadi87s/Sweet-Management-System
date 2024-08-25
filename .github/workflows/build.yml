@@ -36,4 +36,3 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           password: dgyi ghtp rcnb oamn
         run: mvn -B jacoco:prepare-agent test org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=SweetInstitution_Sweet-Management-System
-        
