@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 public class Post {
     private String title;

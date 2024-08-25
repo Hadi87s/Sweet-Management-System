@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -31,7 +32,7 @@ public class ExplorationAndPurchaseFeature {
     @When("I want to explore dessert options")
     public void iWantToExploreDessertOptions() {
 
-       assertEquals("the Recipes options went not as expected",expectedOptions,myApp.getOptionList());
+        assertEquals("the Recipes options went not as expected",expectedOptions,myApp.getOptionList());
     }
 
     @Then("I should be able to browse and search for dessert recipes")
@@ -86,3 +87,4 @@ public class ExplorationAndPurchaseFeature {
         assertTrue(test.isProductAvailable("ChocolateCake"));
     }
 }
+

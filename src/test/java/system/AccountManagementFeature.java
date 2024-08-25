@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -107,3 +108,4 @@ public class AccountManagementFeature {
 
 
 }
+

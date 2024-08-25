@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,16 +30,16 @@ public class CommunicationAndFeedbackFeature {
 
     @Then("I should be able to send a message describing my problem with store owners and suppliers")
     public void iShouldBeAbleToSendAMessageDescribingMyProblemWithStoreOwnersAndSuppliers() {
-            feedbackMessage = "Some feedback from the user";
-            targetedProduct = "Name Of Some Product";
-            Fb.setMessage(feedbackMessage);
-            Fb.setRelatedProduct(targetedProduct);
+        feedbackMessage = "Some feedback from the user";
+        targetedProduct = "Name Of Some Product";
+        Fb.setMessage(feedbackMessage);
+        Fb.setRelatedProduct(targetedProduct);
 
     }
 
     @When("I want to share my experience")
     public void iWantToShareMyExperience() {
-       String expected="Chocolate Cake Was Crazy\n";
+        String expected="Chocolate Cake Was Crazy\n";
         Feedback newFeedback=new Feedback(feedbackMessage,targetedProduct);
         myApp.Feedbacks.add(newFeedback); //sharing my experience.
         assertEquals("feedback send went not as expected",expected,testF.getMessage());
@@ -51,3 +52,4 @@ public class CommunicationAndFeedbackFeature {
     }
 
 }
+

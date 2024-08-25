@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -84,7 +85,7 @@ public class ProductManagementFeature {
 
     @When("I update the product {string} with the new description {string}")
     public void iUpdateTheProductWithTheNewDescription(String name, String description) {
-       updated = test.updateProduct(name, description);
+        updated = test.updateProduct(name, description);
     }
 
     @Then("the product details should be updated")
@@ -110,8 +111,8 @@ public class ProductManagementFeature {
 
     @When("I request the sales and profits")
     public void iRequestTheSalesAndProfits() {
-    String Report = test.printProfitsReport();
-    assertNotNull(Report);
+        String Report = test.printProfitsReport();
+        assertNotNull(Report);
     }
 
     @Then("I should see a report of sales and profits for my products")
@@ -122,9 +123,9 @@ public class ProductManagementFeature {
 
     @When("I request to see the best-selling product")
     public void iRequestToSeeTheBestSellingProduct() {
-       bestSelling =  test.getBestSellingProduct();
+        bestSelling =  test.getBestSellingProduct();
 
-       assertNotNull(bestSelling);
+        assertNotNull(bestSelling);
     }
 
     @Then("I should see a the best selling product in my store")
@@ -148,7 +149,7 @@ public class ProductManagementFeature {
         for(Product p : test.products)
         {
             if(p.getName().equals(name)){
-            break;
+                break;
             }
         }
     }

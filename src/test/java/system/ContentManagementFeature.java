@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -26,7 +27,7 @@ public class ContentManagementFeature {
                 break;
             }
         }
-    assertTrue(found);
+        assertTrue(found);
         for (Post post : posts) {
             if (post.toString() != null) {
                 found = true;
@@ -126,7 +127,7 @@ public class ContentManagementFeature {
                 break;
             }
         }
-    assertTrue(feedbackChecker);
+        assertTrue(feedbackChecker);
     }
 
     @Then("I should see a list of all users feedback")

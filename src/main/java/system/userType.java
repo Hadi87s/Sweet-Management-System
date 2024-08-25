@@ -1,4 +1,4 @@
-package Sweet.system;
+package system;
 
 public enum userType{
     USER,

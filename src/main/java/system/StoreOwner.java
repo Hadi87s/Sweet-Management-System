@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 import java.io.*;
 import java.util.ArrayList;
@@ -85,13 +86,13 @@ public class StoreOwner extends User{
         return profits;
     }
     public String getMostSellingItem() {
-            Product max = new Product("There is no best Selling item",10,5);
-            max.setSellingTimes(0);
-            for (Product product : products) {
-                if(max.getSellingTimes() < product.getSellingTimes())
-                    max = product;
-            }
-            return "for Store "+getUsername()+" The max selling item is "+ max.getName();
+        Product max = new Product("There is no best Selling item",10,5);
+        max.setSellingTimes(0);
+        for (Product product : products) {
+            if(max.getSellingTimes() < product.getSellingTimes())
+                max = product;
+        }
+        return "for Store "+getUsername()+" The max selling item is "+ max.getName();
 
     }
 
@@ -200,7 +201,7 @@ public class StoreOwner extends User{
                 updated = true;
             }
         }
-     return updated;}
+        return updated;}
 
     @Override
     public String viewAccountDetails(){
@@ -208,7 +209,7 @@ public class StoreOwner extends User{
 
     }
 
-@Override
+    @Override
     public boolean updateEmail(String newEmail){
         setEmail(newEmail);
         emailChanged= true;
@@ -384,7 +385,7 @@ public class StoreOwner extends User{
 
                 Price = p.getPrice();
                 return Price;
-          }
+            }
         }
         System.out.println("Product not found ");
 
@@ -394,4 +395,5 @@ public class StoreOwner extends User{
 
 
 }
+
 

@@ -1,4 +1,6 @@
-package Sweet.system;
+package system;
+
+
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,9 +12,9 @@ public class UserLoginFeature {
 
     SweetSystem myApp;
     User user = new User("User1","123","user1@example.com","Nablus");
-        //dependency Injection
+    //dependency Injection
     public UserLoginFeature(SweetSystem myApp) {
-                                                   this.myApp = myApp;
+        this.myApp = myApp;
     }
 
     @Given("user is not in the Sweet system")
@@ -49,7 +51,7 @@ public class UserLoginFeature {
 
     @Then("a welcome message will appear")
     public void aWelcomeMessageWillAppear() {
-    String expectedMessage = "Welcome User1!";
+        String expectedMessage = "Welcome User1!";
         assertEquals("Welcome message not displayed correctly", expectedMessage, myApp.getMessage());
     }
 
@@ -71,3 +73,4 @@ public class UserLoginFeature {
         assertEquals("Invalid credentials message not displayed correctly", expectedMessage, myApp.getMessage());
     }
 }
+

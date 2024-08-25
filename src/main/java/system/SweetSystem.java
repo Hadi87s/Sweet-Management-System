@@ -1,4 +1,4 @@
-package Sweet.system;
+package system;
 
 import java.io.*;
 import java.util.*;
@@ -697,13 +697,13 @@ public class SweetSystem {
     public String SearchingForFoodAlergies(String searchForFoodAlergies){
 
         String actualFoodAlergies="" ;
-            for (Recipe recipe : Recipes) {
-                if (recipe.getFoodAllergies().equals(searchForFoodAlergies)) {
-                    continue;
-                }
-                actualFoodAlergies = actualFoodAlergies +recipe.toString();
-
+        for (Recipe recipe : Recipes) {
+            if (recipe.getFoodAllergies().equals(searchForFoodAlergies)) {
+                continue;
             }
+            actualFoodAlergies = actualFoodAlergies +recipe.toString();
+
+        }
         System.out.println(actualFoodAlergies);
         return actualFoodAlergies;
     }
@@ -726,7 +726,7 @@ public class SweetSystem {
         for (Recipe recipe : Recipes) {
             actual=  actual +counter+"."+ recipe.getOption()+" ";
             counter++;
-            }
+        }
         actual= actual + "\n";
         System.out.println(actual);
         return actual;

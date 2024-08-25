@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -43,7 +44,7 @@ public class User {
         AddressChanged = false;
         EmailChanged = false;
     }
- // we need another constructor to set the email and the city among with the username and the password.
+    // we need another constructor to set the email and the city among with the username and the password.
 
     public String getUsername() {
         return username;
@@ -214,3 +215,4 @@ public class User {
 
 
 }
+

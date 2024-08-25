@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -62,9 +63,9 @@ public class OrderManagementFeature {
         }
         //just to test the function
         for (User u : myApp.getUsers()) {
-        assertNull("Order should not exist", u.getOrderById("7997600"));
-        break;
-    }
+            assertNull("Order should not exist", u.getOrderById("7997600"));
+            break;
+        }
     }
 
     @Given("an order with order ID {string} exists")

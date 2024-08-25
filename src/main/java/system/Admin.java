@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 public class Admin extends User{
     private boolean adminLoggedIn;

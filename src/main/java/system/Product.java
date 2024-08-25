@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 public class Product {
     private String name;
@@ -76,7 +77,7 @@ public class Product {
         // Calculate the discount amount
         double discountAmount = (discountPercentage / 100) * price;
         // Subtract the discount amount from the original price
-       price -= discountAmount;
+        price -= discountAmount;
 
     }
 

@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -7,8 +8,8 @@ import io.cucumber.java.en.When;
 import java.util.Iterator;
 import java.util.List;
 
-import static Sweet.system.userType.STORE_OWNER;
-import static Sweet.system.userType.SUPPLIER;
+import static system.userType.STORE_OWNER;
+import static system.userType.SUPPLIER;
 import static org.junit.Assert.*;
 
 public class UserManagmentFeature {
@@ -35,8 +36,8 @@ public class UserManagmentFeature {
             }
             else
             {
-            admin.setAdminLoggedIn(false);
-            assertFalse(admin.isAdminLoggedIn());
+                admin.setAdminLoggedIn(false);
+                assertFalse(admin.isAdminLoggedIn());
             }
         }
         assertNotNull(admin.viewAccountDetails()); //this is to view admin's information or credintials
@@ -170,3 +171,4 @@ public class UserManagmentFeature {
 
 
 }
+

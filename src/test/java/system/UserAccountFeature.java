@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,7 +13,7 @@ public class UserAccountFeature {
     public UserAccountFeature(SweetSystem myApp) {
         this.myApp = myApp;
     }
-//    private User user;
+    //    private User user;
     private User targetUser;
 
     boolean emailUpdated = false;

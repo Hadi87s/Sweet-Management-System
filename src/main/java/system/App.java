@@ -1,4 +1,5 @@
-package Sweet.system;
+package system;
+
 import java.util.Scanner;
 import java.util.Random;
 
@@ -79,20 +80,20 @@ public class App {
         return user != null;
     }
     public static boolean SignUpSetup(){
-            Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-            System.out.println(ANSI_BRIGHT_BLUE+ "Please enter your Username: " + ANSI_RESET);
-            String username = scanner.next();
-            System.out.println(ANSI_BRIGHT_BLUE + "Please enter your Password: " + ANSI_RESET);
-            String password = scanner.next();
-            System.out.println(ANSI_BRIGHT_BLUE + "Please enter your Email: " + ANSI_RESET);
-            String email = scanner.next();
-            System.out.println(ANSI_BRIGHT_BLUE + "Please enter your City: " + ANSI_RESET);
-            String city = scanner.next();
-            System.out.println();
-            if (app.isUserRegistered(username, password))
-             return app.registerUser( username, password, email, city);
-            else return false;
+        System.out.println(ANSI_BRIGHT_BLUE+ "Please enter your Username: " + ANSI_RESET);
+        String username = scanner.next();
+        System.out.println(ANSI_BRIGHT_BLUE + "Please enter your Password: " + ANSI_RESET);
+        String password = scanner.next();
+        System.out.println(ANSI_BRIGHT_BLUE + "Please enter your Email: " + ANSI_RESET);
+        String email = scanner.next();
+        System.out.println(ANSI_BRIGHT_BLUE + "Please enter your City: " + ANSI_RESET);
+        String city = scanner.next();
+        System.out.println();
+        if (app.isUserRegistered(username, password))
+            return app.registerUser( username, password, email, city);
+        else return false;
     }
     public static void storeOwnerMenu(){
         while(true){
@@ -168,7 +169,7 @@ public class App {
             }
         }
 
-        }
+    }
     public static void UserMainMenu(){
         while (true){
             String multiLineString =
@@ -472,25 +473,25 @@ public class App {
                 } else System.out.println(ANSI_RED +"Username is already in use, or the password is too weak." + ANSI_RESET);
             }
         }
-            while (loggedIn) {
+        while (loggedIn) {
 
-                if (user.getRole() == 'A' || user.getRole() == 'a') {
-                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Administration Unit ------" + ANSI_RESET + "\n");
-                    AdminMenu();
-                } else if (user.getRole() == 'S' || user.getRole() == 's') {
-                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Store Management Unit ------" + ANSI_RESET + "\n");
-                    storeOwnerMenu();
-                } else if (user.getRole() == 'R' || user.getRole() == 'r') {
-                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Raw Material Management Unit ------" + ANSI_RESET + "\n");
-                    SupplierMenu();
-                } else if (user.getRole() == 'U' || user.getRole() == 'u') {
-                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Sweet System ------" + ANSI_RESET + "\n");
-                    UserMainMenu();
-                } else {
-                    System.out.println(ANSI_BOLD + ANSI_RED + "SOMETHING WEN WRONG WHEN ATTEMPTING TO LOGIN..." + ANSI_RESET + "\n");
-                }
+            if (user.getRole() == 'A' || user.getRole() == 'a') {
+                System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Administration Unit ------" + ANSI_RESET + "\n");
+                AdminMenu();
+            } else if (user.getRole() == 'S' || user.getRole() == 's') {
+                System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Store Management Unit ------" + ANSI_RESET + "\n");
+                storeOwnerMenu();
+            } else if (user.getRole() == 'R' || user.getRole() == 'r') {
+                System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Raw Material Management Unit ------" + ANSI_RESET + "\n");
+                SupplierMenu();
+            } else if (user.getRole() == 'U' || user.getRole() == 'u') {
+                System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Sweet System ------" + ANSI_RESET + "\n");
+                UserMainMenu();
+            } else {
+                System.out.println(ANSI_BOLD + ANSI_RED + "SOMETHING WEN WRONG WHEN ATTEMPTING TO LOGIN..." + ANSI_RESET + "\n");
             }
         }
+    }
 
 
     public static int generateRandomNumber() {
