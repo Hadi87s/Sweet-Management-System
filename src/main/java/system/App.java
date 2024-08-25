@@ -204,7 +204,7 @@ public class App {
                 }
                 else {
                     for(Order o : obj.getOrderList()){
-                        System.out.print(o);
+                        System.out.print(o.toString());
                         System.out.println(ANSI_WHITE + "      Status:          "+o.getOrderStatus()+"\n" + ANSI_RESET);
                     }
                 }

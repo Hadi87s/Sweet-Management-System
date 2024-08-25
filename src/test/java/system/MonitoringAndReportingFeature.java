@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -56,7 +57,7 @@ public class MonitoringAndReportingFeature {
     }
     @Then("the quantity sold for each product should be displayed")
     public void theQuantitySoldForEachProductShouldBeDisplayed() {
-        ArrayList<String> actualMessage;
+        List<String> actualMessage;
         for (StoreOwner st : myApp.storeOwners) {
             actualMessage = st.getQuantitySoldTimes();
             assertNotNull("Something Went wrong here",actualMessage.get(0));

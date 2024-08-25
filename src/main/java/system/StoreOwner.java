@@ -4,53 +4,47 @@ package system;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StoreOwner extends User{
     private String email;
-    private String Address;
-    private String BusinessName;
-    public static ArrayList<Product>products = new ArrayList<Product>();
-    public ArrayList<String>report = new ArrayList<String>();
+    private String address;
+    private String businessName;
+    protected static final List<Product> products = new ArrayList<>();
+    protected List<String> report = new ArrayList<>();
     private double totalProfit;
     private boolean storeOwnerExist;
-    private boolean AdminRequest;
-    private boolean OwnerLoggedIn;
+    private boolean adminRequest;
+    private boolean ownerLoggedIn;
     private boolean emailChanged;
     private boolean passwordChanged;
     private boolean businessNameChanged;
-    private boolean AddressChanged;
-    private static ArrayList<String> messagesList= new ArrayList<>();
+    private boolean addressChanged;
+    private static final List<String> messagesList= new ArrayList<>();
     public static final String ANSI_WHITE = "\u001B[97m";
     public static final String ANSI_BOLD = "\u001B[1m";
     private static final Logger LOGGER = Logger.getLogger(StoreOwner.class.getName());
 
 
 
-
-    public StoreOwner(String businessName, String address) {
-        super(null,null,'S');
-        BusinessName = businessName;
-        Address = address;
-    }
-
     public StoreOwner(String username, String password, String email, String address) {
         super(username,password,'S');
         this.email = email;
-        Address = address;
+        this.address = address;
     }
 
     public StoreOwner(String username, String password, String email) {
         super(username,password,'S');
         this.email = email;
         storeOwnerExist = false;
-        AdminRequest = false;
-        OwnerLoggedIn = false;
+        adminRequest = false;
+        ownerLoggedIn = false;
         emailChanged = false;
         passwordChanged = false;
         businessNameChanged = false;
-        AddressChanged = false;
+        addressChanged = false;
     }
 
     @Override
@@ -106,28 +100,28 @@ public class StoreOwner extends User{
         return max;
     }
 
-    public ArrayList<String> getQuantitySoldTimes(){
+    public List<String> getQuantitySoldTimes(){
         for (Product product : products) {
             report.add(product.getName() + " product has been sold for "+ product.getSellingTimes() +" times");
         }
 
-        return report;
+        return getReport();
     }
 
     public boolean isAdminRequest() {
-        return AdminRequest;
+        return adminRequest;
     }
 
     public void setAdminRequest(boolean adminRequest) {
-        AdminRequest = adminRequest;
+        this.adminRequest = adminRequest;
     }
 
     public boolean isOwnerLoggedIn() {
-        return OwnerLoggedIn;
+        return ownerLoggedIn;
     }
 
     public void setOwnerLoggedIn(boolean loggedIn) {
-        OwnerLoggedIn = loggedIn;
+        ownerLoggedIn = loggedIn;
     }
 
 
@@ -166,6 +160,7 @@ public class StoreOwner extends User{
                 deleted = true;
             }
         }
+        deleteProductFromFile("Products.txt",name);
         return deleted;
     }
 
@@ -224,20 +219,20 @@ public class StoreOwner extends User{
 
     @Override
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     @Override
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public String getBusinessName() {
-        return BusinessName;
+        return businessName;
     }
 
     public void setBusinessName(String businessName) {
-        BusinessName = businessName;
+        this.businessName = businessName;
     }
 
     public boolean updateBusinessName(String newBusinessName){
@@ -249,14 +244,10 @@ public class StoreOwner extends User{
     @Override
     public boolean updateAddress(String newAddress){
         setAddress(newAddress);
-        AddressChanged = true;
-        return AddressChanged;
+        addressChanged = true;
+        return addressChanged;
     }
 
-    @Override
-    public ArrayList<String> getMessagesList() {
-        return messagesList;
-    }
 
     @Override
     public void addMessage(String message) {
@@ -302,7 +293,7 @@ public class StoreOwner extends User{
             e.printStackTrace();
         }
     }
-    private void writeProductsToFile(String fileName, ArrayList<Product> products) {
+    private void writeProductsToFile(String fileName, List<Product> products) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
             for (Product product : products) {
                 String productData = product.getName() + " " +
@@ -329,7 +320,7 @@ public class StoreOwner extends User{
         }
 
         if (found) {
-            writeProductsToFile(fileName, products);
+            writeProductsToFile(fileName, getProducts());
             LOGGER.log(Level.INFO, "Product updated successfully.");
 
         } else {
@@ -351,7 +342,7 @@ public class StoreOwner extends User{
         }
 
         if (found) {
-            writeProductsToFile(fileName, products); // Update the file with the modified list
+            writeProductsToFile(fileName, getProducts()); // Update the file with the modified list
             LOGGER.log(Level.INFO, "Product deleted successfully.");
         }
         else {
@@ -394,8 +385,13 @@ public class StoreOwner extends User{
         return Price;
     }
 
+    public List<String> getReport() {
+        return report;
+    }
 
-
+    public List<Product> getProducts() {
+        return products;
+    }
 }
 
 

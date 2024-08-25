@@ -6,7 +6,11 @@ public class Recipe {
     private String option;
     private String title;
     private String description;
-    private String calories, fat, sugar, protein, foodAllergies;
+    private String calories;
+    private String fat;
+    private String sugar;
+    private String protein;
+    private String foodAllergies;
 
     public Recipe(String title, String description) {
         this.title = title;
