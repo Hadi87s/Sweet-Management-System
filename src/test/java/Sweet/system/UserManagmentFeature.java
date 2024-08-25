@@ -104,6 +104,7 @@ public class UserManagmentFeature {
     @Then("the supplier should be added to the Sweet System")
     public void theSupplierShouldBeAddedToTheSweetSystem() {
         assertTrue(myApp.isAddedInSystem(SUPPLIER ,supplier1.getUsername()));
+
     }
 
     @Given("a supplier with username {string} exists in the Sweet System")
