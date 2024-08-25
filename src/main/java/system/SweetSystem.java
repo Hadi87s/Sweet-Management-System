@@ -689,31 +689,44 @@ public class SweetSystem {
         LOGGER.log(Level.INFO, "Actual food allergies: {0}", actualFoodAllergies);
         return actualFoodAllergies;
     }
-    public String printListOfDietaryNeedsAndFoodAllergies(){
+    public String printListOfDietaryNeedsAndFoodAllergies() {
+        StringBuilder actualFoodAllergiesBuilder = new StringBuilder();
 
-        String actualFoodAllergies="" ;
         for (Recipe recipe : recipes) {
-
-            actualFoodAllergies = actualFoodAllergies +recipe.getTitle()+"\nAllergies: "+recipe.getFoodAllergies()+"\n"+recipe.getNutrient()+"\n";
-
+            actualFoodAllergiesBuilder.append(recipe.getTitle())
+                    .append("\nAllergies: ")
+                    .append(recipe.getFoodAllergies())
+                    .append("\n")
+                    .append(recipe.getNutrient())
+                    .append("\n");
         }
+
+        String actualFoodAllergies = actualFoodAllergiesBuilder.toString();
         LOGGER.log(Level.INFO, "Actual food allergies: {0}", actualFoodAllergies);
         return actualFoodAllergies;
     }
 
 
-    public String getOptionList(){
+
+    public String getOptionList() {
         int counter = 1;
-        String actual="Options: ";
+        StringBuilder actualBuilder = new StringBuilder("Options: ");
+
         for (Recipe recipe : recipes) {
-            actual =  actual +counter+"."+ recipe.getOption()+" ";
+            actualBuilder.append(counter)
+                    .append(".")
+                    .append(recipe.getOption())
+                    .append(" ");
             counter++;
         }
-        actual= actual + "\n";
+
+        actualBuilder.append("\n");
+        String actual = actualBuilder.toString();
+
         LOGGER.log(Level.INFO, "Actual value: {0}", actual);
         return actual;
-
     }
+
     public boolean registerUser(String name,String password,String email,String city){
         if(isValidUsername(name) && isValidPassword(password) && isEmailValid(email)) {
             User user = new User(name, password, email, city);
