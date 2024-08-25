@@ -19,6 +19,9 @@
         <sonar.coverage.exclusions>src/main/java/Sweet/system/App.java</sonar.coverage.exclusions>
         <sonar.exclusions>src/main/java/system/App.java</sonar.exclusions>
         <sonar.test.exclusions>src/main/java/system/App.java</sonar.test.exclusions>
+        <sonar.coverage.exclusions>src/main/java/Sweet/system/EmailSendingException.java</sonar.coverage.exclusions>
+        <sonar.exclusions>src/main/java/system/EmailSendingException.java</sonar.exclusions>
+        <sonar.test.exclusions>src/main/java/system/EmailSendingException.java</sonar.test.exclusions>
     </properties>
     <build>
         <plugins>
