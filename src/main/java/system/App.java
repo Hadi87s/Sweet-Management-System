@@ -224,7 +224,7 @@ public class App {
 
                 StoreOwner.printAllProducts();
 
-                System.out.print(ANSI_WHITE + "Enter Product name: "+ ANSI_RESET);
+                System.out.print(ANSI_WHITE + ANSI_BOLD + "Enter Product name: "+ ANSI_RESET);
                 String ProductName = scanner.next();
 
                 if(StoreOwner.isProductAvailable(ProductName)) {
@@ -243,9 +243,9 @@ public class App {
 
                     System.out.println(ANSI_BRIGHT_YELLOW + "\n\nYour Order has been added."+ ANSI_RESET);
                     System.out.println(ANSI_WHITE + "the details of your order is: " +
-                            "\norder number: "+orderID+
-                            "\n"+ProductName+"  Quantity: "+Quantity+
-                            "\nprice: "+price*Quantity+"\n\n" + ANSI_RESET);
+                            "\nOrder Number: "+orderID+
+                            "\nProduct Name: "+ProductName+"  Quantity: "+Quantity+
+                            "\nPrice: "+price*Quantity+"\n\n" + ANSI_RESET);
                 }
                 else {
                     System.out.println(ANSI_RED +"Something wrong try again"+ ANSI_RESET);

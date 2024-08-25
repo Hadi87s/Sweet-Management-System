@@ -47,10 +47,10 @@ public class SweetSystem {
         final String suppliersFile = "Suppliers.txt";
         final String productsFile = "Products.txt";
 
-        this.users = loadUsersFromFile(usersFile);
-        this.admins = loadAdminsFromFile(adminsFile);
-        this.storeOwners = loadStoreOwnersFromFile(storeOwnersFile);
-        this.suppliers = loadSuppliersFromFile(suppliersFile);
+        loadUsersFromFile(usersFile);
+        loadAdminsFromFile(adminsFile);
+        loadStoreOwnersFromFile(storeOwnersFile);
+        loadSuppliersFromFile(suppliersFile);
         StoreOwner.loadProductsFromFile(productsFile);
 
         User zahi = new User("User1", "123", "user1@example.com", "Nablus");
@@ -81,8 +81,8 @@ public class SweetSystem {
 
     }
 
-    private ArrayList<User> loadUsersFromFile(String filename) {
-        ArrayList<User> userList = new ArrayList<>();
+    private void loadUsersFromFile(String filename) {
+
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -95,17 +95,15 @@ public class SweetSystem {
                     String city = userData[3];
 
                     User user = new User(username, password, email, city);
-                    userList.add(user);
+                    users.add(user);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return userList;
     }
-    private ArrayList<Admin> loadAdminsFromFile(String filename) {
-        ArrayList<Admin> adminList = new ArrayList<>();
+    private void loadAdminsFromFile(String filename) {
+
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -116,14 +114,12 @@ public class SweetSystem {
                     String password = adminData[1];
 
                     Admin admin = new Admin(username, password);
-                    adminList.add(admin);
+                    admins.add(admin);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return adminList;
     }
     public boolean addAdminToFile(String filename, Admin admin) {
         boolean isAdded = false;
@@ -145,7 +141,7 @@ public class SweetSystem {
 
         return isAdded;
     }
-    public List<StoreOwner> loadStoreOwnersFromFile(String fileName) {
+    public void loadStoreOwnersFromFile(String fileName) {
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -168,7 +164,6 @@ public class SweetSystem {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return storeOwners;
     }
     public boolean addStoreOwnerToFile(String fileName, StoreOwner storeOwner) {
         boolean isAdded = false;
@@ -208,8 +203,8 @@ public class SweetSystem {
     }
 
 
-    public List<RawSupplier> loadSuppliersFromFile(String filename) {
-        ArrayList<RawSupplier> supplierList = new ArrayList<>();
+    public void loadSuppliersFromFile(String filename) {
+
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -221,14 +216,12 @@ public class SweetSystem {
                     String email = supplierData[2];
 
                     RawSupplier supplier = new RawSupplier(username, password, email);
-                    supplierList.add(supplier);
+                    suppliers.add(supplier);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return supplierList;
     }
     public boolean addSupplierToFile(String filename, RawSupplier supplier) {
         boolean isAdded = false;
