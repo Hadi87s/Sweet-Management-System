@@ -9,7 +9,6 @@
 
     <name>Sweet.Management.System</name>
     <url>http://maven.apache.org</url>
-
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
@@ -21,7 +20,6 @@
         <sonar.exclusions>src/main/java/system/App.java</sonar.exclusions>
         <sonar.test.exclusions>src/main/java/system/App.java</sonar.test.exclusions>
     </properties>
-
     <build>
         <plugins>
             <plugin>
