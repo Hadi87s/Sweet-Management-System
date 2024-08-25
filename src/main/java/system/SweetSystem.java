@@ -22,13 +22,13 @@ public class SweetSystem {
 
     private static final Logger LOGGER = Logger.getLogger(SweetSystem.class.getName());
 
-    public ArrayList<User> users = new ArrayList<User>();
-    public ArrayList<Admin> admins = new ArrayList<Admin>();
-    public ArrayList<StoreOwner> storeOwners = new ArrayList<StoreOwner>();
-    public ArrayList<RawSupplier> suppliers = new ArrayList<RawSupplier>();
-    public ArrayList<Post> posts = new ArrayList<Post>();
-    public ArrayList<Recipe> recipes = new ArrayList<Recipe>();
-    public static ArrayList<Feedback> feedbacks = new ArrayList<Feedback>();
+    public List<User> users = new ArrayList<>();
+    public List<Admin> admins = new ArrayList<>();
+    public List<StoreOwner> storeOwners = new ArrayList<>();
+    public List<RawSupplier> suppliers = new ArrayList<>();
+    public List<Post> posts = new ArrayList<>();
+    public List<Recipe> recipes = new ArrayList<>();
+    protected  static final List<Feedback> feedbacks = new ArrayList<>();
     private static final String EMAIL_REGEX = "a";
 
     // Compile the pattern once and reuse it
@@ -150,7 +150,7 @@ public class SweetSystem {
 
         return isAdded;
     }
-    public ArrayList<StoreOwner> loadStoreOwnersFromFile(String fileName) {
+    public List<StoreOwner> loadStoreOwnersFromFile(String fileName) {
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -213,7 +213,7 @@ public class SweetSystem {
     }
 
 
-    public ArrayList<RawSupplier> loadSuppliersFromFile(String filename) {
+    public List<RawSupplier> loadSuppliersFromFile(String filename) {
         ArrayList<RawSupplier> supplierList = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -312,8 +312,8 @@ public class SweetSystem {
     // This is a helper method to extract the username from the object
     private String getUsernameFromObject(Object user) {
         // Assuming all user objects have a getUsername method
-        if (user instanceof Admin) {
-            return ((Admin) user).getUsername();
+        if (user instanceof Admin admin) {
+            return admin.getUsername();
         } else if (user instanceof User) {
             return ((User) user).getUsername();
         } else if (user instanceof StoreOwner) {
@@ -426,13 +426,13 @@ public class SweetSystem {
         return cityStatistics;
     }
 
-    public ArrayList<Recipe> getRecipes() {
+    public List<Recipe> getRecipes() {
         return recipes;
     }
 
 
 
-    public ArrayList<Post> getPosts() {
+    public List<Post> getPosts() {
         return posts;
     }
 
@@ -524,7 +524,7 @@ public class SweetSystem {
         this.productAdded = productAdded;
     }
 
-    public ArrayList<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
@@ -538,7 +538,7 @@ public class SweetSystem {
         this.messageSent = messageSent;
     }
 
-    public ArrayList<StoreOwner> getStoreOwners() {
+    public List<StoreOwner> getStoreOwners() {
         return storeOwners;
     }
 
@@ -774,5 +774,6 @@ public class SweetSystem {
         }
         return removed;
     }
+
 
 }
