@@ -119,7 +119,7 @@ public class ContentManagementFeature {
     public void iRequestToSeeTheUsersFeedback() {
         boolean feedbackChecker = false;
 
-        for (Feedback fb : myApp.feedbacks) {
+        for (Feedback fb : myApp.getFeedbacks()) {
             if (fb != null) {
                 assertNotNull(fb);
                 feedbackChecker = true;

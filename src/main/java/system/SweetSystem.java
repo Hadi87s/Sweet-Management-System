@@ -22,22 +22,17 @@ public class SweetSystem {
 
     private static final Logger LOGGER = Logger.getLogger(SweetSystem.class.getName());
 
-    public List<User> users = new ArrayList<>();
-    public List<Admin> admins = new ArrayList<>();
-    public List<StoreOwner> storeOwners = new ArrayList<>();
-    public List<RawSupplier> suppliers = new ArrayList<>();
-    public List<Post> posts = new ArrayList<>();
-    public List<Recipe> recipes = new ArrayList<>();
-    protected  static final List<Feedback> feedbacks = new ArrayList<>();
+    private static List<User> users = new ArrayList<>();
+    private static List<Admin> admins = new ArrayList<>();
+    private static List<StoreOwner> storeOwners = new ArrayList<>();
+    private static List<RawSupplier> suppliers = new ArrayList<>();
+    private static List<Post> posts = new ArrayList<>();
+    private static List<Recipe> recipes = new ArrayList<>();
+    private  static final List<Feedback> feedbacks = new ArrayList<>();
     private static final String EMAIL_REGEX = "a";
 
     // Compile the pattern once and reuse it
     private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_WHITE = "\u001B[97m";
-    public static final String ANSI_RESET = "\u001B[0m";
-
-    public static final String ANSI_BOLD = "\u001B[1m";
 
     public SweetSystem() throws IOException {
         registeredIn = false;
@@ -691,7 +686,7 @@ public class SweetSystem {
     public String searchingForFoodAllergies(String searchForFoodAlergies){
 
         String actualFoodAllergies="" ;
-        for (Recipe recipe : recipes) {
+        for (Recipe recipe : getRecipes()) {
             if (recipe.getFoodAllergies().equals(searchForFoodAlergies)) {
                 continue;
             }
@@ -718,7 +713,7 @@ public class SweetSystem {
         int counter = 1;
         String actual="Options: ";
         for (Recipe recipe : recipes) {
-            actual=  actual +counter+"."+ recipe.getOption()+" ";
+            actual =  actual +counter+"."+ recipe.getOption()+" ";
             counter++;
         }
         actual= actual + "\n";
@@ -775,5 +770,15 @@ public class SweetSystem {
         return removed;
     }
 
+    public static List<Admin> getAdmins() {
+        return admins;
+    }
 
+    public static List<RawSupplier> getSuppliers() {
+        return suppliers;
+    }
+
+    public static List<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
 }

@@ -26,7 +26,7 @@ public class MonitoringAndReportingFeature {
     public void iGenerateAFinancialReport() {
         boolean checker = false;
         double profits;
-        for (StoreOwner st : myApp.storeOwners) {
+        for (StoreOwner st : myApp.getStoreOwners()) {
             profits = st.calculateTotalProfit();
             st.setTotalProfit(profits);
             checker = true;
@@ -36,7 +36,7 @@ public class MonitoringAndReportingFeature {
     @Then("I should see the total profits")
     public void iShouldSeeTheTotalProfits() {
         String actualMessage="";
-        for (StoreOwner st : myApp.storeOwners) {
+        for (StoreOwner st : myApp.getStoreOwners()) {
             actualMessage = "The total profit is " + st.getTotalProfit();
         }
         assertNotNull("A problem occured",actualMessage);
@@ -50,7 +50,7 @@ public class MonitoringAndReportingFeature {
     @Then("I should see the list of best-selling products in each store")
     public void iShouldSeeTheListOfBestSellingProductsInEachStore() {
         String actualMessage= "";
-        for (StoreOwner st : myApp.storeOwners) {
+        for (StoreOwner st : myApp.getStoreOwners()) {
             actualMessage = st.getMostSellingItem();
             assertNotNull("Something Went wrong here",actualMessage);
         }
@@ -58,7 +58,7 @@ public class MonitoringAndReportingFeature {
     @Then("the quantity sold for each product should be displayed")
     public void theQuantitySoldForEachProductShouldBeDisplayed() {
         List<String> actualMessage;
-        for (StoreOwner st : myApp.storeOwners) {
+        for (StoreOwner st : myApp.getStoreOwners()) {
             actualMessage = st.getQuantitySoldTimes();
             assertNotNull("Something Went wrong here",actualMessage.get(0));
         }

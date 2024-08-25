@@ -17,9 +17,9 @@ public class CommunicationAndFeedbackFeature {
     String targetedProduct;
     public CommunicationAndFeedbackFeature(SweetSystem myApp) {
         this.myApp = myApp;
-        test=myApp.storeOwners.get(0);
-        testR=myApp.suppliers.get(0);
-        testF=myApp.feedbacks.get(0);
+        test=myApp.getStoreOwners().get(0);
+        testR=myApp.getSuppliers().get(0);
+        testF=myApp.getFeedbacks().get(0);
     }
 
     @When("I have an inquiry or need assistance")
@@ -40,7 +40,7 @@ public class CommunicationAndFeedbackFeature {
     public void iWantToShareMyExperience() {
         String expected="Chocolate Cake Was Crazy\n";
         Feedback newFeedback=new Feedback(feedbackMessage,targetedProduct);
-        myApp.feedbacks.add(newFeedback); //sharing my experience.
+        myApp.getFeedbacks().add(newFeedback); //sharing my experience.
         assertEquals("feedback send went not as expected",expected,testF.getMessage());
 
     }

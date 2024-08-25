@@ -23,7 +23,7 @@ public class ProductManagementFeature {
     }
     @Given("I am a store owner logged in to the Sweet System using username {string} and password {string}")
     public void iAmAStoreOwnerLoggedInToTheSweetSystemUsingUsernameAndPassword(String username, String passcode) {
-        for (StoreOwner s : myApp.storeOwners)
+        for (StoreOwner s : myApp.getStoreOwners())
         {
             if(s.getUsername().equals(username) && s.getPassword().equals(passcode))
             {

@@ -10,7 +10,7 @@ public class Recipe {
     private String fat;
     private String sugar;
     private String protein;
-    private String foodAllergies;
+    private String foodAllergies="";
 
     public Recipe(String title, String description) {
         this.title = title;
@@ -67,7 +67,6 @@ public class Recipe {
     }
 
     public String getFoodAllergies() {
-
         return foodAllergies;
     }
 
@@ -76,7 +75,6 @@ public class Recipe {
     }
 
     public String getNutrient() {
-
         return "Nutrient: "+"Calories: "+ calories +" Fat: "+ fat +" Sugar: "+ sugar +" Protein: "+ protein;
     }
 
