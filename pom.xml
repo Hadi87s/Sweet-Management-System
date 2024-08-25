@@ -36,14 +36,13 @@
               <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.10</version>
+            <version>0.8.11-SNAPSHOT</version>
             <executions>
                 <execution>
                     <goals>
                         <goal>prepare-agent</goal>
                     </goals>
                 </execution>
-                <!-- This configuration runs the coverage report after the tests -->
                 <execution>
                     <id>report</id>
                     <phase>test</phase>
