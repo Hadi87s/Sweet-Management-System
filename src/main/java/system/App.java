@@ -170,7 +170,7 @@ public class App {
         }
 
     }
-    public static void UserMainMenu() throws EmailSendingException {
+    public static void UserMainMenu() throws RuntimeException {
         while (true){
             String multiLineString =
                     ANSI_BRIGHT_BLUE
@@ -448,7 +448,7 @@ public class App {
     }
 
 
-    public static void main(String[] args) throws EmailSendingException {
+    public static void main(String[] args) throws RuntimeException {
         try {
             app = new SweetSystem();
         } catch (Exception e)
