@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -27,7 +28,7 @@ public class CommunicationAndNotificationFeature {
         // Fetch the actual user object from myApp's Users list
         User user = myApp.getUserByUsername(username);
         boolean messageFound = false;
-        ArrayList<String> messages = user.getMessagesList();
+        List<String> messages = user.getMessagesList();
 
 
         for (String m : messages) {
@@ -65,7 +66,7 @@ public class CommunicationAndNotificationFeature {
     public void theSupplierShouldReceiveTheMessageWithTheContent(String name, String message) {
         RawSupplier r = myApp.getSupplierByUsername(name);
         boolean messageFound = false;
-        ArrayList<String> messages = r.getMessagesList();
+        List<String> messages = r.getMessagesList();
 
         for(String m : messages) {
             if (m.equals(message)) {

@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private String  username;
@@ -16,10 +17,10 @@ public class User {
     private String city;
     private String email;
     private String address;
-    private static ArrayList<String> messagesList = new ArrayList<String>();
-    private static ArrayList<Order> orderList = new ArrayList<Order>();
-    private ArrayList<DessertCreation> dessertCreations = new ArrayList<>();
-    private ArrayList<DessertCreation> sharedDessertCreations = new ArrayList<>();
+    private static List<String> messagesList = new ArrayList<>();
+    private static List<Order> orderList = new ArrayList<>();
+    private List<DessertCreation> dessertCreations = new ArrayList<>();
+    private List<DessertCreation> sharedDessertCreations = new ArrayList<>();
     public static final String ANSI_BRIGHT_YELLOW = "\u001B[93m";
     public static final String ANSI_RESET = "\u001B[0m";
 
@@ -89,7 +90,7 @@ public class User {
 
 
 
-    public ArrayList<String> getMessagesList() {
+    public List<String> getMessagesList() {
         return messagesList;
     }
 
@@ -109,7 +110,7 @@ public class User {
 
     }
 
-    public ArrayList<Order> getOrderList() {
+    public List<Order> getOrderList() {
         return orderList;
     }
 
@@ -172,7 +173,7 @@ public class User {
         targetUser.sharedDessertCreations.add(creation);
     }
 
-    public ArrayList<DessertCreation> getSharedDessertCreations() {
+    public List<DessertCreation> getSharedDessertCreations() {
         return sharedDessertCreations;
     }
 
