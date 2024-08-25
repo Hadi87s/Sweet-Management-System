@@ -298,19 +298,19 @@ public class SweetSystem {
     }
 
     // This is a helper method to extract the username from the object
-    private String getUsernameFromObject(Object user) {
-        // Assuming all user objects have a getUsername method
-        if (user instanceof Admin admin) {
+    private String getUsernameFromObject(Object u) {
+        if (u instanceof Admin admin) {
             return admin.getUsername();
-        } else if (user instanceof User) {
-            return ((User) user).getUsername();
-        } else if (user instanceof StoreOwner) {
-            return ((StoreOwner) user).getUsername();
-        } else if (user instanceof RawSupplier) {
-            return ((RawSupplier) user).getUsername();
+        } else if (u instanceof User user) {
+            return user.getUsername();
+        } else if (u instanceof StoreOwner storeOwner) {
+            return storeOwner.getUsername();
+        } else if (u instanceof RawSupplier rawSupplier) {
+            return rawSupplier.getUsername();
         }
         return "";
     }
+
 
     public boolean isValidPassword(String password) {
 
@@ -397,7 +397,7 @@ public class SweetSystem {
         return allUsers;
     }
 
-    public HashMap<String, Integer> getUserStatisticsByCity() {
+    public Map<String, Integer> getUserStatisticsByCity() {
         HashMap<String, Integer> cityStatistics = new HashMap<>();
         String[] cities = {"Nablus", "Jenin", "Ramallah", "Jerusalem", "Jericho", "Tulkarem", "Hebron", "Qalqiliah", "Bethlehem", "Tubas"};
         for (String city : cities) {
@@ -488,9 +488,8 @@ public class SweetSystem {
         newRecipe.setTitle("IceCreem");
         newRecipe.setDescription("Yummy");
         addRecipe(newRecipe);
-        if (deleted && isRecipeAdded())
-            return true;
-        else return false;
+
+        return deleted && isRecipeAdded();
     }
 
     public boolean editPost(String title, String content, Post unwantedPost) {
@@ -499,9 +498,7 @@ public class SweetSystem {
         newPost.setTitle("IceCreem");
         newPost.setContent("Yummy");
         addPost(newPost);
-        if (deleted && isPostAdded())
-            return true;
-        else return false;
+        return deleted && isPostAdded();
     }
 
     public boolean isProductAdded() {
@@ -679,11 +676,14 @@ public class SweetSystem {
     public String searchingForFoodAllergies(String searchForFoodAlergies){
 
         String actualFoodAllergies="" ;
+        StringBuilder actualFoodAllergiesBuilder;
         for (Recipe recipe : getRecipes()) {
             if (recipe.getFoodAllergies().equals(searchForFoodAlergies)) {
                 continue;
             }
-            actualFoodAllergies = actualFoodAllergies + recipe;
+            actualFoodAllergiesBuilder = new StringBuilder(actualFoodAllergies);
+            actualFoodAllergiesBuilder.append(recipe);
+            actualFoodAllergies = actualFoodAllergiesBuilder.toString();
 
         }
         LOGGER.log(Level.INFO, "Actual food allergies: {0}", actualFoodAllergies);

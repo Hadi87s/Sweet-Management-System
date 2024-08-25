@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import java.util.HashMap;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +15,7 @@ public class MonitoringAndReportingFeature {
 
     SweetSystem myApp;
     StoreOwner storeOwner1 = new StoreOwner("StoreOwner1","SO1","storeOwner1@example.com");
-    private HashMap<String, Integer> test;
+    private Map<String, Integer> test;
 
 
 
