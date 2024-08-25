@@ -41,7 +41,7 @@ public class EmailService {
     }
 
 
-    public static void sendEmail(String toEmail, String subject, String body) throws RuntimeException {
+    public static void sendEmail(String toEmail, String subject, String body) throws EmailSendingException {
         try {
             Message message = new MimeMessage(getSession());
             message.setFrom(new InternetAddress(EMAIL));
@@ -54,7 +54,7 @@ public class EmailService {
             LOGGER.log(Level.INFO, "{0}Email sent successfully{1}", new Object[]{ANSI_BRIGHT_YELLOW, ANSI_RESET});
 
         } catch (MessagingException e) {
-            throw new RuntimeException();
+            throw new EmailSendingException("Failed to send email to " + toEmail, e);
         }
     }
 }
