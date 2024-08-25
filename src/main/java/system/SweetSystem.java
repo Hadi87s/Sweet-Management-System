@@ -614,7 +614,7 @@ public class SweetSystem {
         return emailNotificationsEnabled;
     }
 
-    public void makeSpecialRequest(User user, StoreOwner owner, String requestContent) {
+    public void makeSpecialRequest(User user, StoreOwner owner, String requestContent) throws EmailSendingException {
         if (user == null || owner == null)
         {
 //            System.out.println(ANSI_RED + "Connection couldn't be made, The User/Owner's info is missing!" + ANSI_RESET);
@@ -636,7 +636,7 @@ public class SweetSystem {
         return specialRequestMade;
     }
 
-    public void sendEmailNotification(String content, String toEmail) {
+    public void sendEmailNotification(String content, String toEmail) throws EmailSendingException {
         lastEmailNotificationContent = content;
         if (emailNotificationsEnabled) {
             EmailService.sendEmail(toEmail, "Special Request Notification", content);

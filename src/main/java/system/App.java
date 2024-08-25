@@ -170,7 +170,7 @@ public class App {
         }
 
     }
-    public static void UserMainMenu(){
+    public static void UserMainMenu() throws EmailSendingException {
         while (true){
             String multiLineString =
                     ANSI_BRIGHT_BLUE
@@ -448,13 +448,13 @@ public class App {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EmailSendingException {
         try {
             app = new SweetSystem();
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println(e.getStackTrace());
         }
-
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
