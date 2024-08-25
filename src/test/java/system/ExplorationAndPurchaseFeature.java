@@ -43,18 +43,18 @@ public class ExplorationAndPurchaseFeature {
 
     @Then("I should be able to browse and search for dessert recipes")
     public void iShouldBeAbleToBrowseAndSearchForDessertRecipes() {
-        assertNotNull("the Recipes search went not as expected",myApp.SearchingList(searchForDessert));
+        assertNotNull("the Recipes search went not as expected",myApp.searchingList(searchForDessert));
     }
 
     @Then("List of dessert recipes I'm looking for should appear.")
     public void listOfDessertRecipesIMLookingForShouldAppear() {
-        assertNotNull("the Recipes search went not as expected",myApp.SearchingList(searchForDessert));
+        assertNotNull("the Recipes search went not as expected",myApp.searchingList(searchForDessert));
 
     }
 
     @When("I have specific dietary needs or food allergies")
     public void iHaveSpecificDietaryNeedsOrFoodAllergies() {
-        assertEquals("the print of dietary needs and food allergies went not as expected",expectedListToPrint,myApp.PrintListOfDietaryNeedsAndFoodAllergies( ));
+        assertEquals("the print of dietary needs and food allergies went not as expected",expectedListToPrint,myApp.printListOfDietaryNeedsAndFoodAllergies( ));
 
     }
 
@@ -78,7 +78,7 @@ public class ExplorationAndPurchaseFeature {
         dietaryNeedSearchingFor="5g";
         assertEquals("the dietary search went not as expected",expectedDietary,myApp.searchingForNutrient( searchForNutrient1, dietaryNeedSearchingFor));
 
-        assertEquals("the food allergies search went not as expected",expectedFoodAlergies,myApp.SearchingForFoodAllergies( foodAllergiesToDeleteWhenFoundIt));
+        assertEquals("the food allergies search went not as expected",expectedFoodAlergies,myApp.searchingForFoodAllergies( foodAllergiesToDeleteWhenFoundIt));
 
     }
 

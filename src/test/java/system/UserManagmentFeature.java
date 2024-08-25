@@ -17,7 +17,7 @@ public class UserManagmentFeature {
     private List<Object> userList;
     Admin admin = new Admin("Admin","Admin");
     StoreOwner storeOwner1 = new StoreOwner("StoreOwner1","SO1","storeOwner1@example.com");
-    RawSupplier supplier1 =new RawSupplier("Supplier1","RMS1","supplier1@example.com");;
+    RawSupplier supplier1 =new RawSupplier("Supplier1","RMS1","supplier1@example.com");
     boolean ifIntered = false;
 
     public UserManagmentFeature(SweetSystem myApp) {
@@ -28,7 +28,7 @@ public class UserManagmentFeature {
     public void iAmAnAdminLoggedInToTheSweetSystemUsingUsernameAndPassword(String un, String passcode) {
         admin.setUsername(un);
         admin.setPassword(passcode);
-        for (Admin a : myApp.Admins)
+        for (Admin a : myApp.admins)
         {
             if(a.getUsername().equals(un) && a.getPassword().equals(passcode))
             {
@@ -86,9 +86,9 @@ public class UserManagmentFeature {
 
     @When("I remove the store owner with a username {string}")
     public void iRemoveTheStoreOwnerWithAUsername(String username) {
-        boolean Removed = myApp.removeStoreOwner(username);
+        boolean removed = myApp.removeStoreOwner(username);
         ifIntered = false;
-        if (Removed)
+        if (removed)
             ifIntered = true;
         storeOwner1.setStoreOwnerExist(false);
     }
@@ -102,7 +102,7 @@ public class UserManagmentFeature {
     @When("I add a supplier with a username {string} and a password {string} and an email {string}")
     public void iAddASupplierWithAUsernameAndAPasswordAndAnEmail(String un, String pass, String email) {
         supplier1 = new RawSupplier(un,pass,email);
-        myApp.Suppliers.add(supplier1);
+        myApp.suppliers.add(supplier1);
         myApp.setMessage("Operation Complete!");
     }
 
@@ -114,7 +114,7 @@ public class UserManagmentFeature {
 
     @Given("a supplier with username {string} exists in the Sweet System")
     public void aSupplierWithUsernameExistsInTheSweetSystem(String username) {
-        for(RawSupplier sp : myApp.Suppliers)
+        for(RawSupplier sp : myApp.suppliers)
         {
             if(sp.getUsername().equals(username))
             {
@@ -132,7 +132,7 @@ public class UserManagmentFeature {
 
     @When("I remove a supplier with a username {string}")
     public void iRemoveASupplierWithAUsername(String username) {
-        Iterator<RawSupplier> iterator = myApp.Suppliers.iterator();
+        Iterator<RawSupplier> iterator = myApp.suppliers.iterator();
         while (iterator.hasNext()) {
             RawSupplier sp = iterator.next();
             if (sp.getUsername().equals(username)) {

@@ -37,7 +37,7 @@ public class ContentManagementFeature {
         assertTrue(found);
         admin3 = myApp.getAdminByUsername("Admin3");//just to check
         assertNotNull("some thing wrong on get admin ",admin3);
-        admin3=myApp.getAdminByUsername("Admin31");;
+        admin3=myApp.getAdminByUsername("Admin31");
         assertNull("some thing wrong on get admin not valid ",admin3);
     }
 
@@ -47,7 +47,7 @@ public class ContentManagementFeature {
         ArrayList<Post> posts = myApp.getPosts();
         String actualFromRecipes1= "";
         String actualFromRecipes2= "";
-        String expectedFromPosts = "Kunafa" + ": "+"dough\n";;
+        String expectedFromPosts = "Kunafa" + ": "+"dough\n";
         String actualFromPosts="";
 
 
@@ -84,8 +84,7 @@ public class ContentManagementFeature {
     public void iShouldBeAbleToEditAnExistingRecipe() {
         Recipe sampleRecipe = new Recipe("HAHS","HFDHF");
         myApp.addRecipe(sampleRecipe);
-        boolean Edited = myApp.editRecipe("Ice Creem","Yummy",sampleRecipe);
-        assertTrue(Edited);
+        assertTrue(myApp.editRecipe("Ice Creem","Yummy",sampleRecipe));
 
     }
 
@@ -106,8 +105,7 @@ public class ContentManagementFeature {
     public void iShouldBeAbleToEditAnExistingPost() {
         Post samplePost = new Post("HAHS","HFDHF");
         myApp.addPost(samplePost);
-        boolean Edited = myApp.editPost("Hi","This is a post",samplePost);
-        assertTrue(Edited);
+        assertTrue(myApp.editPost("Hi","This is a post",samplePost));
     }
 
     @Then("I should be able to delete an existing post")
@@ -119,8 +117,8 @@ public class ContentManagementFeature {
     @When("I request to see the users feedback")
     public void iRequestToSeeTheUsersFeedback() {
         boolean feedbackChecker = false;
-        String actualMessage = "";
-        for (Feedback fb : myApp.Feedbacks) {
+
+        for (Feedback fb : myApp.feedbacks) {
             if (fb != null) {
                 assertNotNull(fb);
                 feedbackChecker = true;
@@ -132,8 +130,8 @@ public class ContentManagementFeature {
 
     @Then("I should see a list of all users feedback")
     public void iShouldSeeAListOfAllUsersFeedback() {
-        boolean FeedbackShown = true;
-        assertTrue(FeedbackShown);
+        boolean feedbackShown = true;
+        assertTrue(feedbackShown);
     }
 
 

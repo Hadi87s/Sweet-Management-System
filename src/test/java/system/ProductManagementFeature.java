@@ -109,8 +109,8 @@ public class ProductManagementFeature {
 
     @When("I request the sales and profits")
     public void iRequestTheSalesAndProfits() {
-        String Report = test.printProfitsReport();
-        assertNotNull(Report);
+        String report = test.printProfitsReport();
+        assertNotNull(report);
     }
 
     @Then("I should see a report of sales and profits for my products")
@@ -136,8 +136,8 @@ public class ProductManagementFeature {
     }
 
     @When("I set a discount of {string} on the product {string}")
-    public void iSetADiscountOfOnTheProduct(String Stringdiscount, String name) {
-        double discount = Double.parseDouble(Stringdiscount);
+    public void iSetADiscountOfOnTheProduct(String stringDiscount, String name) {
+        double discount = Double.parseDouble(stringDiscount);
         name = "Chocolate";
         discountApplied = test.setDiscountOnProduct(name, discount);
         assertTrue("something in set discount went wrong", test.setDiscountOnProduct(name, discount));

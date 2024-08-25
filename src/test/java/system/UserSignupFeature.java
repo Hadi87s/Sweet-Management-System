@@ -47,12 +47,12 @@ public class UserSignupFeature {
 
     @Then("a successful signup message will appear")
     public void aSuccessfulSignupMessageWillAppear() {
-        boolean MessageAppeared = true;
+        boolean messageAppeared = true;
         String userDetailsShouldExist = user.viewAccountDetails();
         assertNotNull(userDetailsShouldExist);
         Boolean userShouldHaveAShoppingCartExists = User.loadOrdersFromFile("DumbFile.txt");
         assertNotNull(userShouldHaveAShoppingCartExists);
-        assertTrue(MessageAppeared);
+        assertTrue(messageAppeared);
     }
 
 

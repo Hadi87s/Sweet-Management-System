@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class SweetSystem {
     private boolean registeredIn;
-    private boolean UserValid;
+    private boolean userValid;
     private String message;
     private boolean recipeAdded;
     private boolean postAdded;
@@ -22,13 +22,13 @@ public class SweetSystem {
 
     private static final Logger LOGGER = Logger.getLogger(SweetSystem.class.getName());
 
-    public ArrayList<User> Users = new ArrayList<User>();
-    public ArrayList<Admin> Admins = new ArrayList<Admin>();
+    public ArrayList<User> users = new ArrayList<User>();
+    public ArrayList<Admin> admins = new ArrayList<Admin>();
     public ArrayList<StoreOwner> storeOwners = new ArrayList<StoreOwner>();
-    public ArrayList<RawSupplier> Suppliers = new ArrayList<RawSupplier>();
-    public ArrayList<Post> Posts = new ArrayList<Post>();
-    public ArrayList<Recipe> Recipes = new ArrayList<Recipe>();
-    public static ArrayList<Feedback> Feedbacks = new ArrayList<Feedback>();
+    public ArrayList<RawSupplier> suppliers = new ArrayList<RawSupplier>();
+    public ArrayList<Post> posts = new ArrayList<Post>();
+    public ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+    public static ArrayList<Feedback> feedbacks = new ArrayList<Feedback>();
     private static final String EMAIL_REGEX = "a";
 
     // Compile the pattern once and reuse it
@@ -41,31 +41,30 @@ public class SweetSystem {
 
     public SweetSystem() throws IOException {
         registeredIn = false;
-        UserValid = false;
+        userValid = false;
         recipeAdded = false;
         postAdded = false;
         productAdded = false;
         messageSent = false;
-        final String UsersFile = "Users.txt";
-        final String AdminsFile = "Admins.txt";
-        final String StoreOwnersFile = "StoreOwners.txt";
-        final String SuppliersFile = "Suppliers.txt";
-        final String ProductsFile = "Products.txt";
-        final String OrdersFile = "Orders.txt";
+        final String usersFile = "Users.txt";
+        final String adminsFile = "Admins.txt";
+        final String storeOwnersFile = "StoreOwners.txt";
+        final String suppliersFile = "Suppliers.txt";
+        final String productsFile = "Products.txt";
 
-        this.Users = loadUsersFromFile(UsersFile);
-        this.Admins = loadAdminsFromFile(AdminsFile);
-        this.storeOwners = loadStoreOwnersFromFile(StoreOwnersFile);
-        this.Suppliers = loadSuppliersFromFile(SuppliersFile);
-        StoreOwner.loadProductsFromFile(ProductsFile);
+        this.users = loadUsersFromFile(usersFile);
+        this.admins = loadAdminsFromFile(adminsFile);
+        this.storeOwners = loadStoreOwnersFromFile(storeOwnersFile);
+        this.suppliers = loadSuppliersFromFile(suppliersFile);
+        StoreOwner.loadProductsFromFile(productsFile);
 
-        User Zahi = new User("User1", "123", "user1@example.com", "Nablus");
+        User zahi = new User("User1", "123", "user1@example.com", "Nablus");
         Feedback zahiQudo = new Feedback("Chocolate Cake Was Crazy\n");
-        Feedbacks.add(zahiQudo);
+        feedbacks.add(zahiQudo);
 
         Order order = new Order("ChocolateCake", 2, "12345");
-        Zahi.addOrder(order);
-        Users.add(Zahi);
+        zahi.addOrder(order);
+        users.add(zahi);
 
         Recipe recipe1 = new Recipe("Kunafa", "dough");
         recipe1.setOption( "Popular sweets");
@@ -74,7 +73,7 @@ public class SweetSystem {
         recipe1.setSugar("741g");
         recipe1.setCalories("3105");
         recipe1.setFoodAllergies("Butter");
-        Recipes.add(recipe1);
+        recipes.add(recipe1);
 
         Recipe recipe2 = new Recipe("Chocolate Cake", "aCakeFlavoredWithMeltedChocolate, cocoa powder");
         recipe2.setOption( "Cake");
@@ -83,7 +82,7 @@ public class SweetSystem {
         recipe2.setSugar("74g");
         recipe2.setCalories("305");
         recipe2.setFoodAllergies("dairy");
-        Recipes.add(recipe2);
+        recipes.add(recipe2);
 
     }
 
@@ -135,7 +134,7 @@ public class SweetSystem {
         boolean isAdded = false;
 
         // Add the admin to the in-memory list
-        Admins.add(admin);
+        admins.add(admin);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) { // 'true' to append to the file
             // Format the admin data as "username password"
@@ -239,7 +238,7 @@ public class SweetSystem {
     public boolean addSupplierToFile(String filename, RawSupplier supplier) {
         boolean isAdded = false;
 
-        Suppliers.add(supplier);
+        suppliers.add(supplier);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) { // 'true' to append to the file
             // Format the supplier data as "username password email"
@@ -273,16 +272,16 @@ public class SweetSystem {
 
 
     public boolean isUserValid() {
-        return UserValid;
+        return userValid;
     }
 
     public void setUserValid(boolean userValid) {
-        UserValid = userValid;
+        this.userValid = userValid;
     }
 
     public boolean isUserRegistered(String username, String password){
         boolean found = false;
-        for (User user : Users) {
+        for (User user : users) {
             if(user.getUsername().equals(username) && user.getPassword().equals(password)){
                 found = true;
                 return found;
@@ -332,7 +331,7 @@ public class SweetSystem {
 
     public void registerUser(User user) {
         if (isUserValid()) {
-            Users.add(user);
+            users.add(user);
             setMessage("User registered successfully!");
         } else {
             setMessage("Invalid user details!");
@@ -340,20 +339,20 @@ public class SweetSystem {
     }
 
     public boolean isUserRegistered(User user){
-        return Users.contains(user);
+        return users.contains(user);
     }
 
     public User isUserRegister(String username, String password) {
-        User user = checkCredentials(Users, username, password, 'U');
+        User user = checkCredentials(users, username, password, 'U');
         if (user != null) return user;
 
-        user = checkCredentials(Admins, username, password, 'A');
+        user = checkCredentials(admins, username, password, 'A');
         if (user != null) return user;
 
         user = checkCredentials(storeOwners, username, password, 'S');
         if (user != null) return user;
 
-        user = checkCredentials(Suppliers, username, password, 'R');
+        user = checkCredentials(suppliers, username, password, 'R');
         return user;
     }
 
@@ -383,10 +382,10 @@ public class SweetSystem {
 
     private List<? extends User> getUserListByType(userType type) {
         return switch (type) {
-            case USER -> Users;
-            case ADMIN -> Admins;
+            case USER -> users;
+            case ADMIN -> admins;
             case STORE_OWNER -> storeOwners;
-            case SUPPLIER -> Suppliers;
+            case SUPPLIER -> suppliers;
             default -> null;
         };
     }
@@ -403,10 +402,10 @@ public class SweetSystem {
     public List<Object> getAllUsers() {
         List<Object> allUsers = new ArrayList<>();
         // this method will return every user could use the system, no matter what the role is.
-        allUsers.addAll(Users);
+        allUsers.addAll(users);
         allUsers.addAll(storeOwners);
-        allUsers.addAll(Suppliers);
-        allUsers.addAll(Admins);
+        allUsers.addAll(suppliers);
+        allUsers.addAll(admins);
         return allUsers;
     }
 
@@ -416,7 +415,7 @@ public class SweetSystem {
         for (String city : cities) {
             cityStatistics.put(city, 0);
         }
-        for (User user : Users) {
+        for (User user : users) {
             String userCity = user.getCity();
             if (cityStatistics.containsKey(userCity)) {
                 cityStatistics.put(userCity, cityStatistics.get(userCity) + 1);
@@ -428,24 +427,24 @@ public class SweetSystem {
     }
 
     public ArrayList<Recipe> getRecipes() {
-        return Recipes;
+        return recipes;
     }
 
 
 
     public ArrayList<Post> getPosts() {
-        return Posts;
+        return posts;
     }
 
 
 
     public void addRecipe(Recipe recipe) {
-        Recipes.add(recipe);
+        recipes.add(recipe);
         setRecipeAdded(true);
     }
 
     public void addPost(Post post) {
-        Posts.add(post);
+        posts.add(post);
         setPostAdded(true);
     }
 
@@ -467,7 +466,7 @@ public class SweetSystem {
 
     public boolean deleteRecipe(Recipe recipe) {
         boolean deleted = false;
-        Iterator<Recipe> iterator = Recipes.iterator();
+        Iterator<Recipe> iterator = recipes.iterator();
         while (iterator.hasNext()) {
             Recipe r = iterator.next();
             if (r.getTitle().equals(recipe.getTitle()) && r.getDescription().equals(recipe.getDescription())) {
@@ -482,7 +481,7 @@ public class SweetSystem {
 
     public boolean deletePost(Post post) {
         boolean deleted = false;
-        Iterator<Post> iterator = Posts.iterator();
+        Iterator<Post> iterator = posts.iterator();
         while (iterator.hasNext()) {
             Post p = iterator.next();
             if (p.getTitle().equals(post.getTitle()) && p.getContent().equals(post.getContent())) {
@@ -495,8 +494,8 @@ public class SweetSystem {
     }
 
 
-    public boolean editRecipe(String Title, String Description, Recipe unwantedRecipe) {
-        Recipe newRecipe = new Recipe(Title, Description);
+    public boolean editRecipe(String title, String description, Recipe unwantedRecipe) {
+        Recipe newRecipe = new Recipe(title, description);
         boolean deleted = deleteRecipe(unwantedRecipe);
         newRecipe.setTitle("IceCreem");
         newRecipe.setDescription("Yummy");
@@ -506,8 +505,8 @@ public class SweetSystem {
         else return false;
     }
 
-    public boolean editPost(String Title, String Content, Post unwantedPost) {
-        Post newPost = new Post(Title, Content);
+    public boolean editPost(String title, String content, Post unwantedPost) {
+        Post newPost = new Post(title, content);
         boolean deleted = deletePost(unwantedPost);
         newPost.setTitle("IceCreem");
         newPost.setContent("Yummy");
@@ -526,7 +525,7 @@ public class SweetSystem {
     }
 
     public ArrayList<User> getUsers() {
-        return Users;
+        return users;
     }
 
 
@@ -546,7 +545,7 @@ public class SweetSystem {
 
 
     public void sendMessageToUser(String message, String user) {
-        for (User u : Users) {
+        for (User u : users) {
             if (u.getUsername().equals(user)) {
                 u.addMessage(message);
                 setMessageSent(true);
@@ -555,7 +554,7 @@ public class SweetSystem {
     }
 
     public void sendMessageToSupplier(String message, String s) {
-        for (RawSupplier r : Suppliers) {
+        for (RawSupplier r : suppliers) {
             if (r.getUsername().equals(s)) {
                 r.addMessage(message);
                 setMessageSent(true);
@@ -564,7 +563,7 @@ public class SweetSystem {
     }
 
     public User getUserByUsername(String username) {
-        for (User u : Users) {
+        for (User u : users) {
             if (u.getUsername().equals(username)) {
                 return u;
             }
@@ -573,7 +572,7 @@ public class SweetSystem {
     }
 
     public RawSupplier getSupplierByUsername(String username) {
-        for (RawSupplier r : Suppliers) {
+        for (RawSupplier r : suppliers) {
             if (r.getUsername().equals(username)) {
                 return r;
             }
@@ -590,7 +589,7 @@ public class SweetSystem {
         return null; // Return null if no matching owner is found
     }
     public Admin getAdminByUsername(String username) {
-        for (Admin admin : Admins) {
+        for (Admin admin : admins) {
             if (admin.getUsername().equals(username)) {
                 return admin;
             }
@@ -654,10 +653,10 @@ public class SweetSystem {
     }
 
 
-    public String SearchingList(String searchFor){
+    public String searchingList(String searchFor){
 
         String actualRecipe="" ;
-        for (Recipe recipe : Recipes) {
+        for (Recipe recipe : recipes) {
             if (recipe.getTitle().equals(searchFor)) {
                 actualRecipe = recipe.toString();
 
@@ -667,7 +666,7 @@ public class SweetSystem {
     }
     public String searchingForNutrient(String nutrientType, String dietaryNeeds) {
         String actualDietaryNeeds = "";
-        for (Recipe recipe : Recipes) {
+        for (Recipe recipe : recipes) {
             String nutrientValue = getNutrientValue(recipe, nutrientType);
             if (nutrientValue != null && nutrientValue.equals(dietaryNeeds)) {
                 actualDietaryNeeds = recipe.getTitle() + "\n" + recipe.getNutrient() + "\n";
@@ -689,10 +688,10 @@ public class SweetSystem {
     }
 
 
-    public String SearchingForFoodAllergies(String searchForFoodAlergies){
+    public String searchingForFoodAllergies(String searchForFoodAlergies){
 
         String actualFoodAllergies="" ;
-        for (Recipe recipe : Recipes) {
+        for (Recipe recipe : recipes) {
             if (recipe.getFoodAllergies().equals(searchForFoodAlergies)) {
                 continue;
             }
@@ -702,10 +701,10 @@ public class SweetSystem {
         LOGGER.log(Level.INFO, "Actual food allergies: {0}", actualFoodAllergies);
         return actualFoodAllergies;
     }
-    public String PrintListOfDietaryNeedsAndFoodAllergies(){
+    public String printListOfDietaryNeedsAndFoodAllergies(){
 
         String actualFoodAllergies="" ;
-        for (Recipe recipe : Recipes) {
+        for (Recipe recipe : recipes) {
 
             actualFoodAllergies = actualFoodAllergies +recipe.getTitle()+"\nAllergies: "+recipe.getFoodAllergies()+"\n"+recipe.getNutrient()+"\n";
 
@@ -718,7 +717,7 @@ public class SweetSystem {
     public String getOptionList(){
         int counter = 1;
         String actual="Options: ";
-        for (Recipe recipe : Recipes) {
+        for (Recipe recipe : recipes) {
             actual=  actual +counter+"."+ recipe.getOption()+" ";
             counter++;
         }
@@ -731,7 +730,7 @@ public class SweetSystem {
         if(isValidUsername(name) && isValidPassword(password) && isEmailValid(email)) {
             User user = new User(name, password, email, city);
             addUserToFile("Users.txt",user);
-            Users.add(user); //adding the user to the list to keep it updated.
+            users.add(user); //adding the user to the list to keep it updated.
             return true;
         }
         else
@@ -748,11 +747,11 @@ public class SweetSystem {
 
 
     public void addUserFeedback(Feedback feedback){
-        Feedbacks.add(feedback);
+        feedbacks.add(feedback);
     }
 
     public void printUserFeedbacks() {
-        for (Feedback fb : Feedbacks) {
+        for (Feedback fb : feedbacks) {
             // Log the product-related feedback
             LOGGER.log(Level.INFO, "Product Related: {0}", fb.getRelatedProduct());
 

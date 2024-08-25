@@ -173,8 +173,7 @@ public class StoreOwner extends User{
         return sum;
     }
     public String printProfitsReport() {
-        String Report = "The total profit is: "+getTotalProfit() +", The number of sold items is : " + getAllSellingTimes();
-        return Report;
+        return "The total profit is: "+getTotalProfit() +", The number of sold items is : " + getAllSellingTimes();
     }
 
     public boolean setDiscountOnProduct(String productName, double discount) {
@@ -369,20 +368,20 @@ public class StoreOwner extends User{
     }
 
     public static double getProductPrice(String toFind){
-        double Price =0;
+        double price =0;
 
 
         for(Product p : products)
         {
             if(p.getName().equals(toFind)){
 
-                Price = p.getPrice();
-                return Price;
+                price = p.getPrice();
+                return price;
             }
         }
         LOGGER.log(Level.WARNING, "Product not found");
 
-        return Price;
+        return price;
     }
 
     public List<String> getReport() {

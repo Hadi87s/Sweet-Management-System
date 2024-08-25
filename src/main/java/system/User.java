@@ -10,12 +10,12 @@ public class User {
     private String  username;
     private String password;
     private boolean userLoggedIn;
-    private boolean AddressChanged;
-    private boolean EmailChanged;
-    private Character Role;
+    private boolean addressChanged;
+    private boolean emailChanged;
+    private Character role;
     private String city;
     private String email;
-    private String Address;
+    private String address;
     private static ArrayList<String> messagesList = new ArrayList<String>();
     private static ArrayList<Order> orderList = new ArrayList<Order>();
     private ArrayList<DessertCreation> dessertCreations = new ArrayList<>();
@@ -32,7 +32,7 @@ public class User {
     public User(String username, String password, Character role) {
         this.username = username;
         this.password = password;
-        Role = role;
+        this.role = role;
     }
 
     public User(String username, String password, String email, String city) {
@@ -41,8 +41,8 @@ public class User {
         this.email = email;
         this.city = city;
         userLoggedIn = false;
-        AddressChanged = false;
-        EmailChanged = false;
+        addressChanged = false;
+        emailChanged = false;
     }
     // we need another constructor to set the email and the city among with the username and the password.
 
@@ -132,32 +132,32 @@ public class User {
         return null;
     }
 
-    public void cancelOrder(String Id)
+    public void cancelOrder(String id)
     {
         for(Order order : orderList){
-            if (order.getOrderID().equals(Id)){
+            if (order.getOrderID().equals(id)){
                 order.setOrderStatus("Cancelled");
             }
         }
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
     public boolean updateAddress(String newAddress){
         setAddress(newAddress);
-        AddressChanged = true;
-        return AddressChanged;
+        addressChanged = true;
+        return addressChanged;
     }
 
     public boolean updateEmail(String newEmail){
         setEmail(newEmail);
-        EmailChanged = true;
-        return EmailChanged;
+        emailChanged = true;
+        return emailChanged;
     }
     public void postDessertCreation(DessertCreation creation) {
         dessertCreations.add(creation);
@@ -178,12 +178,12 @@ public class User {
 
     public Character getRole() {
 
-        return Role;
+        return role;
     }
 
     public void setRole(Character role) {
 
-        Role = role;
+        this.role = role;
     }
     public boolean testGetSetRole(){
         setRole(getRole());
