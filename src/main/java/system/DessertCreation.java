@@ -1,6 +1,5 @@
 package system;
 
-
 public class DessertCreation {
     private String title;
     private String description;

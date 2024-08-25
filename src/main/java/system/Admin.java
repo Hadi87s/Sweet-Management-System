@@ -1,6 +1,5 @@
 package system;
 
-
 public class Admin extends User{
     private boolean adminLoggedIn;
 
