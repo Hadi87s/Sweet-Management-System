@@ -56,7 +56,7 @@ public class ProductManagementFeature {
         test.addProduct(name, description,price,rmp);
         boolean updateName=test.updateProductName("Chocolate","japaneseChocolateCake");
         assertTrue(updateName);
-        updateName=test.updateProductName("japaneseChocolateCake","Chocolate");
+
         myApp.setMessage("Action has been made successfully!");
         myApp.setProductAdded(true);
         assertTrue(myApp.isProductAdded());
@@ -118,7 +118,7 @@ public class ProductManagementFeature {
     @Then("I should see a report of sales and profits for my products")
     public void iShouldSeeAReportOfSalesAndProfitsForMyProducts() {
         String Report = test.printProfitsReport();
-//        System.out.println(Report);
+        assertNotNull(Report);
     }
 
     @When("I request to see the best-selling product")

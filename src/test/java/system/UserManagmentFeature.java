@@ -18,6 +18,7 @@ public class UserManagmentFeature {
     Admin admin = new Admin("Admin","Admin");
     StoreOwner storeOwner1 = new StoreOwner("StoreOwner1","SO1","storeOwner1@example.com");
     RawSupplier supplier1 =new RawSupplier("Supplier1","RMS1","supplier1@example.com");;
+    boolean ifIntered = false;
 
     public UserManagmentFeature(SweetSystem myApp) {
         this.myApp = myApp;
@@ -86,6 +87,9 @@ public class UserManagmentFeature {
     @When("I remove the store owner with a username {string}")
     public void iRemoveTheStoreOwnerWithAUsername(String username) {
         boolean Removed = myApp.removeStoreOwner(username);
+        ifIntered = false;
+        if (Removed)
+            ifIntered = true;
         storeOwner1.setStoreOwnerExist(false);
     }
 

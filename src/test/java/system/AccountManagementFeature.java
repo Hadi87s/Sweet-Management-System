@@ -54,7 +54,7 @@ public class AccountManagementFeature {
     @Then("a confirmation message should appear")
     public void aConfirmationMessageShouldAppear() {
         myApp.setMessage("Account details has been updated successfully!");
-        assertEquals(myApp.getMessage(),"Account details has been updated successfully!");
+        assertEquals("Account details has been updated successfully!", myApp.getMessage());
     }
 
 

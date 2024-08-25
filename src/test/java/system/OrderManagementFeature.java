@@ -9,7 +9,6 @@ import static org.junit.Assert.*;
 
 public class OrderManagementFeature {
     SweetSystem myApp;
-    private StoreOwner storeOwner;
     private Order order;
     public OrderManagementFeature(SweetSystem myApp) {
         this.myApp = myApp;

@@ -13,7 +13,6 @@ public class UserAccountFeature {
     public UserAccountFeature(SweetSystem myApp) {
         this.myApp = myApp;
     }
-    //    private User user;
     private User targetUser;
 
     boolean emailUpdated = false;
@@ -37,10 +36,11 @@ public class UserAccountFeature {
 
     @Then("the email should be {string}")
     public void theEmailShouldBe(String newEmail) {
-        boolean emailUpdated = false;
+        emailUpdated = false;
         for (User user: myApp.getUsers()) {
-            if(user.getEmail().equals(newEmail)) {
+            if (user.getEmail().equals(newEmail)) {
                 emailUpdated = true;
+                break;
             }
         }
         assertTrue(emailUpdated);
@@ -48,7 +48,7 @@ public class UserAccountFeature {
 
     @Then("the address should be {string}")
     public void theAddressShouldBe(String address) {
-        boolean addressUpdated = false;
+        addressUpdated = false;
         for (User user: myApp.getUsers()) {
             user.setAddress(address);
             if (user.getAddress().equals(address)) {

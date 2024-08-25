@@ -364,11 +364,13 @@ public class StoreOwner extends User{
     public static boolean printAllProducts(){
         boolean printed = false;
         int counter=1;
-        System.out.println(ANSI_WHITE + ANSI_BOLD+ "------ Products List ------" + ANSI_RESET);
+        LOGGER.log(Level.INFO, "{0}{1}------ Products List ------{2}",
+                new Object[]{ANSI_WHITE, ANSI_BOLD, ANSI_RESET});
         for(Product p : products)
         {
 
-            System.out.println(ANSI_WHITE+counter+"  "+p.getName()+"  price: "+p.getPrice() + ANSI_RESET);
+            LOGGER.log(Level.INFO, "{0}{1}  {2}  price: {3}{4}",
+                    new Object[]{ANSI_WHITE, counter, p.getName(), p.getPrice(), ANSI_RESET});
             counter++;
             printed = true;
         }
@@ -387,7 +389,7 @@ public class StoreOwner extends User{
                 return Price;
             }
         }
-        System.out.println("Product not found ");
+        LOGGER.log(Level.WARNING, "Product not found");
 
         return Price;
     }

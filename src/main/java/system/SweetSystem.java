@@ -617,7 +617,6 @@ public class SweetSystem {
     public void makeSpecialRequest(User user, StoreOwner owner, String requestContent) throws EmailSendingException {
         if (user == null || owner == null)
         {
-//            System.out.println(ANSI_RED + "Connection couldn't be made, The User/Owner's info is missing!" + ANSI_RESET);
             LOGGER.log(Level.SEVERE, "Connection couldn't be made, The User/Owner's info is missing!");
         }
         else {
@@ -626,7 +625,6 @@ public class SweetSystem {
                     + user.getUsername() + "\n\n" + requestContent
                     + "\n\nThe provided User email if further communication is required: "
                     + user.getEmail() + "\n";
-
 
             sendEmailNotification(content, owner.getEmail().trim());
         }
@@ -669,7 +667,6 @@ public class SweetSystem {
     }
     public String searchingForNutrient(String nutrientType, String dietaryNeeds) {
         String actualDietaryNeeds = "";
-
         for (Recipe recipe : Recipes) {
             String nutrientValue = getNutrientValue(recipe, nutrientType);
             if (nutrientValue != null && nutrientValue.equals(dietaryNeeds)) {
@@ -677,8 +674,6 @@ public class SweetSystem {
                 break; // Exit the loop once a match is found
             }
         }
-
-//        System.out.println(actualDietaryNeeds);
         LOGGER.info(actualDietaryNeeds);
         return actualDietaryNeeds;
     }
@@ -694,41 +689,41 @@ public class SweetSystem {
     }
 
 
-    public String SearchingForFoodAlergies(String searchForFoodAlergies){
+    public String SearchingForFoodAllergies(String searchForFoodAlergies){
 
-        String actualFoodAlergies="" ;
+        String actualFoodAllergies="" ;
         for (Recipe recipe : Recipes) {
             if (recipe.getFoodAllergies().equals(searchForFoodAlergies)) {
                 continue;
             }
-            actualFoodAlergies = actualFoodAlergies +recipe.toString();
+            actualFoodAllergies = actualFoodAllergies + recipe;
 
         }
-        System.out.println(actualFoodAlergies);
-        return actualFoodAlergies;
+        LOGGER.log(Level.INFO, "Actual food allergies: {0}", actualFoodAllergies);
+        return actualFoodAllergies;
     }
-    public String PrintListOfDietaryNeedsAndFoodAlergies(){
+    public String PrintListOfDietaryNeedsAndFoodAllergies(){
 
-        String actualFoodAlergies="" ;
+        String actualFoodAllergies="" ;
         for (Recipe recipe : Recipes) {
 
-            actualFoodAlergies = actualFoodAlergies +recipe.getTitle()+"\nAllergies: "+recipe.getFoodAllergies()+"\n"+recipe.getNutrient()+"\n";
+            actualFoodAllergies = actualFoodAllergies +recipe.getTitle()+"\nAllergies: "+recipe.getFoodAllergies()+"\n"+recipe.getNutrient()+"\n";
 
         }
-        System.out.println(actualFoodAlergies);
-        return actualFoodAlergies;
+        LOGGER.log(Level.INFO, "Actual food allergies: {0}", actualFoodAllergies);
+        return actualFoodAllergies;
     }
 
 
     public String getOptionList(){
-        int counter=1;
+        int counter = 1;
         String actual="Options: ";
         for (Recipe recipe : Recipes) {
             actual=  actual +counter+"."+ recipe.getOption()+" ";
             counter++;
         }
         actual= actual + "\n";
-        System.out.println(actual);
+        LOGGER.log(Level.INFO, "Actual value: {0}", actual);
         return actual;
 
     }
@@ -743,24 +738,29 @@ public class SweetSystem {
             return false; //some condition was incorrect while signing up so false will be returned.
     }
 
-    public void printStoreOwners(){
+    public void printStoreOwners() {
         int index = 1;
-        for (StoreOwner o : storeOwners){
-            System.out.println(index + ". " + o.getBusinessName());
+        for (StoreOwner o : storeOwners) {
+            LOGGER.log(Level.INFO, "{0}. {1}", new Object[]{index, o.getBusinessName()});
             index++;
         }
     }
+
 
     public void addUserFeedback(Feedback feedback){
         Feedbacks.add(feedback);
     }
 
-    public void printUserFeedbacks(){
+    public void printUserFeedbacks() {
         for (Feedback fb : Feedbacks) {
-            System.out.println(ANSI_WHITE + ANSI_BOLD + "Product Related: " + fb.getRelatedProduct() + "\n");
-            System.out.println("Feedback Content: "+ fb.getMessage() + ANSI_RESET);
+            // Log the product-related feedback
+            LOGGER.log(Level.INFO, "Product Related: {0}", fb.getRelatedProduct());
+
+            // Log the feedback content
+            LOGGER.log(Level.INFO, "Feedback Content: {0}", fb.getMessage());
         }
     }
+
 
     public boolean removeStoreOwner(String username){
         boolean removed = false;

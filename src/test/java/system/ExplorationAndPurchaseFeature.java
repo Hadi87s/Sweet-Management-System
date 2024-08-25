@@ -11,18 +11,24 @@ public class ExplorationAndPurchaseFeature {
     StoreOwner test;
     SweetSystem myApp;
     String expectedOptions="Options: 1.Popular sweets 2.Cake \n";
-    String expectedDietary="Chocolate Cake\n"+"Nutrient: Calories: 305 Fat: 22g Sugar: 74g Protein: 5g"+ "\n";
-    String expectedListToPrint="Kunafa\n" +
-            "Allergies: Butter\n" +
-            "Nutrient: Calories: 3105 Fat: 221g Sugar: 741g Protein: 51g\n" +
-            "Chocolate Cake\n" +
-            "Allergies: dairy\n" +
-            "Nutrient: Calories: 305 Fat: 22g Sugar: 74g Protein: 5g"+"\n";
-    String expectedPaymentMessage="Chocolate Cake, Chocolate is very tasty!, 10.0\n" +
-            "Change: 5.23\n";
-
-    String expectedFoodAlergies="Kunafa: dough\n";
-    String searchForDessert="Chocolate Cake";
+    String expectedDietary = """
+            Chocolate Cake
+            Nutrient: Calories: 305 Fat: 22g Sugar: 74g Protein: 5g
+            """;
+    String expectedListToPrint = """
+    Kunafa
+    Allergies: Butter
+    Nutrient: Calories: 3105 Fat: 221g Sugar: 741g Protein: 51g
+    Chocolate Cake
+    Allergies: dairy
+    Nutrient: Calories: 305 Fat: 22g Sugar: 74g Protein: 5g
+    """;
+    String expectedFoodAlergies = """
+    Kunafa: dough
+    """;
+    String searchForDessert = """
+    Chocolate Cake
+    """;
 
     public ExplorationAndPurchaseFeature(SweetSystem myApp) {
         this.myApp = myApp;
@@ -48,7 +54,7 @@ public class ExplorationAndPurchaseFeature {
 
     @When("I have specific dietary needs or food allergies")
     public void iHaveSpecificDietaryNeedsOrFoodAllergies() {
-        assertEquals("the print of dietary needs and food allergies went not as expected",expectedListToPrint,myApp.PrintListOfDietaryNeedsAndFoodAlergies( ));
+        assertEquals("the print of dietary needs and food allergies went not as expected",expectedListToPrint,myApp.PrintListOfDietaryNeedsAndFoodAllergies( ));
 
     }
 
@@ -72,7 +78,7 @@ public class ExplorationAndPurchaseFeature {
         dietaryNeedSearchingFor="5g";
         assertEquals("the dietary search went not as expected",expectedDietary,myApp.searchingForNutrient( searchForNutrient1, dietaryNeedSearchingFor));
 
-        assertEquals("the food allergies search went not as expected",expectedFoodAlergies,myApp.SearchingForFoodAlergies( foodAllergiesToDeleteWhenFoundIt));
+        assertEquals("the food allergies search went not as expected",expectedFoodAlergies,myApp.SearchingForFoodAllergies( foodAllergiesToDeleteWhenFoundIt));
 
     }
 
