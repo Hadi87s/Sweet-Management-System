@@ -1,4 +1,4 @@
-package sweet.system;
+package Sweet.system;
 
 import java.util.Properties;
 import java.util.logging.Level;

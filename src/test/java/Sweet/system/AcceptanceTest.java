@@ -1,4 +1,4 @@
-package sweet.system;
+package Sweet.system;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         plugin = {"summary","html:target/cucumber/report.html"},
         monochrome = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        glue ="sweet.system"
+        glue ="Sweet.system"
 )
 public class AcceptanceTest {
 

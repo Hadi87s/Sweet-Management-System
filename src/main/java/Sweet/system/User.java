@@ -1,4 +1,4 @@
-package sweet.system;
+package Sweet.system;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

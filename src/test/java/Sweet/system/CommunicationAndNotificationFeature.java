@@ -1,4 +1,4 @@
-package sweet.system;
+package Sweet.system;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
