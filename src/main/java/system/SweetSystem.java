@@ -121,26 +121,7 @@ public class SweetSystem {
             e.printStackTrace();
         }
     }
-    public boolean addAdminToFile(String filename, Admin admin) {
-        boolean isAdded = false;
 
-        // Add the admin to the in-memory list
-        admins.add(admin);
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) { // 'true' to append to the file
-            // Format the admin data as "username password"
-            String adminData = admin.getUsername() + " " +
-                    admin.getPassword();
-            writer.write(adminData);
-            writer.newLine(); // Add a newline after writing the admin data
-            isAdded = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            isAdded = false;
-        }
-
-        return isAdded;
-    }
     public void loadStoreOwnersFromFile(String fileName) {
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -165,42 +146,7 @@ public class SweetSystem {
             e.printStackTrace();
         }
     }
-    public boolean addStoreOwnerToFile(String fileName, StoreOwner storeOwner) {
-        boolean isAdded = false;
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) { // 'true' to append to the file
-            // Format the store owner data as "username password email businessName address"
-            String storeOwnerData = storeOwner.getUsername() + " " +
-                    storeOwner.getPassword() + " " +
-                    storeOwner.getEmail() + " " +
-                    storeOwner.getBusinessName() + " " +
-                    storeOwner.getAddress();
-            storeOwners.add(storeOwner); //adding the new owner to the list as well.
-            if (storeOwners.contains(storeOwner)) {
-                isAdded = true;
-            }
-            bw.write(storeOwnerData);
-            bw.newLine(); // Add a newline after writing the store owner data
-        } catch (IOException e) {
-            e.printStackTrace();
-            isAdded = false;
-        }
-        return isAdded;
-    }
-    public boolean removeStoreOwnerFromList( String username) {
-        Iterator<StoreOwner> iterator = storeOwners.iterator();
-        boolean isRemoved = false;
 
-        while (iterator.hasNext()) {
-            StoreOwner storeOwner = iterator.next();
-            if (storeOwner.getUsername().equals(username)) {
-                iterator.remove();  // Remove the store owner from the list
-                isRemoved = true;
-                break;  // Exit the loop after removing the store owner
-            }
-        }
-
-        return isRemoved;
-    }
 
 
     public void loadSuppliersFromFile(String filename) {
@@ -223,36 +169,7 @@ public class SweetSystem {
             e.printStackTrace();
         }
     }
-    public boolean addSupplierToFile(String filename, RawSupplier supplier) {
-        boolean isAdded = false;
 
-        suppliers.add(supplier);
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) { // 'true' to append to the file
-            // Format the supplier data as "username password email"
-            String supplierData = supplier.getUsername() + " " +
-                    supplier.getPassword() + " " +
-                    supplier.getEmail();
-            writer.write(supplierData);
-            writer.newLine(); // Add a newline after writing the supplier data
-            isAdded = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            isAdded = false;
-        }
-
-        return isAdded;
-    }
-
-    public void addUserToFile(String filename, User user) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) {
-            String userLine = String.format("%s %s %s %s", user.getUsername(), user.getPassword(), user.getEmail(), user.getCity());
-            writer.write(userLine);
-            writer.newLine(); // Add a newline after the user data
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public boolean isRegisteredIn() {
         return registeredIn;
@@ -317,32 +234,8 @@ public class SweetSystem {
         return password != null && password.length() >= 3;
     }
 
-    public void registerUser(User user) {
-        if (isUserValid()) {
-            users.add(user);
-            setMessage("User registered successfully!");
-        } else {
-            setMessage("Invalid user details!");
-        }
-    }
 
-    public boolean isUserRegistered(User user){
-        return users.contains(user);
-    }
 
-    public User isUserRegister(String username, String password) {
-        User user = checkCredentials(users, username, password, 'U');
-        if (user != null) return user;
-
-        user = checkCredentials(admins, username, password, 'A');
-        if (user != null) return user;
-
-        user = checkCredentials(storeOwners, username, password, 'S');
-        if (user != null) return user;
-
-        user = checkCredentials(suppliers, username, password, 'R');
-        return user;
-    }
 
     private <T extends User> User checkCredentials(List<T> list, String username, String password, char role) {
         for (T user : list) {
@@ -727,16 +620,6 @@ public class SweetSystem {
         return actual;
     }
 
-    public boolean registerUser(String name,String password,String email,String city){
-        if(isValidUsername(name) && isValidPassword(password) && isEmailValid(email)) {
-            User user = new User(name, password, email, city);
-            addUserToFile("Users.txt",user);
-            users.add(user); //adding the user to the list to keep it updated.
-            return true;
-        }
-        else
-            return false; //some condition was incorrect while signing up so false will be returned.
-    }
 
     public void printStoreOwners() {
         int index = 1;
@@ -744,11 +627,6 @@ public class SweetSystem {
             LOGGER.log(Level.INFO, "{0}. {1}", new Object[]{index, o.getBusinessName()});
             index++;
         }
-    }
-
-
-    public void addUserFeedback(Feedback feedback){
-        feedbacks.add(feedback);
     }
 
     public void printUserFeedbacks() {
