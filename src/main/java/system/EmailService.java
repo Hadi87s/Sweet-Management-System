@@ -11,6 +11,7 @@ public class EmailService {
     private static final Logger LOGGER = Logger.getLogger(EmailService.class.getName());
     private static final String EMAIL = "SweetSystemInstitution@gmail.com";
     private static final String PASSWORD = System.getenv("password");
+
     public static final String ANSI_BRIGHT_YELLOW = "\u001B[93m";
     public static final String ANSI_RESET = "\u001B[0m";
 
@@ -40,7 +41,7 @@ public class EmailService {
     }
 
 
-    public static void sendEmail(String toEmail, String subject, String body) throws RuntimeException {
+    public static void sendEmail(String toEmail, String subject, String body) throws EmailSendingException {
         try {
             Message message = new MimeMessage(getSession());
             message.setFrom(new InternetAddress(EMAIL));
@@ -53,7 +54,7 @@ public class EmailService {
             LOGGER.log(Level.INFO, "{0}Email sent successfully{1}", new Object[]{ANSI_BRIGHT_YELLOW, ANSI_RESET});
 
         } catch (MessagingException e) {
-            throw new RuntimeException("Failed to send email", e);
+            throw new EmailSendingException("Failed to send email to " + toEmail, e);
         }
     }
 }

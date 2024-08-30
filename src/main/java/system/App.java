@@ -15,7 +15,8 @@ public class App {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BOLD = "\u001B[1m";
 
-    
+
+
     public static void PersonalInformation(User obj) {
         while (true)
         {
@@ -203,9 +204,8 @@ public class App {
                 }
                 else {
                     for(Order o : obj.getOrderList()){
-                        System.out.print(o);
-                        System.out.println(ANSI_WHITE + " Status: "+o.getOrderStatus()+"\n" + ANSI_RESET);
-                        System.out.printf(ANSI_WHITE + "----------------------\n\n" + ANSI_RESET);
+                        System.out.print(o.toString());
+                        System.out.println(ANSI_WHITE + "      Status:          "+o.getOrderStatus()+"\n" + ANSI_RESET);
                     }
                 }
             }
@@ -218,7 +218,6 @@ public class App {
                         System.out.print(o);
                         System.out.println(ANSI_WHITE +"      Status:          "+o.getOrderStatus()+"\n"+ ANSI_RESET);
                     }
-                    else System.out.println(ANSI_RED + "Invalid Order ID number" + ANSI_RESET);
                 }
             }
             else if(options == 4){
@@ -445,9 +444,6 @@ public class App {
                 System.out.println(obj.viewAccountDetails());
                 PersonalInformation(obj);
             }
-            else if (options == 0){
-                break;
-            }
         }
     }
 
@@ -472,29 +468,28 @@ public class App {
                 }
             } else if (options == 2) {
                 if (SignUpSetup()) {
-                    System.out.println(ANSI_BRIGHT_YELLOW + "User has been SignedUp successfully." + ANSI_RESET);
+                    System.out.println(ANSI_BRIGHT_YELLOW +"User has been SignedUp successfully."+ ANSI_RESET);
 
-                } else
-                    System.out.println(ANSI_RED + "Username is already in use, or the password is too weak." + ANSI_RESET);
+                } else System.out.println(ANSI_RED +"Username is already in use, or the password is too weak." + ANSI_RESET);
             }
         }
-            while (loggedIn) {
+        while (loggedIn) {
 
-                if (user.getRole() == 'A' || user.getRole() == 'a') {
-                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Administration Unit ------" + ANSI_RESET + "\n");
-                    AdminMenu();
-                } else if (user.getRole() == 'S' || user.getRole() == 's') {
-                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Store Management Unit ------" + ANSI_RESET + "\n");
-                    storeOwnerMenu();
-                } else if (user.getRole() == 'R' || user.getRole() == 'r') {
-                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Raw Material Management Unit ------" + ANSI_RESET + "\n");
-                    SupplierMenu();
-                } else if (user.getRole() == 'U' || user.getRole() == 'u') {
-                    System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Sweet System ------" + ANSI_RESET + "\n");
-                    UserMainMenu();
-                } else {
-                    System.out.println(ANSI_BOLD + ANSI_RED + "SOMETHING WEN WRONG WHEN ATTEMPTING TO LOGIN..." + ANSI_RESET + "\n");
-                }
+            if (user.getRole() == 'A' || user.getRole() == 'a') {
+                System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Administration Unit ------" + ANSI_RESET + "\n");
+                AdminMenu();
+            } else if (user.getRole() == 'S' || user.getRole() == 's') {
+                System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Store Management Unit ------" + ANSI_RESET + "\n");
+                storeOwnerMenu();
+            } else if (user.getRole() == 'R' || user.getRole() == 'r') {
+                System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Raw Material Management Unit ------" + ANSI_RESET + "\n");
+                SupplierMenu();
+            } else if (user.getRole() == 'U' || user.getRole() == 'u') {
+                System.out.println(ANSI_BOLD + ANSI_WHITE + "------ Welcome to the Sweet System ------" + ANSI_RESET + "\n");
+                UserMainMenu();
+            } else {
+                System.out.println(ANSI_BOLD + ANSI_RED + "SOMETHING WEN WRONG WHEN ATTEMPTING TO LOGIN..." + ANSI_RESET + "\n");
+            }
         }
     }
 
@@ -503,5 +498,10 @@ public class App {
         Random random = new Random();
         return 1000 + random.nextInt(9000); // Ensures the number is between 1000 and 9999
     }
+
+
+
+
+
 
 }

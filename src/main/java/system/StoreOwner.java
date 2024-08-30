@@ -251,7 +251,7 @@ public class StoreOwner extends User{
     @Override
     public void addMessage(String message) {
         messagesList.add(message);
-}
+    }
 
     @Override
     public String toString() {
@@ -292,8 +292,40 @@ public class StoreOwner extends User{
             e.printStackTrace();
         }
     }
+    private void writeProductsToFile(String fileName, List<Product> products) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
+            for (Product product : products) {
+                String productData = product.getName() + " " +
+                        product.getDescription() + " " +
+                        product.getPrice() + " " +
+                        product.getRawMaterialCost();
+                bw.write(productData);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void updateProductInFile(String fileName, String productName, Product updatedProduct) {
+        boolean found = false;
+        for (int i = 0; i < products.size(); i++) {
+            Product product = products.get(i);
+            if (product.getName().equals(productName)) {
+                products.set(i, updatedProduct); // Replace with the updated product
+                found = true;
+                break;
+            }
+        }
 
+        if (found) {
+            writeProductsToFile(fileName, getProducts());
+            LOGGER.log(Level.INFO, "Product updated successfully.");
+
+        } else {
+            LOGGER.log(Level.SEVERE, "Error updating product");
+        }
+    }
 
     public boolean deleteProductFromFile(String fileName, String productName) {
         boolean found = false;
@@ -309,6 +341,7 @@ public class StoreOwner extends User{
         }
 
         if (found) {
+            writeProductsToFile(fileName, getProducts()); // Update the file with the modified list
             LOGGER.log(Level.INFO, "Product deleted successfully.");
         }
         else {
@@ -334,7 +367,22 @@ public class StoreOwner extends User{
         return printed;
     }
 
+    public static double getProductPrice(String toFind){
+        double price =0;
 
+
+        for(Product p : products)
+        {
+            if(p.getName().equals(toFind)){
+
+                price = p.getPrice();
+                return price;
+            }
+        }
+        LOGGER.log(Level.WARNING, "Product not found");
+
+        return price;
+    }
 
     public List<String> getReport() {
         return report;

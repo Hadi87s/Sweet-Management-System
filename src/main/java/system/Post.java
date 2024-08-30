@@ -26,9 +26,5 @@ public class Post {
         this.content = content;
     }
 
-    @Override
-    public String toString() {
 
-        return " Title: "+title + ", Description: " + content ;
-    }
 }

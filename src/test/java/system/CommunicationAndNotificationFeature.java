@@ -82,7 +82,7 @@ public class CommunicationAndNotificationFeature {
 
 
     @When("a special request is made by user {string} to store owner {string}")
-    public void aSpecialRequestIsMadeByUserToStoreOwner(String username, String ownername) throws RuntimeException {
+    public void aSpecialRequestIsMadeByUserToStoreOwner(String username, String ownername) throws EmailSendingException {
         String requestContent = "I would like to have a chocolate cake with chocolate ships on top, and a vanilla cream as a covering, thank you!";
         StoreOwner owner = myApp.getStoreOwnerByUsername(ownername);
         owner.setEmail("MedbLucifer@gmail.com");
