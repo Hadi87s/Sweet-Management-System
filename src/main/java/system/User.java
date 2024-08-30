@@ -94,17 +94,14 @@ public class User {
         return messagesList;
     }
 
-
-
-
     public void addMessage(String message) {
         messagesList.add(message);
     }
 
-
     public String getRequestContent(String request) {
         return "\n"+getUsername() + " requested a special delivery with a message of: "+request +"\n\nThe provided email if further communication is required: "+ getEmail();
     }
+
     public String viewAccountDetails(){
         return ANSI_BRIGHT_YELLOW +"\nUsername: " + getUsername() + "\nPassword: "+getPassword()+"\nEmail: "+getEmail()+"\nCity: "+getCity()+"\n" + ANSI_RESET;
 
@@ -114,15 +111,11 @@ public class User {
         return orderList;
     }
 
-
-
     public void addOrder(Order order){
         order.setOrderStatus("Processed");
         order.setProcessed(true);
         orderList.add(order);
     }
-
-
 
     public static Order getOrderById(String id){
         for(Order order : orderList){
@@ -133,8 +126,7 @@ public class User {
         return null;
     }
 
-    public void cancelOrder(String id)
-    {
+    public void cancelOrder(String id) {
         for(Order order : orderList){
             if (order.getOrderID().equals(id)){
                 order.setOrderStatus("Cancelled");
@@ -149,6 +141,7 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
     public boolean updateAddress(String newAddress){
         setAddress(newAddress);
         addressChanged = true;
@@ -160,6 +153,7 @@ public class User {
         emailChanged = true;
         return emailChanged;
     }
+
     public void postDessertCreation(DessertCreation creation) {
         dessertCreations.add(creation);
     }
@@ -186,11 +180,13 @@ public class User {
 
         this.role = role;
     }
+
     public boolean testGetSetRole(){
         setRole(getRole());
         return  true;
 
     }
+
     public static boolean loadOrdersFromFile(String fileName) {
 
 

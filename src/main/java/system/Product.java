@@ -26,7 +26,6 @@ public class Product {
         sellingTimes=0;
     }
 
-
     public String getName() {
         return name;
     }
@@ -80,7 +79,6 @@ public class Product {
         price -= discountAmount;
 
     }
-
 
     @Override
     public String toString() {

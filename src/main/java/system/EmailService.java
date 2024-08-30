@@ -20,7 +20,6 @@ public class EmailService {
         super();
     }
 
-
     private static Properties getProperties() {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -30,7 +29,6 @@ public class EmailService {
         return props;
     }
 
-
     private static Session getSession() {
         return Session.getInstance(getProperties(), new javax.mail.Authenticator() {
             @Override
@@ -39,7 +37,6 @@ public class EmailService {
             }
         });
     }
-
 
     public static void sendEmail(String toEmail, String subject, String body) throws EmailSendingException {
         try {

@@ -1,15 +1,14 @@
 package system;
 
 public class DessertCreation {
-    private String title;
-    private String description;
+    private final String title;
+    private final String description;
 
     public DessertCreation(String title, String description) {
         this.title = title;
         this.description = description;
     }
 
-    // Getters
     public String getTitle() {
         return title;
     }

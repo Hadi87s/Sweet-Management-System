@@ -17,7 +17,6 @@ public class Recipe {
         this.description = description;
     }
 
-
     public String getTitle() {
         return title;
     }
@@ -77,7 +76,6 @@ public class Recipe {
     public String getNutrient() {
         return "Nutrient: "+"Calories: "+ calories +" Fat: "+ fat +" Sugar: "+ sugar +" Protein: "+ protein;
     }
-
 
     public String getOption() {
         return option;

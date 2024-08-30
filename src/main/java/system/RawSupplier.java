@@ -30,7 +30,6 @@ public class RawSupplier extends User {
         this.supplierExist = supplierExist;
     }
 
-
     public String getBusinessName() {
         return businessName;
     }

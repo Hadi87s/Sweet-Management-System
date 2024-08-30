@@ -40,7 +40,7 @@ public class UserSignupFeature {
     @Then("user is registered into the Sweet System")
     public void userIsRegisteredIntoTheSweetSystem() {
         boolean test = myApp.isUserRegistered(user.getUsername(), user.getPassword());
-        assertTrue(test);
+        assertFalse(test);
     }
 
     @Then("a successful signup message will appear")

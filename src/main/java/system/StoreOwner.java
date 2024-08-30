@@ -71,6 +71,7 @@ public class StoreOwner extends User{
     public void setTotalProfit(double totalProfit) {
         this.totalProfit = totalProfit;
     }
+
     public double calculateTotalProfit() {
         double profits=0.0;
         for (Product product : products) {
@@ -79,6 +80,7 @@ public class StoreOwner extends User{
         totalProfit=profits;
         return profits;
     }
+
     public String getMostSellingItem() {
         Product max = new Product("There is no best Selling item",10,5);
         max.setSellingTimes(0);
@@ -139,6 +141,7 @@ public class StoreOwner extends User{
         addProductToFile("Products.txt",newProduct);
         products.add(newProduct);
     }
+
     public boolean updateProduct(String name, String description) {
         boolean updated = false;
         for(Product p : products)
@@ -164,14 +167,14 @@ public class StoreOwner extends User{
         return deleted;
     }
 
-    public int getAllSellingTimes ()
-    {
+    public int getAllSellingTimes () {
         int sum = 0;
         for (Product product : products) {
             sum+=product.getSellingTimes();
         }
         return sum;
     }
+
     public String printProfitsReport() {
         return "The total profit is: "+getTotalProfit() +", The number of sold items is : " + getAllSellingTimes();
     }
@@ -187,6 +190,7 @@ public class StoreOwner extends User{
         }
         return applied;
     }
+
     public boolean updateProductName(String productName, String newName) {
         boolean updated = false;
         for (Product p : products) {
@@ -280,6 +284,7 @@ public class StoreOwner extends User{
             e.printStackTrace();
         }
     }
+
     public void addProductToFile(String fileName, Product product) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
             String productData = product.getName() + " " +
@@ -292,6 +297,7 @@ public class StoreOwner extends User{
             e.printStackTrace();
         }
     }
+
     private void writeProductsToFile(String fileName, List<Product> products) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
             for (Product product : products) {

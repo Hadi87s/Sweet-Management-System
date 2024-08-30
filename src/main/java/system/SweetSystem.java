@@ -2,14 +2,13 @@ package system;
 
 import java.io.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static system.App.*;
 
 
 public class SweetSystem {
-    private boolean registeredIn;
+    private final boolean registeredIn;
     private boolean userValid;
     private String message;
     private boolean recipeAdded;
@@ -20,7 +19,6 @@ public class SweetSystem {
     private boolean specialRequestMade;
     private String lastEmailNotificationContent;
 
-    private static final Logger LOGGER = Logger.getLogger(SweetSystem.class.getName());
 
     private static List<User> users = new ArrayList<>();
     private static List<Admin> admins = new ArrayList<>();
@@ -31,9 +29,8 @@ public class SweetSystem {
     private  static final List<Feedback> feedbacks = new ArrayList<>();
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
             "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-
-    // Compile the pattern once and reuse it
     private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+
 
     public SweetSystem() throws IOException {
         registeredIn = false;
@@ -82,6 +79,7 @@ public class SweetSystem {
 
     }
 
+
     private void loadUsersFromFile(String filename) {
 
 
@@ -103,6 +101,7 @@ public class SweetSystem {
             e.printStackTrace();
         }
     }
+
     private void loadAdminsFromFile(String filename) {
 
 
@@ -122,6 +121,7 @@ public class SweetSystem {
             e.printStackTrace();
         }
     }
+
     public boolean addAdminToFile(String filename, Admin admin) {
         boolean isAdded = false;
 
@@ -142,6 +142,7 @@ public class SweetSystem {
 
         return isAdded;
     }
+
     public void loadStoreOwnersFromFile(String fileName) {
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -159,13 +160,14 @@ public class SweetSystem {
                     storeOwner.setBusinessName(businessName);
                     storeOwners.add(storeOwner);
                 } else {
-                    LOGGER.log(Level.WARNING, "Invalid data format in file: {0}", line);
+                    System.out.println(ANSI_RED + "Invalid data format in file" + ANSI_RESET);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public boolean addStoreOwnerToFile(String fileName, StoreOwner storeOwner) {
         boolean isAdded = false;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) { // 'true' to append to the file
@@ -187,22 +189,6 @@ public class SweetSystem {
         }
         return isAdded;
     }
-    public boolean removeStoreOwnerFromList( String username) {
-        Iterator<StoreOwner> iterator = storeOwners.iterator();
-        boolean isRemoved = false;
-
-        while (iterator.hasNext()) {
-            StoreOwner storeOwner = iterator.next();
-            if (storeOwner.getUsername().equals(username)) {
-                iterator.remove();  // Remove the store owner from the list
-                isRemoved = true;
-                break;  // Exit the loop after removing the store owner
-            }
-        }
-
-        return isRemoved;
-    }
-
 
     public void loadSuppliersFromFile(String filename) {
 
@@ -224,6 +210,7 @@ public class SweetSystem {
             e.printStackTrace();
         }
     }
+
     public boolean addSupplierToFile(String filename, RawSupplier supplier) {
         boolean isAdded = false;
 
@@ -258,7 +245,6 @@ public class SweetSystem {
     public boolean isRegisteredIn() {
         return registeredIn;
     }
-
 
     public boolean isUserValid() {
         return userValid;
@@ -312,23 +298,9 @@ public class SweetSystem {
         return "";
     }
 
-
     public boolean isValidPassword(String password) {
 
         return password != null && password.length() >= 3;
-    }
-
-    public void registerUser(User user) {
-        if (isUserValid()) {
-            users.add(user);
-            setMessage("User registered successfully!");
-        } else {
-            setMessage("Invalid user details!");
-        }
-    }
-
-    public boolean isUserRegistered(User user){
-        return users.contains(user);
     }
 
     public User isUserRegister(String username, String password) {
@@ -355,7 +327,6 @@ public class SweetSystem {
         return null;
     }
 
-
     public boolean isAddedInSystem(userType type, String username) {
         List<? extends User> userList = getUserListByType(type);
 
@@ -378,7 +349,6 @@ public class SweetSystem {
             default -> null;
         };
     }
-
 
     public String getMessage() {
         return message;
@@ -419,13 +389,9 @@ public class SweetSystem {
         return recipes;
     }
 
-
-
     public List<Post> getPosts() {
         return posts;
     }
-
-
 
     public void addRecipe(Recipe recipe) {
         recipes.add(recipe);
@@ -467,7 +433,6 @@ public class SweetSystem {
         return deleted;
     }
 
-
     public boolean deletePost(Post post) {
         boolean deleted = false;
         Iterator<Post> iterator = posts.iterator();
@@ -481,7 +446,6 @@ public class SweetSystem {
         }
         return deleted;
     }
-
 
     public boolean editRecipe(String title, String description, Recipe unwantedRecipe) {
         Recipe newRecipe = new Recipe(title, description);
@@ -514,8 +478,6 @@ public class SweetSystem {
         return users;
     }
 
-
-
     public boolean isMessageSent() {
         return messageSent;
     }
@@ -527,8 +489,6 @@ public class SweetSystem {
     public List<StoreOwner> getStoreOwners() {
         return storeOwners;
     }
-
-
 
     public void sendMessageToUser(String message, String user) {
         for (User u : users) {
@@ -574,6 +534,7 @@ public class SweetSystem {
         }
         return null; // Return null if no matching owner is found
     }
+
     public Admin getAdminByUsername(String username) {
         for (Admin admin : admins) {
             if (admin.getUsername().equals(username)) {
@@ -582,6 +543,7 @@ public class SweetSystem {
         }
         return null; // Return null if no matching owner is found
     }
+
     public StoreOwner getStoreOwnerByBusinessName(String username) {
         for (StoreOwner owner : storeOwners) {
             if (owner.getBusinessName().equals(username)) {
@@ -599,10 +561,10 @@ public class SweetSystem {
         return emailNotificationsEnabled;
     }
 
-    public void makeSpecialRequest(User user, StoreOwner owner, String requestContent) throws EmailSendingException, EmailSendingException {
+    public void makeSpecialRequest(User user, StoreOwner owner, String requestContent) throws EmailSendingException {
         if (user == null || owner == null)
         {
-            LOGGER.log(Level.SEVERE, "Connection couldn't be made, The User/Owner's info is missing!");
+            System.out.println(ANSI_RED + "Connection couldn't be made, The User/Owner's info is missing!" + ANSI_RESET);
         }
         else {
             specialRequestMade = true;
@@ -638,7 +600,6 @@ public class SweetSystem {
         return matcher.matches();
     }
 
-
     public String searchingList(String searchFor){
 
         String actualRecipe="" ;
@@ -650,6 +611,7 @@ public class SweetSystem {
         }
         return actualRecipe;
     }
+
     public String searchingForNutrient(String nutrientType, String dietaryNeeds) {
         String actualDietaryNeeds = "";
         for (Recipe recipe : recipes) {
@@ -659,7 +621,7 @@ public class SweetSystem {
                 break; // Exit the loop once a match is found
             }
         }
-        LOGGER.info(actualDietaryNeeds);
+        System.out.println(ANSI_WHITE + actualDietaryNeeds + ANSI_RESET);
         return actualDietaryNeeds;
     }
 
@@ -672,7 +634,6 @@ public class SweetSystem {
             default -> null;
         };
     }
-
 
     public String searchingForFoodAllergies(String searchForFoodAlergies){
 
@@ -687,9 +648,10 @@ public class SweetSystem {
             actualFoodAllergies = actualFoodAllergiesBuilder.toString();
 
         }
-        LOGGER.log(Level.INFO, "Actual food allergies: {0}", actualFoodAllergies);
+        System.out.println("Actual food allergies: " + actualFoodAllergies);
         return actualFoodAllergies;
     }
+
     public String printListOfDietaryNeedsAndFoodAllergies() {
         StringBuilder actualFoodAllergiesBuilder = new StringBuilder();
 
@@ -703,11 +665,9 @@ public class SweetSystem {
         }
 
         String actualFoodAllergies = actualFoodAllergiesBuilder.toString();
-        LOGGER.log(Level.INFO, "Actual food allergies: {0}", actualFoodAllergies);
+        System.out.println("Actual food allergies: " + actualFoodAllergies);
         return actualFoodAllergies;
     }
-
-
 
     public String getOptionList() {
         int counter = 1;
@@ -724,7 +684,7 @@ public class SweetSystem {
         actualBuilder.append("\n");
         String actual = actualBuilder.toString();
 
-        LOGGER.log(Level.INFO, "Actual value: {0}", actual);
+        System.out.println("Actual value: " + actual);
         return actual;
     }
 
@@ -742,11 +702,10 @@ public class SweetSystem {
     public void printStoreOwners() {
         int index = 1;
         for (StoreOwner o : storeOwners) {
-            LOGGER.log(Level.INFO, "{0}. {1}", new Object[]{index, o.getBusinessName()});
+            System.out.println(ANSI_WHITE + index +". "+o.getBusinessName() + ANSI_RESET);
             index++;
         }
     }
-
 
     public void addUserFeedback(Feedback feedback){
         feedbacks.add(feedback);
@@ -755,13 +714,12 @@ public class SweetSystem {
     public void printUserFeedbacks() {
         for (Feedback fb : feedbacks) {
             // Log the product-related feedback
-            LOGGER.log(Level.INFO, "Product Related: {0}", fb.getRelatedProduct());
+            System.out.println(ANSI_WHITE + "Product Related: " + fb.getRelatedProduct() + ANSI_RESET);
 
             // Log the feedback content
-            LOGGER.log(Level.INFO, "Feedback Content: {0}", fb.getMessage());
+            System.out.println(ANSI_WHITE + "Feedback Content: "+ fb.getMessage() + ANSI_RESET);
         }
     }
-
 
     public boolean removeStoreOwner(String username){
         boolean removed = false;
@@ -788,4 +746,5 @@ public class SweetSystem {
     public static List<Feedback> getFeedbacks() {
         return feedbacks;
     }
+
 }
