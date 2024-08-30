@@ -11,7 +11,6 @@ public class EmailService {
     private static final Logger LOGGER = Logger.getLogger(EmailService.class.getName());
     private static final String EMAIL = "SweetSystemInstitution@gmail.com";
     private static final String PASSWORD = System.getenv("password");
-
     public static final String ANSI_BRIGHT_YELLOW = "\u001B[93m";
     public static final String ANSI_RESET = "\u001B[0m";
 

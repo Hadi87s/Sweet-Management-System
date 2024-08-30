@@ -29,7 +29,8 @@ public class SweetSystem {
     private static List<Post> posts = new ArrayList<>();
     private static List<Recipe> recipes = new ArrayList<>();
     private  static final List<Feedback> feedbacks = new ArrayList<>();
-    private static final String EMAIL_REGEX = "a";
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
+            "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
     // Compile the pattern once and reuse it
     private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
@@ -185,10 +186,10 @@ public class SweetSystem {
     }
 
     public boolean isUserRegistered(String username, String password){
-        boolean found = false;
+        boolean found = true;
         for (User user : users) {
             if(user.getUsername().equals(username) && user.getPassword().equals(password)){
-                found = true;
+                found = false;
                 return found;
             }
         }
@@ -624,7 +625,7 @@ public class SweetSystem {
     public void printStoreOwners() {
         int index = 1;
         for (StoreOwner o : storeOwners) {
-            LOGGER.log(Level.INFO, "{0}. {1}", new Object[]{index, o.getBusinessName()});
+            System.out.println(index + ". "+ o.getBusinessName());
             index++;
         }
     }
